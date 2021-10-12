@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
@@ -27,17 +26,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    void _showError(String error) async {
-      await Fluttertoast.showToast(
-          msg: error,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 3,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }
-
     return Scaffold(
       body: WillPopScope(
         onWillPop: () async => false,
@@ -46,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
           listener: (context, state) {
             if (state is AuthenticationFailure) {
               debugPrint(state.message);
-              _showError(state.message);
+              showSnackBar(context, state.message);
             } else if (state is AppAuthenticated) {
               Navigator.pushReplacementNamed(context, '/home');
             }

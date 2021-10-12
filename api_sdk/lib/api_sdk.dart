@@ -76,6 +76,13 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getCollect() async {
+    String path = ApiConstants.GET_COLLECT;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   // Movement Register
   static Future<Response> postMovementRegister({required body}) async {
     String path = ApiConstants.POST_MOVEMENT_BY_PP;
@@ -86,6 +93,13 @@ class ApiSdk {
 
   static Future<Response> getMovementByPP({required int userId}) async {
     String path = ApiConstants.GET_MOVEMENT_BY_PP + "$userId";
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> getMovement() async {
+    String path = ApiConstants.GET_MOVEMENT;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -106,6 +120,13 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getWatch() async {
+    String path = ApiConstants.GET_WATCH;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   //  Register
   static Future<Response> postCrimeRegister({required body}) async {
     String path = ApiConstants.POST_CRIME_BY_PP;
@@ -116,6 +137,13 @@ class ApiSdk {
 
   static Future<Response> getCrimeByPP({required int userId}) async {
     String path = ApiConstants.GET_CRIME_BY_PP + "$userId";
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> getCrime() async {
+    String path = ApiConstants.GET_CRIME;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -136,6 +164,13 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getFire() async {
+    String path = ApiConstants.GET_FIRE;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   //  Register
   static Future<Response> postDeathRegister({required body}) async {
     String path = ApiConstants.POST_DEATH_BY_PP;
@@ -146,6 +181,13 @@ class ApiSdk {
 
   static Future<Response> getDeathByPP({required int userId}) async {
     String path = ApiConstants.GET_DEATH_BY_PP + "$userId";
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> getDeath() async {
+    String path = ApiConstants.GET_DEATH;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -166,6 +208,13 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getMissing() async {
+    String path = ApiConstants.GET_MISSING;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   //  Register
   static Future<Response> postPlaceRegister({required body}) async {
     String path = ApiConstants.POST_PUBLIC_PLACE_BY_PP;
@@ -181,6 +230,13 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getPlace() async {
+    String path = ApiConstants.GET_PUBLIC_PLACE;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   //  Register
   static Future<Response> postIllegalRegister({required body}) async {
     String path = ApiConstants.POST_ILLEGAL_WORK_BY_PP;
@@ -191,6 +247,13 @@ class ApiSdk {
 
   static Future<Response> getIllegalByPP({required int userId}) async {
     String path = ApiConstants.GET_ILLEGAL_WORK_BY_PP + "$userId";
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> getIllegal() async {
+    String path = ApiConstants.GET_ILLEGAL_WORK;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
