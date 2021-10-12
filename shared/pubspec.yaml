@@ -10,6 +10,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  bloc: ^7.1.0
+  equatable: ^2.0.3
+  meta: ^1.7.0
+
+  shared_preferences: ^2.0.7
+
+  api_sdk:
+    path: ../api_sdk
+
 
 dev_dependencies:
   flutter_test:

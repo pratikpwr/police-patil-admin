@@ -8,6 +8,10 @@
       <excludeFolder url="file://$MODULE_DIR$/api_sdk/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/api_sdk/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/api_sdk/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ppadmin/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ppadmin/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ppadmin/build" />
+      <excludeFolder url="file://$MODULE_DIR$/shared/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/shared/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/shared/build" />
     </content>
