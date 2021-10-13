@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
 class CrimesScreen extends StatelessWidget {
-  const CrimesScreen({Key? key}) : super(key: key);
+  CrimesScreen({Key? key}) : super(key: key);
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,18 +31,15 @@ class CrimesScreen extends StatelessWidget {
               return loading();
             } else if (state is CrimeDataLoaded) {
               return SafeArea(
-                child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: ListView.builder(
-                        itemCount: state.crimeResponse.data!.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return CrimeDetailWidget(
-                            crimesData: state.crimeResponse.data![index],
-                          );
-                        })),
+                child: Scrollbar(
+                  controller: _scrollController,
+                  child: SingleChildScrollView(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: CrimeDataTableWidget(
+                          crimeList: state.crimeResponse.data!)),
+                ),
               );
             } else if (state is CrimeLoadError) {
               if (state.message == 'Record Empty') {
@@ -69,48 +67,69 @@ class CrimesScreen extends StatelessWidget {
   }
 }
 
-class CrimeDetailWidget extends StatelessWidget {
-  const CrimeDetailWidget({Key? key, required this.crimesData})
-      : super(key: key);
-  final CrimeData crimesData;
+class CrimeDataTableWidget extends StatelessWidget {
+  CrimeDataTableWidget({Key? key, required this.crimeList}) : super(key: key);
+  final List<CrimeData> crimeList;
+
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: GREY_BACKGROUND_COLOR),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              crimesData.type!,
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            const Divider(),
-            Text(
-              crimesData.type!,
-              style: GoogleFonts.poppins(fontSize: 15),
-            ),
-            Text(
-              crimesData.registerNumber!,
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-            const Divider(),
-            Text(
-              crimesData.date!.toIso8601String(),
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-          ],
-        ),
-      ),
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+              columns: [
+                DataColumn(
+                    label: Text("गुन्ह्याचा प्रकार",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("गुन्हा रजिस्टर नंबर",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(DATE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PPID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PSID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(REGISTER_DATE,
+                        style: Styles.tableTitleTextStyle())),
+              ],
+              rows: List<DataRow>.generate(crimeList.length, (index) {
+                final crimeData = crimeList[index];
+                return DataRow(cells: <DataCell>[
+                  DataCell(Text(
+                    crimeData.type!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    crimeData.registerNumber!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    crimeData.date!.toIso8601String(),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${crimeData.ppid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${crimeData.psid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    crimeData.createdAt!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                ]);
+              }))),
     );
   }
 }

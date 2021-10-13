@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:shared/shared.dart';
 
 import '../../views.dart';
@@ -32,15 +32,8 @@ class SocialPlaceScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     physics: const BouncingScrollPhysics(),
-                    child: ListView.builder(
-                        itemCount: state.placeResponse.data!.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return PlaceDetailWidget(
-                            placeData: state.placeResponse.data![index],
-                          );
-                        })),
+                    child: PlaceDataTableWidget(
+                        placeList: state.placeResponse.data!)),
               );
             } else if (state is PublicPlaceLoadError) {
               if (state.message == 'Record Empty') {
@@ -54,54 +47,98 @@ class SocialPlaceScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      //       return const SocialPlacesRegFormScreen();
-      //     })).then((value) {
-      //       BlocProvider.of<PublicPlaceRegisterBloc>(context)
-      //           .add(GetPublicPlaceData());
-      //     });
-      //   },
-      //   child: const Icon(Icons.add, size: 24),
-      // ),
     );
   }
 }
 
-class PlaceDetailWidget extends StatelessWidget {
-  const PlaceDetailWidget({Key? key, required this.placeData})
-      : super(key: key);
-  final PlaceData placeData;
+class PlaceDataTableWidget extends StatelessWidget {
+  PlaceDataTableWidget({Key? key, required this.placeList}) : super(key: key);
+  final List<PlaceData> placeList;
+
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: GREY_BACKGROUND_COLOR),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              placeData.place!,
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            const Divider(),
-            Text(
-              placeData.address!,
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-          ],
-        ),
-      ),
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+              columns: [
+                DataColumn(
+                    label: Text("महत्त्वाचे स्थळ", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PLACE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("सीसीटीव्ही बसवला आहे का ?", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("काही वाद आहेत का ?", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("वादाचे कारण",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("वादाची सद्यस्थिती",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("गुन्हा दाखल आहे का ?",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PPID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PSID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(REGISTER_DATE,
+                        style: Styles.tableTitleTextStyle())),
+              ],
+              rows: List<DataRow>.generate(placeList.length, (index) {
+                final placeData = placeList[index];
+                return DataRow(cells: <DataCell>[
+                  DataCell(Text(
+                    placeData.place!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    placeData.address!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    placeData.isCCTV! ? YES : NO,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    placeData.isIssue! ? YES : NO,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    placeData.issueReason ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    placeData.issueCondition ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    placeData.isCrimeRegistered! ? YES : NO,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${placeData.ppid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${placeData.psid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    placeData.createdAt!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                ]);
+              }))),
     );
   }
 }

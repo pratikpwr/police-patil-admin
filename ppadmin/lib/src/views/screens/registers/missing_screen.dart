@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
 class MissingScreen extends StatelessWidget {
-  const MissingScreen({Key? key}) : super(key: key);
+  MissingScreen({Key? key}) : super(key: key);
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +30,15 @@ class MissingScreen extends StatelessWidget {
               return loading();
             } else if (state is MissingDataLoaded) {
               return SafeArea(
-                child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: ListView.builder(
-                        itemCount: state.missingResponse.data!.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return MissingDetailWidget(
-                            missingData: state.missingResponse.data![index],
-                          );
-                        })),
+                child: Scrollbar(
+                  controller: _scrollController,
+                  child: SingleChildScrollView(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: MissingDataTableWidget(
+                          missingList: state.missingResponse.data!)),
+                ),
               );
             } else if (state is MissingLoadError) {
               if (state.message == 'Record Empty') {
@@ -54,63 +52,92 @@ class MissingScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      //       return const MissingRegFormScreen();
-      //     })).then((value) {
-      //       BlocProvider.of<MissingRegisterBloc>(context).add(GetMissingData());
-      //     });
-      //   },
-      //   child: const Icon(Icons.add, size: 24),
-      // ),
     );
   }
 }
 
-class MissingDetailWidget extends StatelessWidget {
-  const MissingDetailWidget({Key? key, required this.missingData})
+class MissingDataTableWidget extends StatelessWidget {
+  MissingDataTableWidget({Key? key, required this.missingList})
       : super(key: key);
-  final MissingData missingData;
+  final List<MissingData> missingList;
+
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: GREY_BACKGROUND_COLOR),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              missingData.name!,
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            const Divider(),
-            Text(
-              missingData.address!,
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            Text(
-              missingData.missingDate!.toIso8601String(),
-              style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            )
-          ],
-        ),
-      ),
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+              columns: [
+                DataColumn(
+                    label: Text("१८ वर्षावरील आहे का ?",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(NAME, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("लिंग", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(AGE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("मिसिंग झाल्याची तारीख",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PPID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PSID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(REGISTER_DATE,
+                        style: Styles.tableTitleTextStyle())),
+              ],
+              rows: List<DataRow>.generate(missingList.length, (index) {
+                final missingData = missingList[index];
+                return DataRow(cells: <DataCell>[
+                  DataCell(Text(
+                    missingData.isAdult! ? YES : NO,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    missingData.name ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    missingData.address ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    missingData.gender!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${missingData.age ?? "-"}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    missingData.missingDate!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${missingData.ppid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${missingData.psid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    missingData.createdAt!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                ]);
+              }))),
     );
   }
 }

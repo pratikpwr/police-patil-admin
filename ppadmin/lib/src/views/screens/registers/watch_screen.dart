@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
 class WatchScreen extends StatelessWidget {
-  const WatchScreen({Key? key}) : super(key: key);
+  WatchScreen({Key? key}) : super(key: key);
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +30,15 @@ class WatchScreen extends StatelessWidget {
               return loading();
             } else if (state is WatchDataLoaded) {
               return SafeArea(
-                child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: ListView.builder(
-                        itemCount: state.watchResponse.data!.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return WatchDetailWidget(
-                            watchData: state.watchResponse.data![index],
-                          );
-                        })),
+                child: Scrollbar(
+                  controller: _scrollController,
+                  child: SingleChildScrollView(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: WatchDataTableWidget(
+                          watchList: state.watchResponse.data!)),
+                ),
               );
             } else if (state is WatchLoadError) {
               if (state.message == 'Record Empty') {
@@ -58,43 +56,86 @@ class WatchScreen extends StatelessWidget {
   }
 }
 
-class WatchDetailWidget extends StatelessWidget {
-  const WatchDetailWidget({Key? key, required this.watchData})
-      : super(key: key);
-  final WatchData watchData;
+class WatchDataTableWidget extends StatelessWidget {
+  WatchDataTableWidget({Key? key, required this.watchList}) : super(key: key);
+  final List<WatchData> watchList;
+
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: GREY_BACKGROUND_COLOR),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              watchData.type!,
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            const Divider(),
-            Text(
-              watchData.name!,
-              style: GoogleFonts.poppins(fontSize: 15),
-            ),
-            Text(
-              watchData.address!,
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-          ],
-        ),
-      ),
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+              columns: [
+                DataColumn(
+                    label: Text(TYPE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(NAME, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(MOB_NO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label:
+                        Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(DATE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PPID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PSID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(REGISTER_DATE,
+                        style: Styles.tableTitleTextStyle())),
+              ],
+              rows: List<DataRow>.generate(watchList.length, (index) {
+                final watchData = watchList[index];
+                return DataRow(cells: <DataCell>[
+                  DataCell(Text(
+                    watchData.type!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    watchData.name!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    watchData.mobile!.toString(),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    watchData.address!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(SizedBox(
+                    width: 400,
+                    child: Text(
+                      watchData.description!,
+                      maxLines: 3,
+                      style: Styles.tableValuesTextStyle(),
+                    ),
+                  )),
+                  DataCell(Text(
+                    "${watchData.ppid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${watchData.psid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    watchData.createdAt!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                ]);
+              }))),
     );
   }
 }
