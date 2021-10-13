@@ -19,128 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="web added">
-      <change afterPath="$PROJECT_DIR$/ppadmin/assets/police_patil_no_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/side_navigation/bar_item_tile.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/side_navigation/side_nav_bar.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/side_navigation/side_nav_bar_item.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/custom_app_bar.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/alert_wall/alert.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/alert_wall/bloc/alert_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/alert_wall/bloc/alert_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/alert_wall/bloc/alert_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/alert_wall/models/alert_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/alert_wall/resources/alert_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/arms_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/models/arms_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/resources/arms_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/bloc/collect_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/bloc/collect_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/bloc/collect_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/collection_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/models/collect_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/resources/collect_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/crime_register/bloc/crime_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/crime_register/bloc/crime_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/crime_register/bloc/crime_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/crime_register/crime_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/crime_register/models/crime_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/crime_register/resources/crime_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/death_register/bloc/death_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/death_register/bloc/death_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/death_register/bloc/death_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/death_register/death_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/death_register/models/death_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/death_register/resources/death_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_helper/bloc/disaster_helper_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_helper/bloc/disaster_helper_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_helper/bloc/disaster_helper_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_helper/disaster_helper.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_helper/models/helper_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_helper/resources/disaster_helper_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_register/bloc/disaster_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_register/bloc/disaster_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_register/bloc/disaster_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_register/disaster_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_register/models/disaster_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_register/resources/disaster_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_tools/bloc/disaster_tools_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_tools/bloc/disaster_tools_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_tools/bloc/disaster_tools_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_tools/disaster_tools.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_tools/models/tools_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/disaster_tools/resources/disaster_tools_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/fire_register/bloc/fire_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/fire_register/bloc/fire_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/fire_register/bloc/fire_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/fire_register/fire_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/fire_register/models/fire_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/fire_register/resources/fire_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/bloc/illegal_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/bloc/illegal_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/bloc/illegal_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/illegal_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/models/illegal_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/resources/illegal_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/kayade.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/models/kayade_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/resources/kayade_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/missing_register/bloc/missing_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/missing_register/bloc/missing_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/missing_register/bloc/missing_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/missing_register/missing_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/missing_register/models/missing_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/missing_register/resources/missing_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/bloc/movement_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/bloc/movement_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/bloc/movement_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/models/movement_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/movement_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/resources/movement_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/news/bloc/news_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/news/bloc/news_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/news/bloc/news_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/news/models/news_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/news/news.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/news/resources/news_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/public_place_register/bloc/public_place_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/public_place_register/bloc/public_place_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/public_place_register/bloc/public_place_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/public_place_register/models/public_place_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/public_place_register/public_place_register.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/public_place_register/resources/public_place_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/models/watch_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/resources/watch_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/watch_register.dart" afterDir="false" />
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="basic dashboard implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/image_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/image_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/sign_in_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/splash_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/shared.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,7 +50,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -211,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634033871690</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="basic dashboard implemented">
+      <created>1634066418589</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1634066418589</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -224,12 +114,14 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="initial setup" />
     <MESSAGE value="web added" />
-    <option name="LAST_COMMIT_MESSAGE" value="web added" />
+    <MESSAGE value="basic dashboard implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic dashboard implemented" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -248,29 +140,33 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1634045204326" />
-    <state width="1491" height="159" key="GridCell.Tab.0.bottom" timestamp="1634051324806">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1491" height="146" key="GridCell.Tab.0.bottom" timestamp="1634101208602">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634051324806" />
-    <state width="1491" height="159" key="GridCell.Tab.0.center" timestamp="1634051324805">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1491" height="146" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1634101208602" />
+    <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634066502953" />
+    <state width="1491" height="146" key="GridCell.Tab.0.center" timestamp="1634101208602">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634051324805" />
-    <state width="1491" height="159" key="GridCell.Tab.0.left" timestamp="1634051324805">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1491" height="146" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1634101208602" />
+    <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
+    <state width="1491" height="146" key="GridCell.Tab.0.left" timestamp="1634101208602">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634051324805" />
-    <state width="1491" height="159" key="GridCell.Tab.0.right" timestamp="1634051324805">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1491" height="146" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1634101208602" />
+    <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
+    <state width="1491" height="146" key="GridCell.Tab.0.right" timestamp="1634101208602">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634051324805" />
+    <state width="1491" height="146" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1634101208602" />
+    <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
     <state x="270" y="52" key="SettingsEditor" timestamp="1634023641489">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="161" key="Vcs.Push.Dialog.v2" timestamp="1634033876611">
+    <state x="361" y="161" key="Vcs.Push.Dialog.v2" timestamp="1634066429113">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634033876611" />
+    <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
   </component>
 </project>
