@@ -54,16 +54,6 @@ class WatchScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      //       return const WatchRegFormScreen();
-      //     })).then((value) {
-      //       BlocProvider.of<WatchRegisterBloc>(context).add(GetWatchData());
-      //     });
-      //   },
-      //   child: const Icon(Icons.add, size: 24),
-      // ),
     );
   }
 }

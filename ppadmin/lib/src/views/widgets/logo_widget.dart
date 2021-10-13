@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
-import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 
 class LogoWidget extends StatelessWidget {
   const LogoWidget({Key? key, required this.logoSize}) : super(key: key);
@@ -23,7 +23,7 @@ class LogoWidget extends StatelessWidget {
           style: GoogleFonts.poppins(
               fontSize: logoSize > 150.00 ? 28 : 14,
               fontWeight: FontWeight.w600,
-              color: TEXT_COLOR),
+              color: TEXT_COLOR_TITLE),
         )
       ],
     );

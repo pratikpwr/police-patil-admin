@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
 class MovementScreen extends StatelessWidget {
-  const MovementScreen({Key? key}) : super(key: key);
+  MovementScreen({Key? key}) : super(key: key);
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +30,14 @@ class MovementScreen extends StatelessWidget {
               return loading();
             } else if (state is MovementDataLoaded) {
               return SafeArea(
-                child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: ListView.builder(
-                        itemCount: state.movementResponse.movementData!.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return MovementDetailWidget(
-                            movementData:
-                                state.movementResponse.movementData![index],
-                          );
-                        })),
+                child: Scrollbar(
+                  controller: _scrollController,
+                  child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: MovementDataTableWidget(
+                          movementList: state.movementResponse.movementData!)),
+                ),
               );
             } else if (state is MovementLoadError) {
               if (state.message == 'Record Empty') {
@@ -55,74 +51,102 @@ class MovementScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      //       return const MovementRegFormScreen();
-      //     })).then((value) {
-      //       BlocProvider.of<MovementRegisterBloc>(context)
-      //           .add(GetMovementData());
-      //     });
-      //   },
-      //   child: const Icon(Icons.add, size: 24),
-      // ),
     );
   }
 }
 
-class MovementDetailWidget extends StatelessWidget {
-  const MovementDetailWidget({Key? key, required this.movementData})
+class MovementDataTableWidget extends StatelessWidget {
+  MovementDataTableWidget({Key? key, required this.movementList})
       : super(key: key);
-  final MovementData movementData;
+  final List<MovementData> movementList;
+
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: GREY_BACKGROUND_COLOR),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              movementData.type!,
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            Text(
-              movementData.subtype!,
-              style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            const Divider(),
-            Text(
-              movementData.description!,
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-            Text(
-              "$ATTENDANCE : ${movementData.attendance!}",
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-            const Divider(),
-            Text(
-              movementData.address!,
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-            Text(
-              movementData.datetime!.toIso8601String(),
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-          ],
-        ),
-      ),
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+              columns: [
+                DataColumn(
+                    label: Text(TYPE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(SUB_TYPE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PLACE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(DATE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(IS_ISSUE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label:
+                        Text(ATTENDANCE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(MOVEMENT_DESCRIPTION,
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PPID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PSID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(REGISTER_DATE,
+                        style: Styles.tableTitleTextStyle())),
+              ],
+              rows: List<DataRow>.generate(movementList.length, (index) {
+                final movementData = movementList[index];
+                return DataRow(cells: <DataCell>[
+                  DataCell(Text(
+                    movementData.type!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    movementData.subtype!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    movementData.address!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    movementData.datetime!.toIso8601String(),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    movementData.issue! == 1 ? YES : NO,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    movementData.attendance!.toString(),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(SizedBox(
+                    width: 350,
+                    child: Text(
+                      movementData.description!,
+                      maxLines: 3,
+                      style: Styles.tableValuesTextStyle(),
+                    ),
+                  )),
+                  DataCell(Text(
+                    "${movementData.ppid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${movementData.psid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    movementData.createdAt!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                ]);
+              }))),
     );
   }
 }

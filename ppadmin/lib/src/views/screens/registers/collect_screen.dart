@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
 class CollectionScreen extends StatelessWidget {
-  const CollectionScreen({Key? key}) : super(key: key);
+  CollectionScreen({Key? key}) : super(key: key);
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +31,16 @@ class CollectionScreen extends StatelessWidget {
               return loading();
             } else if (state is CollectionDataLoaded) {
               return SafeArea(
-                child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: ListView.builder(
-                        itemCount: state.collectionResponse.collectData!.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return CollectionDetailWidget(
-                            collect:
-                                state.collectionResponse.collectData![index],
-                          );
-                        })),
+                child: Scrollbar(
+                  controller: _scrollController,
+                  child: SingleChildScrollView(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: CollectDataTableWidget(
+                        collectList: state.collectionResponse.collectData!,
+                      )),
+                ),
               );
             } else if (state is CollectionLoadError) {
               if (state.message == 'Record Empty') {
@@ -56,63 +54,83 @@ class CollectionScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      //       return const CollectRegFormScreen();
-      //     })).then((value) {
-      //       BlocProvider.of<CollectRegisterBloc>(context)
-      //           .add(GetCollectionData());
-      //     });
-      //   },
-      //   child: const Icon(Icons.add, size: 24),
-      // ),
     );
   }
 }
 
-class CollectionDetailWidget extends StatelessWidget {
-  const CollectionDetailWidget({Key? key, required this.collect})
+class CollectDataTableWidget extends StatelessWidget {
+  CollectDataTableWidget({Key? key, required this.collectList})
       : super(key: key);
-  final CollectionData collect;
+  final List<CollectionData> collectList;
+
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: GREY_BACKGROUND_COLOR),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              collect.type!,
-              style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500),
-            ),
-            const Divider(),
-            Text(
-              collect.description!,
-              style: GoogleFonts.poppins(fontSize: 15),
-            ),
-            Text(
-              collect.address!,
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-            const Divider(),
-            Text(
-              collect.date!.toIso8601String().substring(0, 10),
-              style: GoogleFonts.poppins(fontSize: 14),
-            ),
-          ],
-        ),
-      ),
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+          controller: _scrollController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          child: DataTable(
+              columns: [
+                DataColumn(
+                    label: Text(TYPE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PLACE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label:
+                        Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(DATE, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PPID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("PSID", style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(REGISTER_DATE,
+                        style: Styles.tableTitleTextStyle())),
+              ],
+              rows: List<DataRow>.generate(collectList.length, (index) {
+                final collectData = collectList[index];
+                return DataRow(cells: <DataCell>[
+                  DataCell(Text(
+                    collectData.type!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    collectData.address!,
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(SizedBox(
+                    width: 400,
+                    child: Text(
+                      collectData.description!,
+                      maxLines: 3,
+                      style: Styles.tableValuesTextStyle(),
+                    ),
+                  )),
+                  DataCell(Text(
+                    collectData.date!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${collectData.ppid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${collectData.psid!}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    collectData.createdAt!.toIso8601String().substring(0, 10),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                ]);
+              }))),
     );
   }
 }

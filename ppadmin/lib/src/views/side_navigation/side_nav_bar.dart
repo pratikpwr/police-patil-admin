@@ -93,7 +93,7 @@ class _SideNavBarState extends State<SideNavBar>
                     style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: TEXT_COLOR),
+                        color: TEXT_COLOR_TITLE),
                   )
                 ],
               ),

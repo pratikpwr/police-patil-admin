@@ -75,7 +75,7 @@ class MovementData {
         latitude: json["latitude"].toDouble(),
         longitude: json["longitude"].toDouble(),
         datetime: DateTime.parse(json["datetime"]),
-        issue: json["issue"],
+        issue: json["essue"],
         attendance: json["attendance"],
         description: json["description"],
         photo: json["photo"],
