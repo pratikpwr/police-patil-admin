@@ -8,3 +8,12 @@ abstract class KayadeEvent extends Equatable {
 }
 
 class GetKayade extends KayadeEvent {}
+
+class AddKayade extends KayadeEvent {
+  final KayadeData kayadeData;
+
+  const AddKayade(this.kayadeData);
+
+  @override
+  List<Object> get props => [kayadeData];
+}

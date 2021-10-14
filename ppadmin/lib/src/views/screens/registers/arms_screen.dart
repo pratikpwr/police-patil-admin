@@ -29,10 +29,10 @@ class ArmsScreen extends StatelessWidget {
         child: BlocBuilder<ArmsRegisterBloc, ArmsRegisterState>(
           builder: (context, state) {
             if (state is ArmsDataLoading) {
-              return loading();
+              return Loading();
             } else if (state is ArmsDataLoaded) {
               if (state.armsResponse.data.isEmpty) {
-                return noRecordFound();
+                return NoRecordFound();
               } else {
                 return SafeArea(
                   child: Scrollbar(
@@ -50,9 +50,9 @@ class ArmsScreen extends StatelessWidget {
                 );
               }
             } else if (state is ArmsLoadError) {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             } else {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             }
           },
         ),

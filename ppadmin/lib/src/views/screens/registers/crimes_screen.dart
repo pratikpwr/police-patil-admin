@@ -28,10 +28,10 @@ class CrimesScreen extends StatelessWidget {
         child: BlocBuilder<CrimeRegisterBloc, CrimeRegisterState>(
           builder: (context, state) {
             if (state is CrimeDataLoading) {
-              return loading();
+              return Loading();
             } else if (state is CrimeDataLoaded) {
               if (state.crimeResponse.data!.isEmpty) {
-                return noRecordFound();
+                return NoRecordFound();
               } else {
                 return SafeArea(
                   child: Scrollbar(
@@ -46,9 +46,9 @@ class CrimesScreen extends StatelessWidget {
                 );
               }
             } else if (state is CrimeLoadError) {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             } else {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             }
           },
         ),

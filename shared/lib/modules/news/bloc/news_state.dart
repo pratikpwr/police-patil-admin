@@ -28,3 +28,17 @@ class NewsLoadError extends NewsState {
   @override
   List<Object> get props => [error];
 }
+
+class NewsDataSending extends NewsState {}
+
+class NewsDataSent extends NewsState {
+  final String message;
+
+  const NewsDataSent(this.message);
+}
+
+class NewsDataSendError extends NewsState {
+  final String error;
+
+  const NewsDataSendError(this.error);
+}

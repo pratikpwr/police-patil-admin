@@ -266,10 +266,24 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> postNews({required body}) async {
+    String path = ApiConstants.POST_NEWS;
+
+    Response response = await RestApiHandlerData.postData(path, body);
+    return response;
+  }
+
   static Future<Response> getAlerts() async {
     String path = ApiConstants.GET_ALERTS;
 
     Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> postAlerts({required body}) async {
+    String path = ApiConstants.POST_ALERTS;
+
+    Response response = await RestApiHandlerData.postData(path, body);
     return response;
   }
 
@@ -280,36 +294,22 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getDisasterHelperByPP({required int userId}) async {
-    String path = ApiConstants.GET_DISASTER_HELPER_BY_PP + "$userId";
+  static Future<Response> getDisasterHelper() async {
+    String path = ApiConstants.GET_DISASTER_HELPER;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
   }
 
-  static Future<Response> postDisasterTools({required body}) async {
-    String path = ApiConstants.POST_DISASTER_TOOLS;
-
-    Response response = await RestApiHandlerData.postData(path, body);
-    return response;
-  }
-
-  static Future<Response> getDisasterToolsByPP({required int userId}) async {
-    String path = ApiConstants.GET_DISASTER_TOOLS_BY_PP + "$userId";
+  static Future<Response> getDisasterTools() async {
+    String path = ApiConstants.GET_DISASTER_TOOLS;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
   }
 
-  static Future<Response> postDisasterRegister({required body}) async {
-    String path = ApiConstants.POST_DISASTER;
-
-    Response response = await RestApiHandlerData.postData(path, body);
-    return response;
-  }
-
-  static Future<Response> getDisasterByPP({required int userId}) async {
-    String path = ApiConstants.GET_DISASTERS_BY_PP + "$userId";
+  static Future<Response> getDisaster() async {
+    String path = ApiConstants.GET_DISASTER;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -319,6 +319,13 @@ class ApiSdk {
     String path = ApiConstants.GET_KAYADE;
 
     Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> postRules({required body}) async {
+    String path = ApiConstants.POST_KAYADE;
+
+    Response response = await RestApiHandlerData.postData(path, body);
     return response;
   }
 }

@@ -33,5 +33,19 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         yield NewsLoadError(err.toString());
       }
     }
+    if (event is AddNews) {
+      try {
+        Response _response =
+            await _newsRepository.addNewsData(newsData: event.newsData);
+
+        if (_response.data["message"] != null) {
+          yield NewsDataSent(_response.data["message"]);
+        } else {
+          yield NewsDataSendError(_response.data["error"]);
+        }
+      } catch (err) {
+        yield NewsDataSendError(err.toString());
+      }
+    }
   }
 }

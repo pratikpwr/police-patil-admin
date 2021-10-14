@@ -1,5 +1,6 @@
 export 'package:ppadmin/src/views/screens/splash_screen.dart';
 export 'package:ppadmin/src/views/screens/sign_in_screen.dart';
+export 'package:ppadmin/src/views/screens/side_bar_nav_screen.dart';
 export 'package:ppadmin/src/views/screens/home_screen.dart';
 
 //Registers
@@ -13,6 +14,8 @@ export 'package:ppadmin/src/views/screens/registers/crimes_screen.dart';
 export 'package:ppadmin/src/views/screens/registers/missing_screen.dart';
 export 'package:ppadmin/src/views/screens/registers/fires_screen.dart';
 export 'package:ppadmin/src/views/screens/registers/death_screen.dart';
+export 'package:ppadmin/src/views/screens/registers/disaster_management.dart';
+
 // export 'package:ppadmin/src/views/';
 // export 'package:ppadmin/src/views/';
 // export 'package:ppadmin/src/views/';
@@ -24,5 +27,10 @@ export 'package:ppadmin/src/views/widgets/side_menu.dart';
 export 'package:ppadmin/src/views/widgets/logo_widget.dart';
 export 'package:ppadmin/src/views/widgets/custom_app_bar.dart';
 
-// export 'package:ppadmin/src/views/';
+export 'package:ppadmin/src/views/widgets/custom_button.dart';
+export 'package:ppadmin/src/views/widgets/custom_date_textfield.dart';
+export 'package:ppadmin/src/views/widgets/custom_textfield.dart';
+export 'package:ppadmin/src/views/widgets/attach_button.dart';
+
+// export 'package:ppadmin/src/views/widgets/';
 // export 'package:ppadmin/src/views/';

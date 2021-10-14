@@ -27,10 +27,10 @@ class MovementScreen extends StatelessWidget {
         child: BlocBuilder<MovementRegisterBloc, MovementRegisterState>(
           builder: (context, state) {
             if (state is MovementDataLoading) {
-              return loading();
+              return Loading();
             } else if (state is MovementDataLoaded) {
               if (state.movementResponse.movementData!.isEmpty) {
-                return noRecordFound();
+                return NoRecordFound();
               } else {
                 return SafeArea(
                   child: Scrollbar(
@@ -45,9 +45,9 @@ class MovementScreen extends StatelessWidget {
                 );
               }
             } else if (state is MovementLoadError) {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             } else {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             }
           },
         ),

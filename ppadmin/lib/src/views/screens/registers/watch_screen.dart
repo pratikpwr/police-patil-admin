@@ -27,7 +27,7 @@ class WatchScreen extends StatelessWidget {
         child: BlocBuilder<WatchRegisterBloc, WatchRegisterState>(
           builder: (context, state) {
             if (state is WatchDataLoading) {
-              return loading();
+              return Loading();
             } else if (state is WatchDataLoaded) {
               return SafeArea(
                 child: Scrollbar(
@@ -42,12 +42,12 @@ class WatchScreen extends StatelessWidget {
               );
             } else if (state is WatchLoadError) {
               if (state.message == 'Record Empty') {
-                return noRecordFound();
+                return NoRecordFound();
               } else {
-                return somethingWentWrong();
+                return SomethingWentWrong();
               }
             } else {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             }
           },
         ),

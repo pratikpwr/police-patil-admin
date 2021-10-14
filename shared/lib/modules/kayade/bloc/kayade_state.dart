@@ -28,3 +28,17 @@ class KayadeLoadError extends KayadeState {
   @override
   List<Object> get props => [error];
 }
+
+class KayadeDataSending extends KayadeState {}
+
+class KayadeDataSent extends KayadeState {
+  final String message;
+
+  const KayadeDataSent(this.message);
+}
+
+class KayadeDataSendError extends KayadeState {
+  final String error;
+
+  const KayadeDataSendError(this.error);
+}

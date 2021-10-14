@@ -27,10 +27,10 @@ class DeathScreen extends StatelessWidget {
         child: BlocBuilder<DeathRegisterBloc, DeathRegisterState>(
           builder: (context, state) {
             if (state is DeathDataLoading) {
-              return loading();
+              return Loading();
             } else if (state is DeathDataLoaded) {
               if (state.deathResponse.data!.isEmpty) {
-                return noRecordFound();
+                return NoRecordFound();
               } else {
                 return SafeArea(
                   child: Scrollbar(
@@ -45,9 +45,9 @@ class DeathScreen extends StatelessWidget {
                 );
               }
             } else if (state is DeathLoadError) {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             } else {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             }
           },
         ),

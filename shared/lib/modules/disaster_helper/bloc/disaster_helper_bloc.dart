@@ -24,19 +24,13 @@ class DisasterHelperBloc
     if (event is GetHelperData) {
       yield* _mapGetDisasterDataState(event);
     }
-    if (event is AddHelperData) {
-      yield* _mapAddDisasterDataState(event);
-    }
   }
 
   Stream<DisasterHelperState> _mapGetDisasterDataState(
       GetHelperData event) async* {
-    final sharedPrefs = await SharedPreferences.getInstance();
     yield HelperDataLoading();
     try {
-      int? userId = sharedPrefs.getInt('userId');
-      Response _response = await _helperRepository
-          .getDisasterHelperRegisterByPP(userId: userId!);
+      Response _response = await _helperRepository.getDisasterHelper();
       if (_response.statusCode! < 400) {
         final _helperResponse = HelperResponse.fromJson(_response.data);
         yield HelperDataLoaded(_helperResponse);
@@ -45,27 +39,6 @@ class DisasterHelperBloc
       }
     } catch (err) {
       yield HelperLoadError(err.toString());
-    }
-  }
-
-  Stream<DisasterHelperState> _mapAddDisasterDataState(
-      AddHelperData event) async* {
-    yield HelperDataSending();
-    try {
-      final sharedPrefs = await SharedPreferences.getInstance();
-      event.helperData.ppid = sharedPrefs.getInt('userId')!;
-      event.helperData.psid = sharedPrefs.getInt('policeStationId')!;
-
-      Response _response = await _helperRepository.addDisasterHelperData(
-          helperData: event.helperData);
-
-      if (_response.data["message"] != null) {
-        yield HelperDataSent(_response.data["message"]);
-      } else {
-        yield HelperDataSendError(_response.data["error"]);
-      }
-    } catch (err) {
-      yield HelperDataSendError(err.toString());
     }
   }
 }

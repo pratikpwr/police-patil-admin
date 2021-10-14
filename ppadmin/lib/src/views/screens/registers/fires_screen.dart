@@ -8,7 +8,8 @@ import 'package:shared/shared.dart';
 import '../../views.dart';
 
 class FiresScreen extends StatelessWidget {
-  const FiresScreen({Key? key}) : super(key: key);
+  FiresScreen({Key? key}) : super(key: key);
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,23 +27,27 @@ class FiresScreen extends StatelessWidget {
         child: BlocBuilder<FireRegisterBloc, FireRegisterState>(
           builder: (context, state) {
             if (state is FireDataLoading) {
-              return loading();
+              return Loading();
             } else if (state is FireDataLoaded) {
               if (state.fireResponse.data!.isEmpty) {
-                return noRecordFound();
+                return NoRecordFound();
               } else {
                 return SafeArea(
-                  child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: FireDataTableWidget(
-                          fireList: state.fireResponse.data!)),
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: FireDataTableWidget(
+                            fireList: state.fireResponse.data!)),
+                  ),
                 );
               }
             } else if (state is FireLoadError) {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             } else {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             }
           },
         ),

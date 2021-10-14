@@ -56,8 +56,7 @@ class NewsData {
 
   Map<String, dynamic> toJson() => {
         "title": title,
-        "date":
-            "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
+        "date": date!,
         "link": link,
         "file": file,
       };

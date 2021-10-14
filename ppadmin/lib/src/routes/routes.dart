@@ -6,7 +6,7 @@ Route routes(RouteSettings settings) {
     case '/':
       return MaterialPageRoute(builder: (_) => const SplashScreen());
     case '/home':
-      return MaterialPageRoute(builder: (_) => const HomeScreen());
+      return MaterialPageRoute(builder: (_) => const SideBarNavScreen());
     case '/auth':
       return MaterialPageRoute(builder: (_) => const SignInScreen());
     default:

@@ -8,8 +8,8 @@ import 'package:shared/shared.dart';
 import '../../views.dart';
 
 class SocialPlaceScreen extends StatelessWidget {
-  const SocialPlaceScreen({Key? key}) : super(key: key);
-
+   SocialPlaceScreen({Key? key}) : super(key: key);
+  final _scrollController  =ScrollController();
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<PublicPlaceRegisterBloc>(context).add(GetPublicPlaceData());
@@ -26,23 +26,27 @@ class SocialPlaceScreen extends StatelessWidget {
         child: BlocBuilder<PublicPlaceRegisterBloc, PublicPlaceRegisterState>(
           builder: (context, state) {
             if (state is PublicPlaceDataLoading) {
-              return loading();
+              return Loading();
             } else if (state is PublicPlaceDataLoaded) {
               if (state.placeResponse.data!.isEmpty) {
-                return noRecordFound();
+                return NoRecordFound();
               } else {
                 return SafeArea(
-                  child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: PlaceDataTableWidget(
-                          placeList: state.placeResponse.data!)),
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: PlaceDataTableWidget(
+                            placeList: state.placeResponse.data!)),
+                  ),
                 );
               }
             } else if (state is PublicPlaceLoadError) {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             } else {
-              return somethingWentWrong();
+              return SomethingWentWrong();
             }
           },
         ),

@@ -84,7 +84,7 @@ class SignInWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const LogoWidget(logoSize: 240),
-              spacer(height: 24),
+              spacer(),
               TextFormField(
                 decoration: InputDecoration(
                     labelText: USER_ID,

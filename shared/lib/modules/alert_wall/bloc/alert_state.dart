@@ -28,3 +28,17 @@ class AlertLoadError extends AlertState {
   @override
   List<Object> get props => [error];
 }
+
+class AlertDataSending extends AlertState {}
+
+class AlertDataSent extends AlertState {
+  final String message;
+
+  const AlertDataSent(this.message);
+}
+
+class AlertDataSendError extends AlertState {
+  final String error;
+
+  const AlertDataSendError(this.error);
+}

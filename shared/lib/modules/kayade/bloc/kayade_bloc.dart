@@ -23,13 +23,27 @@ class KayadeBloc extends Bloc<KayadeEvent, KayadeState> {
       try {
         Response _response = await _kayadeRepository.getKayade();
         if (_response.data["error"] == null) {
-          final _news = KayadeResponse.fromJson(_response.data);
-          yield KayadeLoaded(_news);
+          final _kayade = KayadeResponse.fromJson(_response.data);
+          yield KayadeLoaded(_kayade);
         } else {
           yield KayadeLoadError(_response.data["error"].toString());
         }
       } catch (err) {
         yield KayadeLoadError(err.toString());
+      }
+    }
+    if (event is AddKayade) {
+      try {
+        Response _response =
+            await _kayadeRepository.addKayadeData(kayadeData: event.kayadeData);
+
+        if (_response.data["message"] != null) {
+          yield KayadeDataSent(_response.data["message"]);
+        } else {
+          yield KayadeDataSendError(_response.data["error"]);
+        }
+      } catch (err) {
+        yield KayadeDataSendError(err.toString());
       }
     }
   }

@@ -66,15 +66,11 @@ class AlertData {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "title": title,
-        "date":
-            "${date!.year.toString().padLeft(4, '0')}-${date!.month.toString().padLeft(2, '0')}-${date!.day.toString().padLeft(2, '0')}",
+        "date": date!,
         "photo": photo,
         "videolink": videoLink,
         "otherlink": otherLink,
-        "file": file,
-        "created_at": createdAt!.toIso8601String(),
-        "updated_at": updatedAt!.toIso8601String(),
+        "file": file
       };
 }

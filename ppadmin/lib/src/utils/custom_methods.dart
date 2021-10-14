@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ppadmin/src/config/constants.dart';
@@ -30,28 +29,45 @@ String? youtubeUrlToId(String? url, {bool trimWhitespaces = true}) {
   return null;
 }
 
-Widget loading() {
-  return const Center(
-    child: CircularProgressIndicator(),
-  );
+class Loading extends StatelessWidget {
+  const Loading({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
 }
 
-Widget somethingWentWrong({String? message}) {
-  return Center(
-    child: Text(
-      message ?? SOMETHING_WENT_WRONG,
-      style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
-    ),
-  );
+class SomethingWentWrong extends StatelessWidget {
+  SomethingWentWrong({Key? key, this.message}) : super(key: key);
+  String? message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        message ?? SOMETHING_WENT_WRONG,
+        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+      ),
+    );
+  }
 }
 
-Widget noRecordFound({String? message}) {
-  return Center(
-    child: Text(
-      message ?? NO_RECORD,
-      style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
-    ),
-  );
+class NoRecordFound extends StatelessWidget {
+  NoRecordFound({Key? key, this.message}) : super(key: key);
+  String? message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        message ?? NO_RECORD,
+        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+      ),
+    );
+  }
 }
 
 Widget spacer({double? height}) {
@@ -60,27 +76,27 @@ Widget spacer({double? height}) {
   );
 }
 
-Future<Position> determinePosition() async {
-  bool serviceEnabled;
-  LocationPermission permission;
-
-  serviceEnabled = await Geolocator.isLocationServiceEnabled();
-  if (!serviceEnabled) {
-    return Future.error('Location services are disabled.');
-  }
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied) {
-      return Future.error('Location permissions are denied');
-    }
-  }
-  if (permission == LocationPermission.deniedForever) {
-    return Future.error(
-        'Location permissions are permanently denied, we cannot request permissions.');
-  }
-  return await Geolocator.getCurrentPosition();
-}
+// Future<Position> determinePosition() async {
+//   bool serviceEnabled;
+//   LocationPermission permission;
+//
+//   serviceEnabled = await Geolocator.isLocationServiceEnabled();
+//   if (!serviceEnabled) {
+//     return Future.error('Location services are disabled.');
+//   }
+//   permission = await Geolocator.checkPermission();
+//   if (permission == LocationPermission.denied) {
+//     permission = await Geolocator.requestPermission();
+//     if (permission == LocationPermission.denied) {
+//       return Future.error('Location permissions are denied');
+//     }
+//   }
+//   if (permission == LocationPermission.deniedForever) {
+//     return Future.error(
+//         'Location permissions are permanently denied, we cannot request permissions.');
+//   }
+//   return await Geolocator.getCurrentPosition();
+// }
 
 void launchUrl(String url) async {
   await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';

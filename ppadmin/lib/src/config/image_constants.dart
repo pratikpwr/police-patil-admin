@@ -36,4 +36,6 @@ class ImageConstants {
   static String IMG_DISASTER_MANAGE = "assets/disaster.png";
   static String IMG_DISASTER_HELPER = "assets/helper.png";
   static String IMG_DISASTER_TOOLS = "assets/tools.png";
+  static String IMG_NEWS = "assets/newspaper.png";
+  static String IMG_ALERTS = "assets/notification.png";
 }
