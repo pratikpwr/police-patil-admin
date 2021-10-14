@@ -30,23 +30,23 @@ class CrimesScreen extends StatelessWidget {
             if (state is CrimeDataLoading) {
               return loading();
             } else if (state is CrimeDataLoaded) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: CrimeDataTableWidget(
-                          crimeList: state.crimeResponse.data!)),
-                ),
-              );
-            } else if (state is CrimeLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.crimeResponse.data!.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: CrimeDataTableWidget(
+                            crimeList: state.crimeResponse.data!)),
+                  ),
+                );
               }
+            } else if (state is CrimeLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }

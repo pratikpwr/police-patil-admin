@@ -29,23 +29,23 @@ class DeathScreen extends StatelessWidget {
             if (state is DeathDataLoading) {
               return loading();
             } else if (state is DeathDataLoaded) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: DeathDataTableWidget(
-                          deathList: state.deathResponse.data!)),
-                ),
-              );
-            } else if (state is DeathLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.deathResponse.data!.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: DeathDataTableWidget(
+                            deathList: state.deathResponse.data!)),
+                  ),
+                );
               }
+            } else if (state is DeathLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }

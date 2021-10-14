@@ -29,22 +29,23 @@ class MovementScreen extends StatelessWidget {
             if (state is MovementDataLoading) {
               return loading();
             } else if (state is MovementDataLoaded) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: MovementDataTableWidget(
-                          movementList: state.movementResponse.movementData!)),
-                ),
-              );
-            } else if (state is MovementLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.movementResponse.movementData!.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: MovementDataTableWidget(
+                            movementList:
+                                state.movementResponse.movementData!)),
+                  ),
+                );
               }
+            } else if (state is MovementLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }

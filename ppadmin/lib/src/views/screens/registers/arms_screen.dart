@@ -31,26 +31,26 @@ class ArmsScreen extends StatelessWidget {
             if (state is ArmsDataLoading) {
               return loading();
             } else if (state is ArmsDataLoaded) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  isAlwaysShown: true,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: ArmsDataTableWidget(
-                      armsList: state.armsResponse.data,
-                    ),
-                  ),
-                ),
-              );
-            } else if (state is ArmsLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.armsResponse.data.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    isAlwaysShown: true,
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: ArmsDataTableWidget(
+                        armsList: state.armsResponse.data,
+                      ),
+                    ),
+                  ),
+                );
               }
+            } else if (state is ArmsLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }

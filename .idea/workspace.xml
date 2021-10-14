@@ -19,13 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="collect and movement register done">
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="all registers done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" afterDir="false" />
     </list>
@@ -54,7 +58,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../policepatil" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -119,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634129630978</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="all registers done">
+      <created>1634136252245</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1634136252245</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,7 +152,8 @@
     <MESSAGE value="basic dashboard implemented" />
     <MESSAGE value="arms table view done" />
     <MESSAGE value="collect and movement register done" />
-    <option name="LAST_COMMIT_MESSAGE" value="collect and movement register done" />
+    <MESSAGE value="all registers done" />
+    <option name="LAST_COMMIT_MESSAGE" value="all registers done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -161,34 +173,34 @@
     </state>
     <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1634127481133" />
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1634045204326" />
-    <state width="1491" height="315" key="GridCell.Tab.0.bottom" timestamp="1634129092606">
+    <state width="1491" height="315" key="GridCell.Tab.0.bottom" timestamp="1634140132323">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="315" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1634129092606" />
+    <state width="1491" height="315" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1634140132323" />
     <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634066502953" />
-    <state width="1491" height="315" key="GridCell.Tab.0.center" timestamp="1634129092606">
+    <state width="1491" height="315" key="GridCell.Tab.0.center" timestamp="1634140132323">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="315" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1634129092606" />
+    <state width="1491" height="315" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1634140132323" />
     <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="315" key="GridCell.Tab.0.left" timestamp="1634129092606">
+    <state width="1491" height="315" key="GridCell.Tab.0.left" timestamp="1634140132322">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="315" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1634129092606" />
+    <state width="1491" height="315" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1634140132322" />
     <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="315" key="GridCell.Tab.0.right" timestamp="1634129092606">
+    <state width="1491" height="315" key="GridCell.Tab.0.right" timestamp="1634140132323">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="315" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1634129092606" />
+    <state width="1491" height="315" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1634140132323" />
     <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
     <state x="270" y="52" key="SettingsEditor" timestamp="1634023641489">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634129635802">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634136259563">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634129635802" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634136259563" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
   </component>
 </project>

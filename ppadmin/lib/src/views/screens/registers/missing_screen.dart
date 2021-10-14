@@ -29,23 +29,23 @@ class MissingScreen extends StatelessWidget {
             if (state is MissingDataLoading) {
               return loading();
             } else if (state is MissingDataLoaded) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: MissingDataTableWidget(
-                          missingList: state.missingResponse.data!)),
-                ),
-              );
-            } else if (state is MissingLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.missingResponse.data!.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: MissingDataTableWidget(
+                            missingList: state.missingResponse.data!)),
+                  ),
+                );
               }
+            } else if (state is MissingLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }

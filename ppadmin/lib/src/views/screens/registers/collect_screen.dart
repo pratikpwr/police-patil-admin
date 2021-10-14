@@ -30,24 +30,24 @@ class CollectionScreen extends StatelessWidget {
             if (state is CollectionDataLoading) {
               return loading();
             } else if (state is CollectionDataLoaded) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: CollectDataTableWidget(
-                        collectList: state.collectionResponse.collectData!,
-                      )),
-                ),
-              );
-            } else if (state is CollectionLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.collectionResponse.collectData!.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: CollectDataTableWidget(
+                          collectList: state.collectionResponse.collectData!,
+                        )),
+                  ),
+                );
               }
+            } else if (state is CollectionLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }

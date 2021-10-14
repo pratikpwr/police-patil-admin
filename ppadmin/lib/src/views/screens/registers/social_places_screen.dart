@@ -28,19 +28,19 @@ class SocialPlaceScreen extends StatelessWidget {
             if (state is PublicPlaceDataLoading) {
               return loading();
             } else if (state is PublicPlaceDataLoaded) {
-              return SafeArea(
-                child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: PlaceDataTableWidget(
-                        placeList: state.placeResponse.data!)),
-              );
-            } else if (state is PublicPlaceLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.placeResponse.data!.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: PlaceDataTableWidget(
+                          placeList: state.placeResponse.data!)),
+                );
               }
+            } else if (state is PublicPlaceLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }
@@ -70,13 +70,16 @@ class PlaceDataTableWidget extends StatelessWidget {
           child: DataTable(
               columns: [
                 DataColumn(
-                    label: Text("महत्त्वाचे स्थळ", style: Styles.tableTitleTextStyle())),
+                    label: Text("महत्त्वाचे स्थळ",
+                        style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(PLACE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
-                    label: Text("सीसीटीव्ही बसवला आहे का ?", style: Styles.tableTitleTextStyle())),
+                    label: Text("सीसीटीव्ही बसवला आहे का ?",
+                        style: Styles.tableTitleTextStyle())),
                 DataColumn(
-                    label: Text("काही वाद आहेत का ?", style: Styles.tableTitleTextStyle())),
+                    label: Text("काही वाद आहेत का ?",
+                        style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("वादाचे कारण",
                         style: Styles.tableTitleTextStyle())),

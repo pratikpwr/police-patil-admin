@@ -29,23 +29,23 @@ class IllegalScreen extends StatelessWidget {
             if (state is IllegalDataLoading) {
               return loading();
             } else if (state is IllegalDataLoaded) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                      controller: _scrollController,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      physics: const BouncingScrollPhysics(),
-                      child: IllegalDataTableWidget(
-                          illegalList: state.illegalResponse.data!)),
-                ),
-              );
-            } else if (state is IllegalLoadError) {
-              if (state.message == 'Record Empty') {
+              if (state.illegalResponse.data!.isEmpty) {
                 return noRecordFound();
               } else {
-                return somethingWentWrong();
+                return SafeArea(
+                  child: Scrollbar(
+                    controller: _scrollController,
+                    child: SingleChildScrollView(
+                        controller: _scrollController,
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        physics: const BouncingScrollPhysics(),
+                        child: IllegalDataTableWidget(
+                            illegalList: state.illegalResponse.data!)),
+                  ),
+                );
               }
+            } else if (state is IllegalLoadError) {
+              return somethingWentWrong();
             } else {
               return somethingWentWrong();
             }

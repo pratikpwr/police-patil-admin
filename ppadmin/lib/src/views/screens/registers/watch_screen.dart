@@ -86,8 +86,6 @@ class WatchDataTableWidget extends StatelessWidget {
                     label:
                         Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
                 DataColumn(
-                    label: Text(DATE, style: Styles.tableTitleTextStyle())),
-                DataColumn(
                     label: Text("PPID", style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("PSID", style: Styles.tableTitleTextStyle())),
