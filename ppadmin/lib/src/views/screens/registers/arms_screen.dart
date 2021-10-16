@@ -29,7 +29,7 @@ class ArmsScreen extends StatelessWidget {
         child: BlocBuilder<ArmsRegisterBloc, ArmsRegisterState>(
           builder: (context, state) {
             if (state is ArmsDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is ArmsDataLoaded) {
               if (state.armsResponse.data.isEmpty) {
                 return NoRecordFound();
@@ -84,6 +84,9 @@ class ArmsDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(NAME, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label:
+                        Text(AADHAR_CARD, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text(MOB_NO, style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
@@ -92,6 +95,9 @@ class ArmsDataTableWidget extends StatelessWidget {
                         style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("परवान्याची वैधता कालावधी",
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("परवान्याचा फोटो",
                         style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("PPID", style: Styles.tableTitleTextStyle())),
@@ -104,42 +110,23 @@ class ArmsDataTableWidget extends StatelessWidget {
               rows: List<DataRow>.generate(armsList.length, (index) {
                 final armsData = armsList[index];
                 return DataRow(cells: <DataCell>[
-                  DataCell(Text(
-                    armsData.type!,
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    armsData.name!,
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    armsData.mobile!.toString(),
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    armsData.address!,
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    armsData.licenceNumber!,
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    armsData.validity!.toIso8601String().substring(0, 10),
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    "${armsData.ppid!}",
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    "${armsData.psid!}",
-                    style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(Text(
-                    armsData.createdAt!.toIso8601String().substring(0, 10),
-                    style: Styles.tableValuesTextStyle(),
-                  )),
+                  customTextDataCell(armsData.type),
+                  customTextDataCell(armsData.name),
+                  armsData.aadhar != null
+                      ? DataCell(ViewFileWidget(url: armsData.aadhar!))
+                      : noDataInCell(),
+                  customTextDataCell(armsData.mobile),
+                  customTextDataCell(armsData.address),
+                  customTextDataCell(armsData.licenceNumber),
+                  customTextDataCell(
+                      armsData.validity!.toIso8601String().substring(0, 10)),
+                  armsData.licencephoto != null
+                      ? DataCell(ViewFileWidget(url: armsData.licencephoto!))
+                      : noDataInCell(),
+                  customTextDataCell(armsData.ppid),
+                  customTextDataCell(armsData.psid),
+                  customTextDataCell(
+                      armsData.createdAt!.toIso8601String().substring(0, 10)),
                 ]);
               }))),
     );

@@ -1,17 +1,25 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/views.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:shared/shared.dart';
 
-class AlertScreen extends StatelessWidget {
+class AlertScreen extends StatefulWidget {
   const AlertScreen({Key? key}) : super(key: key);
 
-// TODO : will need pagination here
+  @override
+  State<AlertScreen> createState() => _AlertScreenState();
+}
+
+class _AlertScreenState extends State<AlertScreen> {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<AlertBloc>(context).add(GetAlerts());
@@ -52,10 +60,94 @@ class AlertScreen extends StatelessWidget {
         },
       )),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _addNewAlert().then((_) {
+            BlocProvider.of<AlertBloc>(context).add(GetAlerts());
+          });
+        },
         child: const Icon(Icons.add, size: 24),
       ),
     );
+  }
+
+  Future<void> _addNewAlert() async {
+    final _titleController = TextEditingController();
+    final _otherController = TextEditingController();
+    final _videoController = TextEditingController();
+    final _dateController = TextEditingController();
+    String _fileName = "फाईल जोडा";
+    File? _file;
+    String _photoName = "फोटो जोडा";
+    File? _photo;
+
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: BlocListener<AlertBloc, AlertState>(
+              listener: (context, state) {
+                if (state is AlertDataSendError) {
+                  showSnackBar(context, state.error);
+                }
+                if (state is AlertDataSent) {
+                  showSnackBar(context, state.message);
+                  Navigator.pop(context);
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.all(32),
+                height: MediaQuery.of(context).size.height * 0.7,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: Column(
+                  children: [
+                    spacer(),
+                    buildTextField(_titleController, TITLE),
+                    spacer(),
+                    AttachButton(
+                        text: _fileName,
+                        onTap: () async {
+                          _file = await getFileFromGallery();
+                          _fileName = getFileName(_file!.path);
+                        }),
+                    spacer(),
+                    AttachButton(
+                        text: _photoName,
+                        onTap: () async {
+                          _photo = await getFileFromGallery();
+                          _photoName = getFileName(_file!.path);
+                        }),
+                    spacer(),
+                    buildTextField(_videoController, "video link"),
+                    spacer(),
+                    buildTextField(_otherController, "other link"),
+                    spacer(),
+                    buildDateTextField(
+                      context,
+                      _dateController,
+                      DATE,
+                    ),
+                    spacer(),
+                    CustomButton(
+                        text: REGISTER,
+                        onTap: () {
+                          DateFormat _format = DateFormat("yyyy-MM-dd");
+                          final _alertData = AlertData(
+                              title: _titleController.text,
+                              otherLink: _otherController.text,
+                              videoLink: _videoController.text,
+                              date: _format.parse(_dateController.text),
+                              photo: _photo?.path,
+                              file: _file?.path);
+
+                          BlocProvider.of<AlertBloc>(context)
+                              .add(AddAlert(_alertData));
+                        })
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }
 

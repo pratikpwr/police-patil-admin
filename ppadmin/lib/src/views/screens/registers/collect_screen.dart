@@ -28,7 +28,7 @@ class CollectionScreen extends StatelessWidget {
         child: BlocBuilder<CollectRegisterBloc, CollectRegisterState>(
           builder: (context, state) {
             if (state is CollectionDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is CollectionDataLoaded) {
               if (state.collectionResponse.collectData!.isEmpty) {
                 return NoRecordFound();
@@ -82,6 +82,8 @@ class CollectDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(PLACE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label:
                         Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
                 DataColumn(
@@ -105,6 +107,9 @@ class CollectDataTableWidget extends StatelessWidget {
                     collectData.address!,
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  collectData.photo != null
+                      ? DataCell(ViewFileWidget(url: collectData.photo!))
+                      : noDataInCell(),
                   DataCell(SizedBox(
                     width: 400,
                     child: Text(

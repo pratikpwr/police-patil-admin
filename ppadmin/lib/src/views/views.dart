@@ -32,5 +32,18 @@ export 'package:ppadmin/src/views/widgets/custom_date_textfield.dart';
 export 'package:ppadmin/src/views/widgets/custom_textfield.dart';
 export 'package:ppadmin/src/views/widgets/attach_button.dart';
 
+export 'package:ppadmin/src/views/widgets/view_file.dart';
+export 'package:ppadmin/src/views/widgets/custom_data_cells.dart';
+
 // export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+// export 'package:ppadmin/src/views/widgets/';
+
 // export 'package:ppadmin/src/views/';

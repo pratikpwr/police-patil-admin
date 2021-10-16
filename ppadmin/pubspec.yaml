@@ -16,6 +16,8 @@ dependencies:
   # UI
   google_fonts: ^2.1.0
   cupertino_icons: ^1.0.3
+  syncfusion_flutter_pdfviewer: ^19.3.44-beta
+  syncfusion_flutter_charts: ^19.3.45+1
 #  side_navigation: ^0.0.4
   carousel_slider: ^4.0.0
   fluttertoast: ^8.0.8
@@ -35,7 +37,6 @@ dependencies:
   image_picker: ^0.8.4+2
   path: ^1.8.0
 
-  syncfusion_flutter_pdfviewer: ^19.3.44-beta
 
   # Local
   shared:

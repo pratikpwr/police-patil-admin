@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/views.dart';
 import 'package:shared/shared.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -94,8 +94,7 @@ class _KayadeScreenState extends State<KayadeScreen> {
   Future<void> _addNewKayade() async {
     final _titleController = TextEditingController();
     String _fileName = "फाईल जोडा";
-    File? _fileImage;
-    final picker = ImagePicker();
+    File? _file;
     return await showDialog(
         context: context,
         builder: (context) {
@@ -110,9 +109,10 @@ class _KayadeScreenState extends State<KayadeScreen> {
                   Navigator.pop(context);
                 }
               },
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.85,
-                width: MediaQuery.of(context).size.width * 0.7,
+              child: Container(
+                padding: const EdgeInsets.all(32),
+                height: MediaQuery.of(context).size.height * 0.35,
+                width: MediaQuery.of(context).size.width * 0.4,
                 child: Column(
                   children: [
                     spacer(),
@@ -121,68 +121,15 @@ class _KayadeScreenState extends State<KayadeScreen> {
                     AttachButton(
                         text: _fileName,
                         onTap: () async {
-                          await showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: Text(
-                                    'फोटो काढा अथवा गॅलरी मधून निवडा',
-                                    style: GoogleFonts.poppins(fontSize: 14),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () async {
-                                          final pickedImage =
-                                              await picker.pickImage(
-                                                  source: ImageSource.camera);
-                                          setState(() {
-                                            if (pickedImage != null) {
-                                              _fileName = pickedImage.name;
-                                              _fileImage =
-                                                  File(pickedImage.path);
-                                            } else {
-                                              debugPrint('No image selected.');
-                                            }
-                                          });
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          'कॅमेरा',
-                                          style:
-                                              GoogleFonts.poppins(fontSize: 14),
-                                        )),
-                                    TextButton(
-                                        onPressed: () async {
-                                          final pickedImage =
-                                              await picker.pickImage(
-                                                  source: ImageSource.gallery);
-                                          setState(() {
-                                            if (pickedImage != null) {
-                                              _fileName = pickedImage.name;
-                                              _fileImage =
-                                                  File(pickedImage.path);
-                                            } else {
-                                              debugPrint('No image selected.');
-                                            }
-                                          });
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          'गॅलरी',
-                                          style:
-                                              GoogleFonts.poppins(fontSize: 14),
-                                        ))
-                                  ],
-                                );
-                              });
+                          _file = await getFileFromGallery();
+                          _fileName = getFileName(_file!.path);
                         }),
                     spacer(),
                     CustomButton(
                         text: "कायदा जोडा",
                         onTap: () {
                           final _kayadeData = KayadeData(
-                              title: _titleController.text,
-                              file: _fileImage?.path);
+                              title: _titleController.text, file: _file?.path);
 
                           BlocProvider.of<KayadeBloc>(context)
                               .add(AddKayade(_kayadeData));

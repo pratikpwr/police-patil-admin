@@ -1,13 +1,23 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/views.dart';
 import 'package:shared/shared.dart';
 
-class ImpNewsScreen extends StatelessWidget {
-  ImpNewsScreen({Key? key}) : super(key: key);
+class ImpNewsScreen extends StatefulWidget {
+  const ImpNewsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ImpNewsScreen> createState() => _ImpNewsScreenState();
+}
+
+class _ImpNewsScreenState extends State<ImpNewsScreen> {
   final _scrollController = ScrollController();
 
   @override
@@ -18,7 +28,7 @@ class ImpNewsScreen extends StatelessWidget {
       body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           if (state is NewsLoading) {
-            return Loading();
+            return const Loading();
           } else if (state is NewsLoaded) {
             if (state.newsResponse.data!.isEmpty) {
               return NoRecordFound();
@@ -44,10 +54,80 @@ class ImpNewsScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _addNewNews().then((_) {
+            BlocProvider.of<NewsBloc>(context).add(GetNews());
+          });
+        },
         child: const Icon(Icons.add, size: 24),
       ),
     );
+  }
+
+  Future<void> _addNewNews() async {
+    final _titleController = TextEditingController();
+    final _otherController = TextEditingController();
+    final _dateController = TextEditingController();
+    String _fileName = "फाईल जोडा";
+    File? _file;
+
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return Dialog(
+            child: BlocListener<NewsBloc, NewsState>(
+              listener: (context, state) {
+                if (state is NewsDataSendError) {
+                  showSnackBar(context, state.error);
+                }
+                if (state is NewsDataSent) {
+                  showSnackBar(context, state.message);
+                  Navigator.pop(context);
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.all(32),
+                height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: Column(
+                  children: [
+                    spacer(),
+                    buildTextField(_titleController, TITLE),
+                    spacer(),
+                    AttachButton(
+                        text: _fileName,
+                        onTap: () async {
+                          _file = await getFileFromGallery();
+                          _fileName = getFileName(_file!.path);
+                        }),
+                    spacer(),
+                    buildTextField(_otherController, "other link"),
+                    spacer(),
+                    buildDateTextField(
+                      context,
+                      _dateController,
+                      DATE,
+                    ),
+                    spacer(),
+                    CustomButton(
+                        text: REGISTER,
+                        onTap: () {
+                          DateFormat _format = DateFormat("yyyy-MM-dd");
+                          final _alertData = NewsData(
+                              title: _titleController.text,
+                              link: _otherController.text,
+                              date: _format.parse(_dateController.text),
+                              file: _file?.path);
+
+                          BlocProvider.of<NewsBloc>(context)
+                              .add(AddNews(_alertData));
+                        })
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }
 
