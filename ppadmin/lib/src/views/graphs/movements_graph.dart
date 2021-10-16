@@ -66,7 +66,7 @@ class _MovementGraphState extends State<MovementGraph> {
                   dataLabelSettings: const DataLabelSettings(isVisible: true)),
               LineSeries<MovementGraphData, String>(
                   name: "जातीय",
-                  color: Colors.yellow,
+                  color: Colors.blue,
                   dataSource: <MovementGraphData>[
                     MovementGraphData('Jan', 13),
                     MovementGraphData('Feb', 23),

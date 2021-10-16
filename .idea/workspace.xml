@@ -19,29 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="alert, news, kayade shown">
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/utils/file_picker_helper.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/crimes_graph.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/graphs.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/missing_graphs.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/custom_data_cells.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/view_file.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="graphs added to home screen">
+      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/utils/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/utils/utils.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/alert_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/alert_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/graphs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/graphs.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/kayade_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/kayade_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/news_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/news_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/side_bar_nav_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/side_bar_nav_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634219014871</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="graphs added to home screen">
+      <created>1634403511426</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1634403511426</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,7 +169,8 @@
     <MESSAGE value="all registers done" />
     <MESSAGE value="no record found error solved" />
     <MESSAGE value="alert, news, kayade shown" />
-    <option name="LAST_COMMIT_MESSAGE" value="alert, news, kayade shown" />
+    <MESSAGE value="graphs added to home screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="graphs added to home screen" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -224,10 +215,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634219019833">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634403514191">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634219019833" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634403514191" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
     <state x="0" y="0" width="584" height="816" key="find.popup" timestamp="1634378886901">
       <screen x="0" y="0" width="1536" height="816" />

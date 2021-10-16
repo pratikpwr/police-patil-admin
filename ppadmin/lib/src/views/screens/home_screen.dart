@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/graphs/crimes_graph.dart';
 import 'package:ppadmin/src/views/graphs/graphs.dart';
 import 'package:ppadmin/src/views/views.dart';
@@ -15,15 +16,25 @@ class HomeScreen extends StatelessWidget {
         controller: _scrollController,
         child: SingleChildScrollView(
           controller: _scrollController,
-          child: Column(
-            children: [
-              Row(
-                children: const [CrimesGraph(), MissingGraph()],
-              ),
-              Row(
-                children: const [MovementGraph()],
-              ),
-            ],
+          child: Responsive(
+            desktop: Column(
+              children: [
+                Row(
+                  children: const [CrimesGraph(), MovementGraph()],
+                ),
+                Row(
+                  children: const [DeathsGraph(), MissingGraph()],
+                ),
+              ],
+            ),
+            mobile: Column(
+              children: const [
+                CrimesGraph(),
+                MovementGraph(),
+                DeathsGraph(),
+                MissingGraph()
+              ],
+            ),
           ),
         ),
       ),
