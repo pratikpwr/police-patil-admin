@@ -21,6 +21,10 @@ export 'package:ppadmin/src/views/screens/registers/disaster_management.dart';
 // export 'package:ppadmin/src/views/';
 // export 'package:ppadmin/src/views/';
 // export 'package:ppadmin/src/views/';
+// export 'package:ppadmin/src/views/';
+// export 'package:ppadmin/src/views/';
+// export 'package:ppadmin/src/views/';
+// export 'package:ppadmin/src/views/';
 
 // Widgets
 export 'package:ppadmin/src/views/widgets/side_menu.dart';
@@ -38,7 +42,8 @@ export 'package:ppadmin/src/views/widgets/custom_data_cells.dart';
 export 'package:ppadmin/src/views/widgets/maps_widget.dart';
 export 'package:ppadmin/src/views/widgets/view_loc_widget.dart';
 export 'package:ppadmin/src/views/widgets/custom_dropdown.dart';
-// export 'package:ppadmin/src/views/widgets/';
+export 'package:ppadmin/src/views/widgets/multi_map_widget.dart';
+
 // export 'package:ppadmin/src/views/widgets/';
 // export 'package:ppadmin/src/views/widgets/';
 // export 'package:ppadmin/src/views/widgets/';

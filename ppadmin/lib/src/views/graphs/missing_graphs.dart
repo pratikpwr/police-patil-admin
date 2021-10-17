@@ -37,7 +37,8 @@ class _MissingGraphState extends State<MissingGraph> {
             tooltipBehavior: _tooltipBehavior,
             series: <ColumnSeries<MissingGraphData, String>>[
               ColumnSeries<MissingGraphData, String>(
-                color: Colors.yellow[700],
+                  name: MISSING,
+                  color: Colors.yellow[700],
                   dataSource: <MissingGraphData>[
                     MissingGraphData('Jan', 14),
                     MissingGraphData('Feb', 43),

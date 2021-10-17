@@ -23,7 +23,7 @@ class ViewFileWidget extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.45,
                   child: Stack(
                     children: [
-                      Image.asset("https://$url"),
+                      Image.network("https://$url"),
                       Positioned(
                         right: 16,
                         top: 16,

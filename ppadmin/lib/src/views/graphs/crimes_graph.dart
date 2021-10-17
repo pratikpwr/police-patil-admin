@@ -37,6 +37,7 @@ class _CrimesGraphState extends State<CrimesGraph> {
             tooltipBehavior: _tooltipBehavior,
             series: <ColumnSeries<CrimeGraphData, String>>[
               ColumnSeries<CrimeGraphData, String>(
+                  name: CRIMES,
                   color: Colors.red[400],
                   dataSource: <CrimeGraphData>[
                     CrimeGraphData('Jan', 35),

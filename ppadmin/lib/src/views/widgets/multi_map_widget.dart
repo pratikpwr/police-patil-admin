@@ -4,29 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:google_maps/google_maps.dart';
 import 'package:ppadmin/src/config/constants.dart';
 
-class GoogleMapsWidget extends StatefulWidget {
-  const GoogleMapsWidget(
-      {Key? key, required this.id, required this.lat, required this.long})
+class MultiMapsWidget extends StatefulWidget {
+  const MultiMapsWidget({Key? key, required this.id, required this.locations})
       : super(key: key);
   final String id;
-  final double lat;
-  final double long;
+  final List<LatLng> locations;
 
   @override
-  State<GoogleMapsWidget> createState() => _GoogleMapsWidgetState();
+  State<MultiMapsWidget> createState() => _MultiMapsWidgetState();
 }
 
-class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
+class _MultiMapsWidgetState extends State<MultiMapsWidget> {
   @override
   Widget build(BuildContext context) {
     String htmlId = widget.id;
 
     // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(htmlId, (int viewId) {
-      final myLatlng = LatLng(widget.lat, widget.long);
+      final myLatLng = LatLng(18.5204, 73.8567);
+      final puneLatLong = LatLng(18.5204, 73.8567);
       final mapOptions = MapOptions()
         ..zoom = 10
-        ..center = myLatlng;
+        ..center = puneLatLong;
 
       final elem = DivElement()
         ..id = htmlId
@@ -36,8 +35,16 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
 
       final map = GMap(elem, mapOptions);
 
+      // Code to create multiple markers
+      for (int i = 0; i < widget.locations.length; i++) {
+        Marker(MarkerOptions()
+          ..position = widget.locations[i]
+          ..map = map
+          ..title = CRIMES);
+      }
+
       Marker(MarkerOptions()
-        ..position = myLatlng
+        ..position = puneLatLong
         ..map = map
         ..title = CRIMES);
 
@@ -45,10 +52,9 @@ class _GoogleMapsWidgetState extends State<GoogleMapsWidget> {
     });
 
     return Container(
-        margin: const EdgeInsets.all(16),
         padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            color: Colors.grey[200], borderRadius: BorderRadius.circular(15)),
+        height: 400,
+        width: 600,
         child: HtmlElementView(viewType: htmlId));
   }
 }

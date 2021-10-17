@@ -37,6 +37,7 @@ class _DeathsGraphState extends State<DeathsGraph> {
             tooltipBehavior: _tooltipBehavior,
             series: <LineSeries<DeathGraphData, String>>[
               LineSeries<DeathGraphData, String>(
+                  name: DEATHS,
                   color: Colors.deepOrange,
                   dataSource: <DeathGraphData>[
                     DeathGraphData('Jan', 35),
