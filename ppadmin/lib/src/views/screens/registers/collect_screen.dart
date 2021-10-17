@@ -7,9 +7,16 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class CollectionScreen extends StatelessWidget {
-  CollectionScreen({Key? key}) : super(key: key);
+class CollectionScreen extends StatefulWidget {
+  const CollectionScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CollectionScreen> createState() => _CollectionScreenState();
+}
+
+class _CollectionScreenState extends State<CollectionScreen> {
   final _scrollController = ScrollController();
+  final _bloc = CollectRegisterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +47,28 @@ class CollectionScreen extends StatelessWidget {
                         controller: _scrollController,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         physics: const BouncingScrollPhysics(),
-                        child: CollectDataTableWidget(
-                          collectList: state.collectionResponse.collectData!,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            spacer(),
+                            buildDropButton(
+                                value: _bloc.value,
+                                items: _bloc.types,
+                                hint: CHOSE_TYPE,
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    _bloc.value = value;
+                                  });
+                                }),
+                            spacer(),
+                            const Divider(
+                              height: 1,
+                            ),
+                            CollectDataTableWidget(
+                              collectList: _bloc.typeWiseData(
+                                  state.collectionResponse.collectData!),
+                            ),
+                          ],
                         )),
                   ),
                 );

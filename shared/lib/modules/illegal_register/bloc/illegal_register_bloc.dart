@@ -29,6 +29,31 @@ class IllegalRegisterBloc
     }
   }
 
+  String? value;
+  final List<String> types = <String>[
+    "सर्व",
+    "अवैद्य दारू विक्री करणारे",
+    "अवैद्य गुटका विक्री करणारे",
+    "जुगार/मटका चालविणारे/खेळणारे",
+    "अवैद्य गौण खनिज उत्खनन करणारे वाळू तस्कर",
+    "अमली पदार्थ विक्री करणारे"
+  ];
+
+  List<IllegalData> typeWiseData(List<IllegalData> data) {
+    List<IllegalData> newData = [];
+
+    for (int i = 0; i < types.length; i++) {
+      if (value == types[0]) {
+        return data;
+      }
+      if (value == types[i]) {
+        newData.addAll(data.where((element) => element.type == types[i]));
+        return newData;
+      }
+    }
+    return data;
+  }
+
   Stream<IllegalRegisterState> _mapGetIllegalDataState(
       GetIllegalData event) async* {
     final sharedPrefs = await prefs;

@@ -7,9 +7,16 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class IllegalScreen extends StatelessWidget {
+class IllegalScreen extends StatefulWidget {
   IllegalScreen({Key? key}) : super(key: key);
+
+  @override
+  State<IllegalScreen> createState() => _IllegalScreenState();
+}
+
+class _IllegalScreenState extends State<IllegalScreen> {
   final _scrollController = ScrollController();
+  final _bloc = IllegalRegisterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class IllegalScreen extends StatelessWidget {
         child: BlocBuilder<IllegalRegisterBloc, IllegalRegisterState>(
           builder: (context, state) {
             if (state is IllegalDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is IllegalDataLoaded) {
               if (state.illegalResponse.data!.isEmpty) {
                 return NoRecordFound();
@@ -39,8 +46,28 @@ class IllegalScreen extends StatelessWidget {
                         controller: _scrollController,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         physics: const BouncingScrollPhysics(),
-                        child: IllegalDataTableWidget(
-                            illegalList: state.illegalResponse.data!)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            spacer(),
+                            buildDropButton(
+                                value: _bloc.value,
+                                items: _bloc.types,
+                                hint: CHOSE_TYPE,
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    _bloc.value = value;
+                                  });
+                                }),
+                            spacer(),
+                            const Divider(
+                              height: 1,
+                            ),
+                            IllegalDataTableWidget(
+                                illegalList: _bloc
+                                    .typeWiseData(state.illegalResponse.data!)),
+                          ],
+                        )),
                   ),
                 );
               }

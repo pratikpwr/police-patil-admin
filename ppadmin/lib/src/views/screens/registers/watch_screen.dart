@@ -7,9 +7,16 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class WatchScreen extends StatelessWidget {
-  WatchScreen({Key? key}) : super(key: key);
+class WatchScreen extends StatefulWidget {
+  const WatchScreen({Key? key}) : super(key: key);
+
+  @override
+  State<WatchScreen> createState() => _WatchScreenState();
+}
+
+class _WatchScreenState extends State<WatchScreen> {
   final _scrollController = ScrollController();
+  final _bloc = WatchRegisterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class WatchScreen extends StatelessWidget {
         child: BlocBuilder<WatchRegisterBloc, WatchRegisterState>(
           builder: (context, state) {
             if (state is WatchDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is WatchDataLoaded) {
               return SafeArea(
                 child: Scrollbar(
@@ -36,8 +43,28 @@ class WatchScreen extends StatelessWidget {
                       controller: _scrollController,
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       physics: const BouncingScrollPhysics(),
-                      child: WatchDataTableWidget(
-                          watchList: state.watchResponse.data!)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          spacer(),
+                          buildDropButton(
+                              value: _bloc.value,
+                              items: _bloc.types,
+                              hint: CHOSE_TYPE,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _bloc.value = value;
+                                });
+                              }),
+                          spacer(),
+                          const Divider(
+                            height: 1,
+                          ),
+                          WatchDataTableWidget(
+                              watchList: _bloc
+                                  .typeWiseData(state.watchResponse.data!)),
+                        ],
+                      )),
                 ),
               );
             } else if (state is WatchLoadError) {

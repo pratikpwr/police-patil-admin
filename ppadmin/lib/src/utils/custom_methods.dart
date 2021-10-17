@@ -11,6 +11,24 @@ void showSnackBar(BuildContext context, String message) {
   )));
 }
 
+List<dynamic> typeWiseData(
+    {required String? value,
+    required List<String> types,
+    required List<dynamic> data}) {
+  List<dynamic> newData = [];
+
+  for (int i = 0; i < types.length; i++) {
+    if (value == types[0]) {
+      return data;
+    }
+    if (value == types[i]) {
+      newData.addAll(data.where((element) => element.type == types[i]));
+      return newData;
+    }
+  }
+  return data;
+}
+
 String? youtubeUrlToId(String? url, {bool trimWhitespaces = true}) {
   if (!url!.contains("http") && (url.length == 11)) return url;
   if (trimWhitespaces) url = url.trim();
@@ -70,9 +88,10 @@ class NoRecordFound extends StatelessWidget {
   }
 }
 
-Widget spacer({double? height}) {
+Widget spacer({double? height, double? width}) {
   return SizedBox(
     height: height ?? 16,
+    width: width ?? 0,
   );
 }
 

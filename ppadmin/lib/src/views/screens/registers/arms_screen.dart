@@ -7,10 +7,16 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class ArmsScreen extends StatelessWidget {
-  ArmsScreen({Key? key}) : super(key: key);
+class ArmsScreen extends StatefulWidget {
+  const ArmsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ArmsScreen> createState() => _ArmsScreenState();
+}
+
+class _ArmsScreenState extends State<ArmsScreen> {
   final _scrollController = ScrollController();
+  final _bloc = ArmsRegisterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +48,28 @@ class ArmsScreen extends StatelessWidget {
                       controller: _scrollController,
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       physics: const BouncingScrollPhysics(),
-                      child: ArmsDataTableWidget(
-                        armsList: state.armsResponse.data,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          spacer(),
+                          buildDropButton(
+                              value: _bloc.value,
+                              items: _bloc.types,
+                              hint: CHOSE_TYPE,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _bloc.value = value;
+                                });
+                              }),
+                          spacer(),
+                          const Divider(
+                            height: 1,
+                          ),
+                          ArmsDataTableWidget(
+                            armsList:
+                                _bloc.typeWiseData(state.armsResponse.data),
+                          ),
+                        ],
                       ),
                     ),
                   ),

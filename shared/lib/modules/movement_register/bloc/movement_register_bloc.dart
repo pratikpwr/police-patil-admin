@@ -28,9 +28,32 @@ class MovementRegisterBloc
     }
   }
 
+  String? value;
+  final List<String> types = <String>[
+    "सर्व",
+    "राजकीय हालचाली",
+    "धार्मिक हालचाली",
+    "जातीय हालचाली",
+    "सांस्कृतिक हालचाली"
+  ];
+
+  List<MovementData> typeWiseData(List<MovementData> data) {
+    List<MovementData> newData = [];
+
+    for (int i = 0; i < types.length; i++) {
+      if (value == types[0]) {
+        return data;
+      }
+      if (value == types[i]) {
+        newData.addAll(data.where((element) => element.type == types[i]));
+        return newData;
+      }
+    }
+    return data;
+  }
+
   Stream<MovementRegisterState> _mapGetMovementDataState(
       GetMovementData event) async* {
-    final sharedPrefs = await prefs;
     yield MovementDataLoading();
     try {
       Response _response = await _movementRepository.getMovementRegister();

@@ -7,9 +7,17 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class CrimesScreen extends StatelessWidget {
-  CrimesScreen({Key? key}) : super(key: key);
+class CrimesScreen extends StatefulWidget {
+  const CrimesScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CrimesScreen> createState() => _CrimesScreenState();
+}
+
+class _CrimesScreenState extends State<CrimesScreen> {
   final _scrollController = ScrollController();
+
+  final _bloc = CrimeRegisterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,7 @@ class CrimesScreen extends StatelessWidget {
         child: BlocBuilder<CrimeRegisterBloc, CrimeRegisterState>(
           builder: (context, state) {
             if (state is CrimeDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is CrimeDataLoaded) {
               if (state.crimeResponse.data!.isEmpty) {
                 return NoRecordFound();
@@ -40,8 +48,28 @@ class CrimesScreen extends StatelessWidget {
                         controller: _scrollController,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         physics: const BouncingScrollPhysics(),
-                        child: CrimeDataTableWidget(
-                            crimeList: state.crimeResponse.data!)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            spacer(),
+                            buildDropButton(
+                                value: _bloc.value,
+                                items: _bloc.types,
+                                hint: CHOSE_TYPE,
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    _bloc.value = value;
+                                  });
+                                }),
+                            spacer(),
+                            const Divider(
+                              height: 1,
+                            ),
+                            CrimeDataTableWidget(
+                                crimeList: _bloc
+                                    .typeWiseData(state.crimeResponse.data!)),
+                          ],
+                        )),
                   ),
                 );
               }
@@ -53,16 +81,6 @@ class CrimesScreen extends StatelessWidget {
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(context, MaterialPageRoute(builder: (_) {
-      //       return const CrimeRegFormScreen();
-      //     })).then((value) {
-      //       BlocProvider.of<CrimeRegisterBloc>(context).add(GetCrimeData());
-      //     });
-      //   },
-      //   child: const Icon(Icons.add, size: 24),
-      // ),
     );
   }
 }

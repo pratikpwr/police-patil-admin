@@ -28,8 +28,31 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     }
   }
 
+  String? value;
+  final List<String> types = <String>[
+    "सर्व",
+    "शस्त्र परवानाधारक",
+    "स्फोटक पदार्थ विक्री",
+    "स्फोटक जवळ बाळगणारे",
+    "स्फोटक उडविणारे"
+  ];
+
+  List<ArmsData> typeWiseData(List<ArmsData> data) {
+    List<ArmsData> newData = [];
+
+    for (int i = 0; i < types.length; i++) {
+      if (value == types[0]) {
+        return data;
+      }
+      if (value == types[i]) {
+        newData.addAll(data.where((element) => element.type == types[i]));
+        return newData;
+      }
+    }
+    return data;
+  }
+
   Stream<ArmsRegisterState> _mapGetArmsDataState(GetArmsData event) async* {
-    final sharedPrefs = await prefs;
     yield ArmsDataLoading();
     try {
       Response _response = await _armsRepository.getArmsRegister();

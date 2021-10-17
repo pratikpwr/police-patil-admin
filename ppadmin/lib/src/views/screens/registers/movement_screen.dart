@@ -7,9 +7,16 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class MovementScreen extends StatelessWidget {
-  MovementScreen({Key? key}) : super(key: key);
+class MovementScreen extends StatefulWidget {
+  const MovementScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MovementScreen> createState() => _MovementScreenState();
+}
+
+class _MovementScreenState extends State<MovementScreen> {
   final _scrollController = ScrollController();
+  final _bloc = MovementRegisterBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class MovementScreen extends StatelessWidget {
         child: BlocBuilder<MovementRegisterBloc, MovementRegisterState>(
           builder: (context, state) {
             if (state is MovementDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is MovementDataLoaded) {
               if (state.movementResponse.movementData!.isEmpty) {
                 return NoRecordFound();
@@ -38,9 +45,28 @@ class MovementScreen extends StatelessWidget {
                     child: SingleChildScrollView(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         physics: const BouncingScrollPhysics(),
-                        child: MovementDataTableWidget(
-                            movementList:
-                                state.movementResponse.movementData!)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            spacer(),
+                            buildDropButton(
+                                value: _bloc.value,
+                                items: _bloc.types,
+                                hint: CHOSE_TYPE,
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    _bloc.value = value;
+                                  });
+                                }),
+                            spacer(),
+                            const Divider(
+                              height: 1,
+                            ),
+                            MovementDataTableWidget(
+                                movementList: _bloc.typeWiseData(
+                                    state.movementResponse.movementData!)),
+                          ],
+                        )),
                   ),
                 );
               }

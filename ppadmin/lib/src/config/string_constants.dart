@@ -69,7 +69,7 @@ const String SUB_TYPE = "उपप्रकार";
 const String AADHAR_CARD = "आधार कार्ड";
 const String PHOTO = "फोटो";
 const String TITLE = "शीर्षक";
-// const String = "";
+const String CHOSE_TYPE = "प्रकार निवडा";
 // const String = "";
 // const String = "";// const String = "";
 // const String = "";

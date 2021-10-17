@@ -27,8 +27,32 @@ class CrimeRegisterBloc extends Bloc<CrimeRegisterEvent, CrimeRegisterState> {
     }
   }
 
+  String? value;
+  final List<String> types = <String>[
+    "सर्व",
+    "शरीरा विरुद्ध",
+    "माला विरुद्ध",
+    "महिलांविरुद्ध",
+    "अपघात",
+    "इतर अपराध"
+  ];
+
+  List<CrimeData> typeWiseData(List<CrimeData> data) {
+    List<CrimeData> newData = [];
+
+    for (int i = 0; i < types.length; i++) {
+      if (value == types[0]) {
+        return data;
+      }
+      if (value == types[i]) {
+        newData.addAll(data.where((element) => element.type == types[i]));
+        return newData;
+      }
+    }
+    return data;
+  }
+
   Stream<CrimeRegisterState> _mapGetCrimeDataState(GetCrimeData event) async* {
-    final sharedPrefs = await prefs;
     yield CrimeDataLoading();
     try {
       Response _response = await _crimeRepository.getCrimeRegister();

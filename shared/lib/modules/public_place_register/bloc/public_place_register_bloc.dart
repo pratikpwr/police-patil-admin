@@ -15,6 +15,15 @@ class PublicPlaceRegisterBloc
     extends Bloc<PublicPlaceRegisterEvent, PublicPlaceRegisterState> {
   PublicPlaceRegisterBloc() : super(PublicPlaceRegisterInitial());
   final _placeRepository = PlaceRepository();
+  String? chosenValue;
+  final List<String> placeTypes = <String>[
+    "सर्व",
+    "रस्ता",
+    "पाणवठा",
+    "जमीन",
+    "पुतळा",
+    "धार्मिक स्थळ"
+  ];
 
   @override
   Stream<PublicPlaceRegisterState> mapEventToState(
@@ -30,7 +39,6 @@ class PublicPlaceRegisterBloc
 
   Stream<PublicPlaceRegisterState> _mapGetPublicPlaceDataState(
       GetPublicPlaceData event) async* {
-    final sharedPrefs = await prefs;
     yield PublicPlaceDataLoading();
     try {
       Response _response = await _placeRepository.getPlaceRegister();
@@ -64,5 +72,20 @@ class PublicPlaceRegisterBloc
     } catch (err) {
       yield PublicPlaceDataSendError(err.toString());
     }
+  }
+
+  List<PlaceData> typeWiseData(List<PlaceData> data) {
+    List<PlaceData> newData = [];
+
+    for (int i = 0; i < placeTypes.length; i++) {
+      if (chosenValue == placeTypes[0]) {
+        return data;
+      }
+      if (chosenValue == placeTypes[i]) {
+        newData.addAll(data.where((element) => element.place == placeTypes[i]));
+        return newData;
+      }
+    }
+    return data;
   }
 }

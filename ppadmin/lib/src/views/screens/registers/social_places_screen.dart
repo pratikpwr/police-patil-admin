@@ -7,9 +7,17 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class SocialPlaceScreen extends StatelessWidget {
-   SocialPlaceScreen({Key? key}) : super(key: key);
-  final _scrollController  =ScrollController();
+class SocialPlaceScreen extends StatefulWidget {
+  const SocialPlaceScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SocialPlaceScreen> createState() => _SocialPlaceScreenState();
+}
+
+class _SocialPlaceScreenState extends State<SocialPlaceScreen> {
+  final _scrollController = ScrollController();
+  final _bloc = PublicPlaceRegisterBloc();
+
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<PublicPlaceRegisterBloc>(context).add(GetPublicPlaceData());
@@ -26,7 +34,7 @@ class SocialPlaceScreen extends StatelessWidget {
         child: BlocBuilder<PublicPlaceRegisterBloc, PublicPlaceRegisterState>(
           builder: (context, state) {
             if (state is PublicPlaceDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is PublicPlaceDataLoaded) {
               if (state.placeResponse.data!.isEmpty) {
                 return NoRecordFound();
@@ -38,8 +46,28 @@ class SocialPlaceScreen extends StatelessWidget {
                         controller: _scrollController,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         physics: const BouncingScrollPhysics(),
-                        child: PlaceDataTableWidget(
-                            placeList: state.placeResponse.data!)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            spacer(),
+                            buildDropButton(
+                                value: _bloc.chosenValue,
+                                items: _bloc.placeTypes,
+                                hint: CHOSE_TYPE,
+                                onChanged: (String? value) {
+                                  setState(() {
+                                    _bloc.chosenValue = value;
+                                  });
+                                }),
+                            spacer(),
+                            const Divider(
+                              height: 1,
+                            ),
+                            PlaceDataTableWidget(
+                                placeList: _bloc
+                                    .typeWiseData(state.placeResponse.data!)),
+                          ],
+                        )),
                   ),
                 );
               }

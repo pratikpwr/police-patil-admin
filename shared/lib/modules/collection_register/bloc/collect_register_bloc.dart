@@ -28,9 +28,32 @@ class CollectRegisterBloc
     }
   }
 
+  String? value;
+  final List<String> types = <String>[
+    "सर्व",
+    "बेवारस वाहने",
+    "दागिने",
+    "गौण खनिज",
+    "इतर"
+  ];
+
+  List<CollectionData> typeWiseData(List<CollectionData> data) {
+    List<CollectionData> newData = [];
+
+    for (int i = 0; i < types.length; i++) {
+      if (value == types[0]) {
+        return data;
+      }
+      if (value == types[i]) {
+        newData.addAll(data.where((element) => element.type == types[i]));
+        return newData;
+      }
+    }
+    return data;
+  }
+
   Stream<CollectRegisterState> _mapGetCollectionDataState(
       GetCollectionData event) async* {
-    final sharedPrefs = await prefs;
     yield CollectionDataLoading();
     try {
       Response _response = await _collectionRepository.getCollectionsRegister();

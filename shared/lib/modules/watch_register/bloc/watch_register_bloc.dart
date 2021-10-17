@@ -27,8 +27,32 @@ class WatchRegisterBloc extends Bloc<WatchRegisterEvent, WatchRegisterState> {
     }
   }
 
+  String? value;
+  final List<String> types = <String>[
+    "सर्व",
+    "भटक्या टोळी",
+    "सराईत गुन्हेगार",
+    "फरार आरोपी",
+    "तडीपार आरोपी",
+    "स्टॅंडिंग वॉरंट"
+  ];
+
+  List<WatchData> typeWiseData(List<WatchData> data) {
+    List<WatchData> newData = [];
+
+    for (int i = 0; i < types.length; i++) {
+      if (value == types[0]) {
+        return data;
+      }
+      if (value == types[i]) {
+        newData.addAll(data.where((element) => element.type == types[i]));
+        return newData;
+      }
+    }
+    return data;
+  }
+
   Stream<WatchRegisterState> _mapGetWatchDataState(GetWatchData event) async* {
-    final sharedPrefs = await prefs;
     yield WatchDataLoading();
     try {
       Response _response = await _watchRepository.getWatchRegister();
