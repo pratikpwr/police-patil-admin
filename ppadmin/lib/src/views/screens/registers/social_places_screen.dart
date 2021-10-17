@@ -107,6 +107,10 @@ class PlaceDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(PLACE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text(GPS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text("सीसीटीव्ही बसवला आहे का ?",
                         style: Styles.tableTitleTextStyle())),
                 DataColumn(
@@ -140,6 +144,13 @@ class PlaceDataTableWidget extends StatelessWidget {
                     placeData.address!,
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "social${placeData.id!}",
+                      lat: placeData.latitude!,
+                      long: placeData.longitude!)),
+                  placeData.photo != null
+                      ? DataCell(ViewFileWidget(url: placeData.photo!))
+                      : noDataInCell(),
                   DataCell(Text(
                     placeData.isCCTV! ? YES : NO,
                     style: Styles.tableValuesTextStyle(),

@@ -27,7 +27,7 @@ class MissingScreen extends StatelessWidget {
         child: BlocBuilder<MissingRegisterBloc, MissingRegisterState>(
           builder: (context, state) {
             if (state is MissingDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is MissingDataLoaded) {
               if (state.missingResponse.data!.isEmpty) {
                 return NoRecordFound();
@@ -83,6 +83,13 @@ class MissingDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text(GPS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label:
+                        Text(AADHAR_CARD, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text("लिंग", style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(AGE, style: Styles.tableTitleTextStyle())),
@@ -112,6 +119,16 @@ class MissingDataTableWidget extends StatelessWidget {
                     missingData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "collect${missingData.id!}",
+                      lat: missingData.latitude!,
+                      long: missingData.longitude!)),
+                  missingData.photo != null
+                      ? DataCell(ViewFileWidget(url: missingData.photo!))
+                      : noDataInCell(),
+                  missingData.aadhar != null
+                      ? DataCell(ViewFileWidget(url: missingData.aadhar!))
+                      : noDataInCell(),
                   DataCell(Text(
                     missingData.gender!,
                     style: Styles.tableValuesTextStyle(),

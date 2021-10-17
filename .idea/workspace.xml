@@ -19,27 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="maps and location view added">
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/custom_dropdown.dart" afterDir="false" />
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="filter by types and code improved">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/utils/custom_methods.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/utils/custom_methods.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/collection_register/bloc/collect_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/bloc/collect_register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/crime_register/bloc/crime_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/crime_register/bloc/crime_register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/illegal_register/bloc/illegal_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/bloc/illegal_register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/movement_register/bloc/movement_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/bloc/movement_register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/public_place_register/bloc/public_place_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/public_place_register/bloc/public_place_register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_bloc.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634454512366</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="filter by types and code improved">
+      <created>1634462295478</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1634462295478</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,7 +198,8 @@
     <MESSAGE value="graphs added to home screen" />
     <MESSAGE value="more graphs added to home screen" />
     <MESSAGE value="maps and location view added" />
-    <option name="LAST_COMMIT_MESSAGE" value="maps and location view added" />
+    <MESSAGE value="filter by types and code improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="filter by types and code improved" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -246,10 +244,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634454518592">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634462299531">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634454518592" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634462299531" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
     <state x="0" y="0" width="584" height="816" key="find.popup" timestamp="1634378886901">
       <screen x="0" y="0" width="1536" height="816" />

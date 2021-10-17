@@ -8,7 +8,7 @@ import 'package:shared/shared.dart';
 import '../../views.dart';
 
 class IllegalScreen extends StatefulWidget {
-  IllegalScreen({Key? key}) : super(key: key);
+  const IllegalScreen({Key? key}) : super(key: key);
 
   @override
   State<IllegalScreen> createState() => _IllegalScreenState();
@@ -109,6 +109,10 @@ class IllegalDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text(GPS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text("PPID", style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("PSID", style: Styles.tableTitleTextStyle())),
@@ -131,6 +135,13 @@ class IllegalDataTableWidget extends StatelessWidget {
                     illegalData.address!,
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "illegal${illegalData.id!}",
+                      lat: illegalData.latitude!,
+                      long: illegalData.longitude!)),
+                  illegalData.photo != null
+                      ? DataCell(ViewFileWidget(url: illegalData.photo!))
+                      : noDataInCell(),
                   DataCell(Text(
                     "${illegalData.ppid!}",
                     style: Styles.tableValuesTextStyle(),

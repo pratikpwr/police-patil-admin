@@ -27,7 +27,7 @@ class FiresScreen extends StatelessWidget {
         child: BlocBuilder<FireRegisterBloc, FireRegisterState>(
           builder: (context, state) {
             if (state is FireDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is FireDataLoaded) {
               if (state.fireResponse.data!.isEmpty) {
                 return NoRecordFound();
@@ -78,6 +78,10 @@ class FireDataTableWidget extends StatelessWidget {
                     label:
                         Text("घटनास्थळ", style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text(GPS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text("आगीचे कारण",
                         style: Styles.tableTitleTextStyle())),
                 DataColumn(
@@ -102,6 +106,13 @@ class FireDataTableWidget extends StatelessWidget {
                     fireData.address!,
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "collect${fireData.id!}",
+                      lat: fireData.latitude!,
+                      long: fireData.longitude!)),
+                  fireData.photo != null
+                      ? DataCell(ViewFileWidget(url: fireData.photo!))
+                      : noDataInCell(),
                   DataCell(Text(
                     fireData.reason!,
                     style: Styles.tableValuesTextStyle(),

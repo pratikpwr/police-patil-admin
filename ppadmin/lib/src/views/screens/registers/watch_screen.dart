@@ -108,7 +108,14 @@ class WatchDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(MOB_NO, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label:
+                        Text(AADHAR_CARD, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(GPS, style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label:
                         Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
@@ -135,10 +142,20 @@ class WatchDataTableWidget extends StatelessWidget {
                     watchData.mobile!.toString(),
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  watchData.photo != null
+                      ? DataCell(ViewFileWidget(url: watchData.photo!))
+                      : noDataInCell(),
+                  watchData.aadhar != null
+                      ? DataCell(ViewFileWidget(url: watchData.aadhar!))
+                      : noDataInCell(),
                   DataCell(Text(
                     watchData.address!,
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "watch${watchData.id!}",
+                      lat: watchData.latitude!,
+                      long: watchData.longitude!)),
                   DataCell(SizedBox(
                     width: 400,
                     child: Text(

@@ -27,7 +27,7 @@ class DeathScreen extends StatelessWidget {
         child: BlocBuilder<DeathRegisterBloc, DeathRegisterState>(
           builder: (context, state) {
             if (state is DeathDataLoading) {
-              return Loading();
+              return const Loading();
             } else if (state is DeathDataLoaded) {
               if (state.deathResponse.data!.isEmpty) {
                 return NoRecordFound();
@@ -82,6 +82,10 @@ class DeathDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text(GPS, style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text("लिंग", style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(AGE, style: Styles.tableTitleTextStyle())),
@@ -114,6 +118,13 @@ class DeathDataTableWidget extends StatelessWidget {
                     deathData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "collect${deathData.id!}",
+                      lat: deathData.latitude!,
+                      long: deathData.longitude!)),
+                  deathData.photo != null
+                      ? DataCell(ViewFileWidget(url: deathData.photo!))
+                      : noDataInCell(),
                   DataCell(Text(
                     deathData.gender!,
                     style: Styles.tableValuesTextStyle(),

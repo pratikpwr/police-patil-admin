@@ -33,6 +33,7 @@ const String MOB_NO = "मोबाईल नंबर";
 const String AGE = "वय";
 const String ADDRESS = "पत्ता";
 const String PLACE = "ठिकाण";
+const String GPS = "GPS";
 const String LONGITUDE = "रेखांश";
 const String LATITUDE = "अक्षांश";
 const String SELECT_LOCATION = "जीपीएस लोकेशन निवडा "; //📌

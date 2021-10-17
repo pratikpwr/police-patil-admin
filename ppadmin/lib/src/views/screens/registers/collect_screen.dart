@@ -109,7 +109,7 @@ class CollectDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(PLACE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
-                    label: Text("GPS", style: Styles.tableTitleTextStyle())),
+                    label: Text(GPS, style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
                 DataColumn(

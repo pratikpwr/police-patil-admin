@@ -108,6 +108,8 @@ class MovementDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(PLACE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text("GPS", style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text(DATE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(IS_ISSUE, style: Styles.tableTitleTextStyle())),
@@ -116,6 +118,9 @@ class MovementDataTableWidget extends StatelessWidget {
                         Text(ATTENDANCE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(MOVEMENT_DESCRIPTION,
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text("हालचालीचा फोटो",
                         style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("PPID", style: Styles.tableTitleTextStyle())),
@@ -140,6 +145,10 @@ class MovementDataTableWidget extends StatelessWidget {
                     movementData.address!,
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "movement${movementData.id!}",
+                      lat: movementData.latitude!,
+                      long: movementData.longitude!)),
                   DataCell(Text(
                     movementData.datetime!.toIso8601String(),
                     style: Styles.tableValuesTextStyle(),
@@ -160,6 +169,9 @@ class MovementDataTableWidget extends StatelessWidget {
                       style: Styles.tableValuesTextStyle(),
                     ),
                   )),
+                  movementData.photo != null
+                      ? DataCell(ViewFileWidget(url: movementData.photo!))
+                      : noDataInCell(),
                   DataCell(Text(
                     "${movementData.ppid!}",
                     style: Styles.tableValuesTextStyle(),
