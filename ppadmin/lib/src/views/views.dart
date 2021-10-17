@@ -35,8 +35,8 @@ export 'package:ppadmin/src/views/widgets/attach_button.dart';
 export 'package:ppadmin/src/views/widgets/view_file.dart';
 export 'package:ppadmin/src/views/widgets/custom_data_cells.dart';
 
-// export 'package:ppadmin/src/views/widgets/';
-// export 'package:ppadmin/src/views/widgets/';
+export 'package:ppadmin/src/views/widgets/maps_widget.dart';
+export 'package:ppadmin/src/views/widgets/view_loc_widget.dart';
 // export 'package:ppadmin/src/views/widgets/';
 // export 'package:ppadmin/src/views/widgets/';
 // export 'package:ppadmin/src/views/widgets/';

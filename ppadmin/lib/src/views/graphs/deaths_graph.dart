@@ -40,10 +40,10 @@ class _DeathsGraphState extends State<DeathsGraph> {
                   color: Colors.deepOrange,
                   dataSource: <DeathGraphData>[
                     DeathGraphData('Jan', 35),
-                    DeathGraphData('Feb', 28),
-                    DeathGraphData('Mar', 34),
+                    DeathGraphData('Feb', 12),
+                    DeathGraphData('Mar', 24),
                     DeathGraphData('Apr', 32),
-                    DeathGraphData('May', 40)
+                    DeathGraphData('May', 20)
                   ],
                   xValueMapper: (DeathGraphData crimes, _) => crimes.month,
                   yValueMapper: (DeathGraphData crimes, _) => crimes.count,

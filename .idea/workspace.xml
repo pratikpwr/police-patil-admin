@@ -19,12 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="graphs added to home screen">
-      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" afterDir="false" />
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="more graphs added to home screen">
+      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/maps_widget.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/view_loc_widget.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/graphs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/graphs.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/web/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634403511426</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="more graphs added to home screen">
+      <created>1634406786428</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1634406786428</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,7 +184,8 @@
     <MESSAGE value="no record found error solved" />
     <MESSAGE value="alert, news, kayade shown" />
     <MESSAGE value="graphs added to home screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="graphs added to home screen" />
+    <MESSAGE value="more graphs added to home screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="more graphs added to home screen" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -191,34 +206,34 @@
     </state>
     <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1634127481133" />
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1634045204326" />
-    <state width="1491" height="183" key="GridCell.Tab.0.bottom" timestamp="1634401773417">
+    <state width="1491" height="183" key="GridCell.Tab.0.bottom" timestamp="1634450208771">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="183" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1634401773417" />
+    <state width="1491" height="183" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1634450208771" />
     <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634066502953" />
-    <state width="1491" height="183" key="GridCell.Tab.0.center" timestamp="1634401773417">
+    <state width="1491" height="183" key="GridCell.Tab.0.center" timestamp="1634450208771">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="183" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1634401773417" />
+    <state width="1491" height="183" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1634450208771" />
     <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="183" key="GridCell.Tab.0.left" timestamp="1634401773417">
+    <state width="1491" height="183" key="GridCell.Tab.0.left" timestamp="1634450208771">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="183" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1634401773417" />
+    <state width="1491" height="183" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1634450208771" />
     <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="183" key="GridCell.Tab.0.right" timestamp="1634401773417">
+    <state width="1491" height="183" key="GridCell.Tab.0.right" timestamp="1634450208771">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="183" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1634401773417" />
+    <state width="1491" height="183" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1634450208771" />
     <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
     <state x="270" y="52" key="SettingsEditor" timestamp="1634023641489">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634403514191">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1634406792527">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634403514191" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1634406792527" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
     <state x="0" y="0" width="584" height="816" key="find.popup" timestamp="1634378886901">
       <screen x="0" y="0" width="1536" height="816" />

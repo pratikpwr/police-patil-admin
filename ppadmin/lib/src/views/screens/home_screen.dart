@@ -3,6 +3,7 @@ import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/graphs/crimes_graph.dart';
 import 'package:ppadmin/src/views/graphs/graphs.dart';
 import 'package:ppadmin/src/views/views.dart';
+import 'package:ppadmin/src/views/widgets/maps_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -24,6 +25,9 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Row(
                   children: const [DeathsGraph(), MissingGraph()],
+                ),
+                Row(
+                  children: const [],
                 ),
               ],
             ),

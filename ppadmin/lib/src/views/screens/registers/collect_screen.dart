@@ -82,6 +82,8 @@ class CollectDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(PLACE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text("GPS", style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label:
@@ -107,6 +109,10 @@ class CollectDataTableWidget extends StatelessWidget {
                     collectData.address!,
                     style: Styles.tableValuesTextStyle(),
                   )),
+                  DataCell(ViewLocWidget(
+                      id: "collect${collectData.id!}",
+                      lat: collectData.latitude!,
+                      long: collectData.longitude!)),
                   collectData.photo != null
                       ? DataCell(ViewFileWidget(url: collectData.photo!))
                       : noDataInCell(),

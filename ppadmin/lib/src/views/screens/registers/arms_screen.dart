@@ -91,6 +91,8 @@ class ArmsDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
                 DataColumn(
+                    label: Text("GPS", style: Styles.tableTitleTextStyle())),
+                DataColumn(
                     label: Text("परवाना क्रमांक",
                         style: Styles.tableTitleTextStyle())),
                 DataColumn(
@@ -117,6 +119,10 @@ class ArmsDataTableWidget extends StatelessWidget {
                       : noDataInCell(),
                   customTextDataCell(armsData.mobile),
                   customTextDataCell(armsData.address),
+                  DataCell(ViewLocWidget(
+                      id: "arms${armsData.id!}",
+                      lat: armsData.latitude!,
+                      long: armsData.longitude!)),
                   customTextDataCell(armsData.licenceNumber),
                   customTextDataCell(
                       armsData.validity!.toIso8601String().substring(0, 10)),
