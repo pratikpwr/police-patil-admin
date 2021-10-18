@@ -14,8 +14,9 @@ class ImageConstants {
   static String IMG_PLACEHOLDER = "assets/feed.png";
   static String PROFILE_PIC = "assets/profile.jpg";
   static String UPDATES = "assets/newspaper.png";
-
+  static String SETTINGS = "assets/setting.png";
   static String IMG_WATCH = "assets/watching.png";
+  static String IMG_USERS = "assets/users.png";
   static String IMG_MOVEMENT = "assets/movement.png";
   static String IMG_COLLECTION = "assets/boxes.png";
   static String IMG_ARMS = "assets/rifle.png";

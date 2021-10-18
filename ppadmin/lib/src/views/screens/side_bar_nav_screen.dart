@@ -3,6 +3,7 @@ import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/views/screens/alert_screen.dart';
 import 'package:ppadmin/src/views/screens/kayade_screen.dart';
 import 'package:ppadmin/src/views/screens/news_screen.dart';
+import 'package:ppadmin/src/views/screens/police_station_screen.dart';
 import 'package:ppadmin/src/views/side_navigation/side_nav_bar.dart';
 import 'package:ppadmin/src/views/side_navigation/side_nav_bar_item.dart';
 
@@ -35,6 +36,8 @@ class _SideBarNavScreenState extends State<SideBarNavScreen> {
     SideNavBarItem(image: ImageConstants.IMG_ALERTS, label: NOTICE),
     SideNavBarItem(image: ImageConstants.IMG_NEWS, label: IMP_NEWS),
     SideNavBarItem(image: ImageConstants.IMG_HAMMER, label: LAWS),
+    SideNavBarItem(image: ImageConstants.IMG_USERS, label: "Users"),
+    SideNavBarItem(image: ImageConstants.IMG_PROFILE, label: "Police Station"),
   ];
   List<Widget> adminViews = [
     HomeScreen(),
@@ -50,7 +53,9 @@ class _SideBarNavScreenState extends State<SideBarNavScreen> {
     MissingScreen(),
     AlertScreen(),
     ImpNewsScreen(),
-    KayadeScreen()
+    KayadeScreen(),
+    UsersScreen(),
+    PoliceStationScreen()
   ];
 
   @override

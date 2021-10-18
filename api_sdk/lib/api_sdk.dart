@@ -31,6 +31,35 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getUsers() async {
+    String path = ApiConstants.GET_USERS;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> addUser({required Map<String, dynamic> body}) async {
+    String path = ApiConstants.ADD_USER;
+
+    Response response = await RestApiHandlerData.postData(path, body);
+    return response;
+  }
+
+  static Future<Response> getPoliceStation() async {
+    String path = ApiConstants.GET_POLICE_STATION;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> addPoliceStation(
+      {required Map<String, dynamic> body}) async {
+    String path = ApiConstants.ADD_POLICE_STATION;
+
+    Response response = await RestApiHandlerData.postData(path, body);
+    return response;
+  }
+
   static Future<Response> updateUserData(
       {required int userId, required Map<String, dynamic> body}) async {
     String path = ApiConstants.UPDATE_USER_DATA + "$userId";

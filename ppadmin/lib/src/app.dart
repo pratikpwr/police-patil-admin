@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => IllegalRegisterBloc()),
         BlocProvider(create: (ctx) => AlertBloc()),
         BlocProvider(create: (ctx) => NewsBloc()),
+        BlocProvider(create: (ctx) => UsersBloc()),
+        BlocProvider(create: (ctx) => PoliceStationBloc()),
         BlocProvider(create: (ctx) => KayadeBloc()),
       ],
       child: const MaterialApp(
