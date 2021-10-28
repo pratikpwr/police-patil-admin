@@ -123,14 +123,8 @@ class _SideNavBarState extends State<SideNavBar>
           onTap: widget.onTap,
           index: entry.key,
           expanded: expanded,
-          color: _validateSelectedItemColor());
+          color: PRIMARY_COLOR);
     }).toList();
     return _items;
-  }
-
-  Color _validateSelectedItemColor() {
-    final Color? color;
-    color = Colors.blue[200]!;
-    return color;
   }
 }

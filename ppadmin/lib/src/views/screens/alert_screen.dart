@@ -24,7 +24,8 @@ class _AlertScreenState extends State<AlertScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<AlertBloc>(context).add(GetAlerts());
     return Scaffold(
-      appBar: CustomAppBar(title: NOTICE),
+      appBar:
+          AppBar(title: const Text(ALERTS), automaticallyImplyLeading: false),
       body: BlocListener<AlertBloc, AlertState>(listener: (context, state) {
         if (state is AlertLoadError) {
           showSnackBar(context, state.error);

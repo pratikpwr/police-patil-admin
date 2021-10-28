@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:html' as html;
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -38,9 +40,35 @@ Future<File> getImageFromGallery() async {
 
 Future<File> getFileFromGallery() async {
   File? _file;
-  FilePickerResult? result = await FilePicker.platform.pickFiles();
+  List<int> imageFileBytes;
+  FilePickerResult? result = await FilePicker.platform
+      .pickFiles(allowedExtensions: ['jpg', 'pdf', 'jpeg', 'png']);
   if (result != null) {
-    _file = File(result.files.single.path!);
+    // _file = File(result.files.single.path!);
+    try {
+      html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
+      uploadInput.multiple = false;
+      uploadInput.draggable = true;
+      uploadInput.accept = 'image/*';
+      uploadInput.click();
+      html.document.body?.append(uploadInput);
+      uploadInput.onChange.listen((e) {
+        final files = uploadInput.files;
+        final file = files![0];
+        final reader = html.FileReader();
+        reader.onLoadEnd.listen((e) {
+          var _bytesData = const Base64Decoder()
+              .convert(reader.result.toString().split(",").last);
+
+          imageFileBytes = _bytesData;
+        });
+        reader.readAsDataUrl(file);
+      });
+
+      uploadInput.remove();
+    } catch (e) {
+      print(e);
+    }
   } else {
     debugPrint('No file selected.');
   }

@@ -15,9 +15,8 @@ class DeathScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<DeathRegisterBloc>(context).add(GetDeathData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: DEATHS,
-      ),
+      appBar:
+          AppBar(title: const Text(DEATHS), automaticallyImplyLeading: false),
       body: BlocListener<DeathRegisterBloc, DeathRegisterState>(
         listener: (context, state) {
           if (state is DeathLoadError) {

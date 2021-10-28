@@ -22,9 +22,8 @@ class _ArmsScreenState extends State<ArmsScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<ArmsRegisterBloc>(context).add(GetArmsData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: ARMS_COLLECTIONS,
-      ),
+      appBar: AppBar(title: const Text(ARMS_COLLECTIONS),
+        automaticallyImplyLeading: false,),
       body: BlocListener<ArmsRegisterBloc, ArmsRegisterState>(
         listener: (context, state) {
           if (state is ArmsLoadError) {

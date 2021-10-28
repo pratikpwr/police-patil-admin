@@ -46,7 +46,7 @@ class ApiSdk {
   }
 
   static Future<Response> getPoliceStation() async {
-    String path = ApiConstants.GET_POLICE_STATION;
+    String path = ApiConstants.POLICE_STATION;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -54,7 +54,7 @@ class ApiSdk {
 
   static Future<Response> addPoliceStation(
       {required Map<String, dynamic> body}) async {
-    String path = ApiConstants.ADD_POLICE_STATION;
+    String path = ApiConstants.POLICE_STATION;
 
     Response response = await RestApiHandlerData.postData(path, body);
     return response;
@@ -70,22 +70,21 @@ class ApiSdk {
 
   // ARMS Register
   static Future<Response> postArmsRegister({required body}) async {
-    String path = ApiConstants.POST_ARMS_BY_PP;
+    String path = ApiConstants.ARMS;
 
     Response response = await RestApiHandlerData.postData(path, body);
     return response;
   }
 
   static Future<Response> getArmsByPP({required int userId}) async {
-    String path = ApiConstants.GET_ARMS_BY_PP + "$userId";
+    String path = ApiConstants.ARMS;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
   }
 
   static Future<Response> getArms() async {
-    String path = ApiConstants.GET_ARMS;
-
+    String path = ApiConstants.ARMS;
     Response response = await RestApiHandlerData.getData(path);
     return response;
   }
@@ -114,21 +113,21 @@ class ApiSdk {
 
   // Movement Register
   static Future<Response> postMovementRegister({required body}) async {
-    String path = ApiConstants.POST_MOVEMENT_BY_PP;
+    String path = ApiConstants.MOVEMENT;
 
     Response response = await RestApiHandlerData.postData(path, body);
     return response;
   }
 
   static Future<Response> getMovementByPP({required int userId}) async {
-    String path = ApiConstants.GET_MOVEMENT_BY_PP + "$userId";
+    String path = ApiConstants.MOVEMENT + "$userId";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
   }
 
   static Future<Response> getMovement() async {
-    String path = ApiConstants.GET_MOVEMENT;
+    String path = ApiConstants.MOVEMENT;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -345,14 +344,14 @@ class ApiSdk {
   }
 
   static Future<Response> getKayade() async {
-    String path = ApiConstants.GET_KAYADE;
+    String path = ApiConstants.KAYADE;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
   }
 
   static Future<Response> postRules({required body}) async {
-    String path = ApiConstants.POST_KAYADE;
+    String path = ApiConstants.KAYADE;
 
     Response response = await RestApiHandlerData.postData(path, body);
     return response;

@@ -21,7 +21,8 @@ class _KayadeScreenState extends State<KayadeScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<KayadeBloc>(context).add(GetKayade());
     return Scaffold(
-        appBar: CustomAppBar(title: LAWS),
+        appBar:
+            AppBar(title: const Text(LAWS), automaticallyImplyLeading: false),
         body: BlocListener<KayadeBloc, KayadeState>(listener: (context, state) {
           if (state is KayadeLoadError) {
             showSnackBar(context, state.error);
@@ -31,44 +32,48 @@ class _KayadeScreenState extends State<KayadeScreen> {
             if (state is KayadeLoading) {
               return const Loading();
             } else if (state is KayadeLoaded) {
-              return SafeArea(
-                child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    physics: const BouncingScrollPhysics(),
-                    child: ListView.builder(
-                        itemCount: state.kayadeResponse.data!.length,
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          KayadeData kayadeData =
-                              state.kayadeResponse.data![index];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 16, horizontal: 32),
-                                    primary: GREY_BACKGROUND_COLOR,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10))),
-                                child: Text(
-                                  kayadeData.title!,
-                                  style: GoogleFonts.poppins(
-                                      color: Colors.black87,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                onPressed: () async {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (_) {
-                                    return PDFViewScreen(
-                                        kayadeData: kayadeData);
-                                  }));
-                                }),
-                          );
-                        })),
-              );
+              if (state.kayadeResponse.data!.isEmpty) {
+                return NoRecordFound();
+              } else {
+                return SafeArea(
+                  child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      physics: const BouncingScrollPhysics(),
+                      child: ListView.builder(
+                          itemCount: state.kayadeResponse.data!.length,
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (context, index) {
+                            KayadeData kayadeData =
+                                state.kayadeResponse.data![index];
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16, horizontal: 32),
+                                      primary: GREY_BACKGROUND_COLOR,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10))),
+                                  child: Text(
+                                    kayadeData.title!,
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black87,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (_) {
+                                      return PDFViewScreen(
+                                          kayadeData: kayadeData);
+                                    }));
+                                  }),
+                            );
+                          })),
+                );
+              }
             } else if (state is KayadeLoadError) {
               if (state.error == 'Record Empty') {
                 return NoRecordFound();

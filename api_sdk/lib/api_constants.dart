@@ -13,17 +13,11 @@ class ApiConstants {
   static const String GET_USERS = BASE_URL + '/api/user';
   static const String ADD_USER = BASE_URL + '/api/adduser';
 
-  static const String GET_POLICE_STATION = BASE_URL + '/api/policestation';
-  static const String ADD_POLICE_STATION = BASE_URL + '/api/policestation';
+  static const String POLICE_STATION = BASE_URL + '/api/policestation';
 
-  static const String GET_ARMS_BY_PP = BASE_URL + '/api/arms/showbyppid/';
-  static const String GET_ARMS = BASE_URL + '/api/arms';
-  static const String POST_ARMS_BY_PP = BASE_URL + '/api/arms';
+  static const String ARMS = BASE_URL + '/api/arms';
 
-  static const String GET_MOVEMENT_BY_PP =
-      BASE_URL + '/api/movement/showbyppid/';
-  static const String GET_MOVEMENT = BASE_URL + '/api/movement';
-  static const String POST_MOVEMENT_BY_PP = BASE_URL + '/api/movement';
+  static const String MOVEMENT = BASE_URL + '/api/movement';
 
   static const String GET_COLLECT_BY_PP = BASE_URL + '/api/seize/showbyppid/';
   static const String GET_COLLECT = BASE_URL + '/api/seize';
@@ -80,8 +74,7 @@ class ApiConstants {
   static const String POST_DISASTER = BASE_URL + "/api/disaster";
   static const String GET_DISASTER = BASE_URL + "/api/disaster";
 
-  static const String GET_KAYADE = BASE_URL + "/api/kayade";
-  static const String POST_KAYADE = BASE_URL + "/api/kayade";
+  static const String KAYADE = BASE_URL + "/api/kayade";
 
   static const String POST_APP_VERSION = BASE_URL + "/api";
 }

@@ -33,8 +33,10 @@ class UserClass {
     this.name,
     this.email,
     this.mobile,
+    this.role,
     this.village,
     this.address,
+    this.orderNo,
     this.joindate,
     this.enddate,
     this.psdistance,
@@ -42,6 +44,8 @@ class UserClass {
     this.latitude,
     this.longitude,
     this.psid,
+    this.taluka,
+    this.dangerzone,
     this.createdAt,
     this.updatedAt,
   });
@@ -50,14 +54,18 @@ class UserClass {
   String? name;
   String? email;
   int? mobile;
+  String? role;
   String? village;
   String? address;
   DateTime? joindate;
   DateTime? enddate;
-  double? psdistance;
+  int? psdistance;
   String? photo;
   double? latitude;
   double? longitude;
+  String? taluka;
+  String? dangerzone;
+  String? orderNo;
   int? psid;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -66,32 +74,39 @@ class UserClass {
         id: json["id"],
         name: json["name"],
         email: json["email"],
-        mobile: json["mobile"],
+        role: json["role"],
         village: json["village"],
+        mobile: json["mobile"],
         address: json["address"],
-        joindate: DateTime.parse(json["joindate"]),
-        enddate: DateTime.parse(json["enddate"]),
-        psdistance: json["psdistance"].toDouble(),
+        orderNo: json["ordernumber"],
+        joindate:
+            json["joindate"] == null ? null : DateTime.parse(json["joindate"]),
+        enddate:
+            json["enddate"] == null ? null : DateTime.parse(json["enddate"]),
+        psdistance: json["psdistance"],
         photo: json["photo"],
-        latitude: json["latitude"].toDouble(),
-        longitude: json["longitude"].toDouble(),
+        latitude: json["latitude"] == null ? null : json["latitude"].toDouble(),
+        longitude:
+            json["longitude"] == null ? null : json["longitude"].toDouble(),
         psid: json["psid"],
+        taluka: json["taluka"],
+        dangerzone: json["dangerzone"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
-        "email": email,
         "mobile": mobile,
-        "village": village,
         "address": address,
-        "joindate": joindate!.toIso8601String(),
-        "enddate": enddate!.toIso8601String(),
+        "joindate": joindate,
+        "enddate": enddate,
         "psdistance": psdistance,
         "photo": photo,
+        "ordernumber": orderNo,
         "latitude": latitude,
         "longitude": longitude,
-        "psid": psid,
+        "taluka": taluka,
+        "dangerzone": dangerzone,
       };
 }

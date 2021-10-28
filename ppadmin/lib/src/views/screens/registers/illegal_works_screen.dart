@@ -22,9 +22,8 @@ class _IllegalScreenState extends State<IllegalScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<IllegalRegisterBloc>(context).add(GetIllegalData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: ILLEGAL_WORKS,
-      ),
+      appBar: AppBar(
+          title: const Text(ILLEGAL_WORKS), automaticallyImplyLeading: false),
       body: BlocListener<IllegalRegisterBloc, IllegalRegisterState>(
         listener: (context, state) {
           if (state is IllegalLoadError) {

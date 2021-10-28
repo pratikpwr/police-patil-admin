@@ -21,7 +21,8 @@ class _UsersScreenState extends State<UsersScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<UsersBloc>(context).add(GetUsers());
     return Scaffold(
-      appBar: CustomAppBar(title: IMP_NEWS),
+      appBar: AppBar(
+          title: const Text("POLICE PATILS"), automaticallyImplyLeading: false),
       body: BlocListener<UsersBloc, UsersState>(
         listener: (context, state) {
           if (state is UsersLoadError) {
@@ -99,7 +100,7 @@ class _UsersScreenState extends State<UsersScreen> {
                     spacer(),
                     buildTextField(_emailController, "Email"),
                     spacer(),
-                    buildTextField(_passwordController, "Password"),
+                    buildTextField(_passwordController, PASSWORD),
                     spacer(),
                     CustomButton(
                         text: REGISTER,

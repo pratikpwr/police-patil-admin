@@ -22,9 +22,9 @@ class _MovementScreenState extends State<MovementScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<MovementRegisterBloc>(context).add(GetMovementData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: MOVEMENT_REGISTER,
-      ),
+      appBar: AppBar(
+          title: const Text(MOVEMENT_REGISTER),
+          automaticallyImplyLeading: false),
       body: BlocListener<MovementRegisterBloc, MovementRegisterState>(
         listener: (context, state) {
           if (state is MovementLoadError) {

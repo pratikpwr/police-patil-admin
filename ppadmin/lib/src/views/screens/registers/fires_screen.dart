@@ -15,9 +15,8 @@ class FiresScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<FireRegisterBloc>(context).add(GetFireData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: BURNS,
-      ),
+      appBar:
+          AppBar(title: const Text(BURNS), automaticallyImplyLeading: false),
       body: BlocListener<FireRegisterBloc, FireRegisterState>(
         listener: (context, state) {
           if (state is FireLoadError) {

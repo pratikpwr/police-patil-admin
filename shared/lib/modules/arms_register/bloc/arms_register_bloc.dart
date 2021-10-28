@@ -23,9 +23,6 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     if (event is GetArmsData) {
       yield* _mapGetArmsDataState(event);
     }
-    if (event is AddArmsData) {
-      yield* _mapAddArmsDataState(event);
-    }
   }
 
   String? value;
@@ -65,26 +62,6 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
       }
     } catch (err) {
       yield ArmsLoadError(err.toString());
-    }
-  }
-
-  Stream<ArmsRegisterState> _mapAddArmsDataState(AddArmsData event) async* {
-    yield ArmsDataSending();
-    try {
-      final sharedPrefs = await prefs;
-      event.armsData.ppid = sharedPrefs.getInt('userId')!;
-      event.armsData.psid = sharedPrefs.getInt('policeStationId')!;
-
-      Response _response =
-          await _armsRepository.addArmsData(armsData: event.armsData);
-
-      if (_response.data["message"] != null) {
-        yield ArmsDataSent(_response.data["message"]);
-      } else {
-        yield ArmsDataSendError(_response.data["error"]);
-      }
-    } catch (err) {
-      yield ArmsDataSendError(err.toString());
     }
   }
 }

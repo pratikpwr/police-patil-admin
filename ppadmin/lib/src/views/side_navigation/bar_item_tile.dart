@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:ppadmin/src/config/constants.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/side_navigation/side_nav_bar.dart';
 import 'package:ppadmin/src/views/side_navigation/side_nav_bar_item.dart';
 
@@ -13,7 +14,7 @@ class SideNavBarItemTile extends StatefulWidget {
   final String image;
 
   /// From [SideNavBarItem]
-  /// Info text about the chosable navigation option
+  /// Info text about the closeable navigation option
   final String label;
 
   /// From [SideNavBar]
@@ -53,17 +54,22 @@ class _SideNavBarItemTileState extends State<SideNavBarItemTile> {
 
     /// Return a basic listTile for now
     return widget.expanded
-        ? ListTile(
-            leading: Image.asset(
-              widget.image,
-              height: 34.0,
-            ),
-            title: Text(
-              widget.label,
-              style: GoogleFonts.poppins(
-                fontSize: 15,
-                color: Colors.black87,
-                fontWeight: FontWeight.w500
+        ? InkWell(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              color: getTileColor(isSelected),
+              child: Row(
+                children: [
+                  Image.asset(
+                    widget.image,
+                    height: 34.0,
+                  ),
+                  spacer(width: 12, height: 0),
+                  Text(
+                    widget.label,
+                    style: Styles.titleTextStyle(),
+                  ),
+                ],
               ),
             ),
             onTap: () {
@@ -94,14 +100,10 @@ class _SideNavBarItemTileState extends State<SideNavBarItemTile> {
     return false;
   }
 
-  /// Check if this item [isSelected] and return the passed [widget.color]
-  /// If it is not selected return either [Colors.white] or [Colors.grey] based on the
-  /// [Brightness]
-// Color getTileColor(final bool isSelected) {
-//   return isSelected
-//       ? widget.color
-//       : (Theme.of(context).brightness == Brightness.dark
-//           ? Colors.white
-//           : Colors.grey);
-// }
+  // / Check if this item [isSelected] and return the passed [widget.color]
+  // / If it is not selected return either [Colors.white] or [Colors.grey] based on the
+  // / [Brightness]
+  Color getTileColor(final bool isSelected) {
+    return isSelected ? widget.color : CONTAINER_BACKGROUND_COLOR;
+  }
 }

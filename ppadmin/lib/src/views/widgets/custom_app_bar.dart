@@ -16,11 +16,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: Text(
         title,
-        style: GoogleFonts.poppins(color: Colors.black87, fontSize: 18, fontWeight: FontWeight.w600),
       ),
-      elevation: 0,
-      backgroundColor: GREY_BACKGROUND_COLOR,
-      automaticallyImplyLeading: false,
     );
   }
 }

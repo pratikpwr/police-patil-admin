@@ -15,9 +15,8 @@ class MissingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<MissingRegisterBloc>(context).add(GetMissingData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: MISSING,
-      ),
+      appBar:
+          AppBar(title: const Text(MISSING), automaticallyImplyLeading: false),
       body: BlocListener<MissingRegisterBloc, MissingRegisterState>(
         listener: (context, state) {
           if (state is MissingLoadError) {

@@ -7,18 +7,19 @@ const String STR_APP_NAME = "PolicePatil App";
 
 // Marathi Names
 const String POLICE_PATIL_APP = "पोलीस पाटील"; // ॲप
+const String POLICE_STATION = "पोलीस ठाणे";
 const String USER_ID = "युझर आयडी";
 const String PASSWORD = "पासवर्ड";
 const String SIGN_IN = "लॉग इन करा";
 const String PROFILE = "प्रोफाइल";
 const String NOTICE = "सूचना";
-const String HOME = "होम";
+const String HOME = "मुखपृष्ठ";
 
 // Register Categories
 const String REGISTER = "रजिस्टर";
 const String reg1 =
     "परवानाधारक शस्त्र व स्फोटक पदार्थांचा साठा करावयाचे गोडाऊन";
-const String ARMS_COLLECTIONS = "शस्त्र व स्फोटक साठा गोडाऊन";
+const String ARMS_COLLECTIONS = "शस्त्र व स्फोटके";
 const String COLLECTION_REGISTER = "जप्ती मालाचे रजिस्टर";
 const String MOVEMENT_REGISTER = "हालचालीचे रजिस्टर";
 const String WATCH_REGISTER = "निगराणी रजिस्टर";

@@ -36,8 +36,8 @@ class _SideBarNavScreenState extends State<SideBarNavScreen> {
     SideNavBarItem(image: ImageConstants.IMG_ALERTS, label: NOTICE),
     SideNavBarItem(image: ImageConstants.IMG_NEWS, label: IMP_NEWS),
     SideNavBarItem(image: ImageConstants.IMG_HAMMER, label: LAWS),
-    SideNavBarItem(image: ImageConstants.IMG_USERS, label: "Users"),
-    SideNavBarItem(image: ImageConstants.IMG_PROFILE, label: "Police Station"),
+    SideNavBarItem(image: ImageConstants.IMG_USERS, label: POLICE_PATIL_APP),
+    SideNavBarItem(image: ImageConstants.IMG_PROFILE, label: POLICE_STATION),
   ];
   List<Widget> adminViews = [
     HomeScreen(),

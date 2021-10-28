@@ -22,9 +22,8 @@ class _SocialPlaceScreenState extends State<SocialPlaceScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<PublicPlaceRegisterBloc>(context).add(GetPublicPlaceData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: SOCIAL_PLACES,
-      ),
+      appBar: AppBar(
+          title: const Text(SOCIAL_PLACES), automaticallyImplyLeading: false),
       body: BlocListener<PublicPlaceRegisterBloc, PublicPlaceRegisterState>(
         listener: (context, state) {
           if (state is PublicPlaceLoadError) {

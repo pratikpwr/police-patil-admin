@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 
 TextField buildTextField(TextEditingController _controller, String hint) {
   return TextField(
     controller: _controller,
-    style: GoogleFonts.poppins(fontSize: 14),
+    style: Styles.inputFieldTextStyle(),
     decoration: InputDecoration(
-        // hintText: hint,
-        label: Text(hint,
-            style:
-                GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500)),
-        hintStyle:
-            GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w500),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+      label: Text(hint, style: Styles.inputFieldTextStyle()),
+    ),
   );
 }

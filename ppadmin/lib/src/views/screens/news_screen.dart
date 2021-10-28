@@ -24,7 +24,8 @@ class _ImpNewsScreenState extends State<ImpNewsScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<NewsBloc>(context).add(GetNews());
     return Scaffold(
-      appBar: CustomAppBar(title: IMP_NEWS),
+      appBar:
+          AppBar(title: const Text(IMP_NEWS), automaticallyImplyLeading: false),
       body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
           if (state is NewsLoading) {
@@ -87,7 +88,7 @@ class _ImpNewsScreenState extends State<ImpNewsScreen> {
               },
               child: Container(
                 padding: const EdgeInsets.all(32),
-                height: MediaQuery.of(context).size.height * 0.5,
+                height: MediaQuery.of(context).size.height * 0.55,
                 width: MediaQuery.of(context).size.width * 0.4,
                 child: Column(
                   children: [

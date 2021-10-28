@@ -10,7 +10,7 @@ part 'kayade_event.dart';
 
 part 'kayade_state.dart';
 
-class KayadeBloc extends Bloc<KayadeEvent, KayadeState> {
+class   KayadeBloc extends Bloc<KayadeEvent, KayadeState> {
   KayadeBloc() : super(KayadeInitial());
   final _kayadeRepository = KayadeRepository();
 

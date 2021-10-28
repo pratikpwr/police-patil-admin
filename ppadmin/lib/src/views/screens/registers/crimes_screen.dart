@@ -23,9 +23,8 @@ class _CrimesScreenState extends State<CrimesScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<CrimeRegisterBloc>(context).add(GetCrimeData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: CRIMES,
-      ),
+      appBar:
+          AppBar(title: const Text(CRIMES), automaticallyImplyLeading: false),
       body: BlocListener<CrimeRegisterBloc, CrimeRegisterState>(
         listener: (context, state) {
           if (state is CrimeLoadError) {

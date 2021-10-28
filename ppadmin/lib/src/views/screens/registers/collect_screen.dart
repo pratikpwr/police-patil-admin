@@ -22,9 +22,9 @@ class _CollectionScreenState extends State<CollectionScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<CollectRegisterBloc>(context).add(GetCollectionData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: COLLECTION_REGISTER,
-      ),
+      appBar: AppBar(
+          title: const Text(COLLECTION_REGISTER),
+          automaticallyImplyLeading: false),
       body: BlocListener<CollectRegisterBloc, CollectRegisterState>(
         listener: (context, state) {
           if (state is CollectionLoadError) {

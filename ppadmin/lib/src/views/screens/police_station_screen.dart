@@ -21,7 +21,9 @@ class _PoliceStationScreenState extends State<PoliceStationScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<PoliceStationBloc>(context).add(GetPoliceStation());
     return Scaffold(
-      appBar: CustomAppBar(title: IMP_NEWS),
+      appBar: AppBar(
+          title: const Text("POLICE STATIONS"),
+          automaticallyImplyLeading: false),
       body: BlocListener<PoliceStationBloc, PoliceStationState>(
         listener: (context, state) {
           if (state is PoliceStationLoadError) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
+import 'package:ppadmin/src/utils/utils.dart';
 
 class AttachButton extends StatelessWidget {
   final String text;
@@ -15,7 +15,7 @@ class AttachButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: OutlinedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 32),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
               10,
@@ -26,14 +26,12 @@ class AttachButton extends StatelessWidget {
           children: [
             Text(
               text,
-              style: GoogleFonts.poppins(
-                  color: PRIMARY_COLOR,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14),
+              style: Styles.textButtonTextStyle(),
             ),
             Icon(
               icon ?? Icons.upload_rounded,
               size: 28,
+              color: PRIMARY_COLOR,
             )
           ],
         ));

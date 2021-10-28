@@ -22,9 +22,8 @@ class _WatchScreenState extends State<WatchScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<WatchRegisterBloc>(context).add(GetWatchData());
     return Scaffold(
-      appBar: CustomAppBar(
-        title: WATCH_REGISTER,
-      ),
+      appBar: AppBar(
+          title: const Text(WATCH_REGISTER), automaticallyImplyLeading: false),
       body: BlocListener<WatchRegisterBloc, WatchRegisterState>(
         listener: (context, state) {
           if (state is WatchLoadError) {
