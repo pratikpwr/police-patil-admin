@@ -10,6 +10,7 @@ export 'package:shared/modules/watch_register/watch_register.dart';
 export 'package:shared/modules/illegal_register/illegal_register.dart';
 export 'package:shared/modules/movement_register/movement_register.dart';
 export 'package:shared/modules/news/news.dart';
+export 'package:shared/modules/home/home.dart';
 export 'package:shared/modules/alert_wall/alert.dart';
 export 'package:shared/modules/disaster_helper/disaster_helper.dart';
 export 'package:shared/modules/disaster_tools/disaster_tools.dart';

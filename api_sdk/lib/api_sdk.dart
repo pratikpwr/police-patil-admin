@@ -31,8 +31,15 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getUsers() async {
-    String path = ApiConstants.GET_USERS;
+  static Future<Response> getPP() async {
+    String path = ApiConstants.GET_PP;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> getAdminPS() async {
+    String path = ApiConstants.GET_ADMINS_PS;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -65,6 +72,12 @@ class ApiSdk {
     String path = ApiConstants.UPDATE_USER_DATA + "$userId";
 
     Response response = await RestApiHandlerData.putData(path, body);
+    return response;
+  }
+
+  static Future<Response> getTopPP() async {
+    String path = ApiConstants.TOP_PP;
+    Response response = await RestApiHandlerData.getData(path);
     return response;
   }
 
@@ -133,6 +146,13 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getLatestMovement() async {
+    String path = ApiConstants.LATEST_MOVEMENT;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   //  Register
   static Future<Response> postWatchRegister({required body}) async {
     String path = ApiConstants.POST_WATCH_BY_PP;
@@ -150,6 +170,13 @@ class ApiSdk {
 
   static Future<Response> getWatch() async {
     String path = ApiConstants.GET_WATCH;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> getLatestWatch() async {
+    String path = ApiConstants.LATEST_WATCH;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -287,8 +314,22 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getLatestIllegal() async {
+    String path = ApiConstants.LATEST_ILLEGAL;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   static Future<Response> getNews() async {
     String path = ApiConstants.GET_NEWS;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
+  static Future<Response> getTopNews() async {
+    String path = ApiConstants.TOP_NEWS;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;

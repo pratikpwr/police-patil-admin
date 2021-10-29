@@ -10,8 +10,15 @@ class ApiConstants {
   static const String GET_USER_DATA = BASE_URL + '/api/user/';
   static const String UPDATE_USER_DATA = BASE_URL + '/api/user/';
 
-  static const String GET_USERS = BASE_URL + '/api/user';
+  static const String GET_PP = BASE_URL + '/api/user';
+  static const String GET_ADMINS_PS = BASE_URL + '/api/ps';
   static const String ADD_USER = BASE_URL + '/api/adduser';
+
+  //
+  static const String TOP_PP = BASE_URL + '/api/top-pp';
+  static const String LATEST_ILLEGAL = BASE_URL + '/api/latestillegalwork';
+  static const String LATEST_WATCH = BASE_URL + '/api/latestwatch';
+  static const String LATEST_MOVEMENT = BASE_URL + '/api/latestmovement';
 
   static const String POLICE_STATION = BASE_URL + '/api/policestation';
 
@@ -54,6 +61,7 @@ class ApiConstants {
   static const String POST_ILLEGAL_WORK_BY_PP = BASE_URL + '/api/illegalwork';
 
   static const String GET_NEWS = BASE_URL + "/api/news";
+  static const String TOP_NEWS = BASE_URL + "/api/topnews";
   static const String POST_NEWS = BASE_URL + "/api/news";
 
   static const String GET_ALERTS = BASE_URL + "/api/alert";

@@ -41,13 +41,7 @@ class _UsersScreenState extends State<UsersScreen> {
                     child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   physics: const BouncingScrollPhysics(),
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: state.userResponse.data!.length,
-                      itemBuilder: (context, index) {
-                        return UsersDetailsWidget(
-                            user: state.userResponse.data![index]);
-                      }),
+                  child: UsersDetailsWidget(users: state.userResponse.data!),
                 ));
               }
             } else if (state is UsersLoadError) {
@@ -120,36 +114,69 @@ class _UsersScreenState extends State<UsersScreen> {
 }
 
 class UsersDetailsWidget extends StatelessWidget {
-  const UsersDetailsWidget({Key? key, required this.user}) : super(key: key);
-  final UserClass user;
+  UsersDetailsWidget({Key? key, required this.users}) : super(key: key);
+  final List<UserClass> users;
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: GREY_BACKGROUND_COLOR),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                user.name!,
-                style: GoogleFonts.poppins(
-                    fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              const Divider(),
-              Text(
-                user.email!,
-                style: GoogleFonts.poppins(
-                    fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-            ],
-          ),
-        ],
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          columns: [
+            DataColumn(label: Text("ID", style: Styles.tableTitleTextStyle())),
+            DataColumn(label: Text(NAME, style: Styles.tableTitleTextStyle())),
+            DataColumn(label: Text("गाव", style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("Email", style: Styles.tableTitleTextStyle())),
+            DataColumn(label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text(MOB_NO, style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text(ADDRESS, style: Styles.tableTitleTextStyle())),
+            DataColumn(label: Text(GPS, style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("आदेश क्र.", style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("नेमणुकीची तारीख",
+                    style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("नेमणुकीची मुदत",
+                    style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("PSID", style: Styles.tableTitleTextStyle())),
+          ],
+          rows: List<DataRow>.generate(users.length, (index) {
+            final user = users[index];
+            return DataRow(cells: <DataCell>[
+              customTextDataCell("${user.id ?? 0}"),
+              customTextDataCell(user.name ?? "-"),
+              customTextDataCell(user.village ?? "-"),
+              customTextDataCell(user.email ?? "-"),
+              user.photo != null
+                  ? DataCell(ViewFileWidget(url: user.photo!))
+                  : noDataInCell(),
+              customTextDataCell("${user.mobile ?? 0}"),
+              customTextDataCell(user.address ?? "-"),
+              DataCell(ViewLocWidget(
+                  id: "pp${user.id!}",
+                  lat: user.latitude ?? 0.00,
+                  long: user.longitude ?? 0.00)),
+              customTextDataCell(user.orderNo ?? "-"),
+              customTextDataCell(
+                  user.joindate?.toIso8601String().substring(0, 10)),
+              customTextDataCell(
+                  user.enddate?.toIso8601String().substring(0, 10)),
+              customTextDataCell("${user.psid ?? 0}"),
+            ]);
+          }),
+        ),
       ),
     );
   }

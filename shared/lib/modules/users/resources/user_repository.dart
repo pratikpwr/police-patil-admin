@@ -2,7 +2,7 @@ import 'package:api_sdk/api_sdk.dart';
 
 class UsersRepository {
   Future<dynamic> getUsers() async {
-    final response = await ApiSdk.getUsers();
+    final response = await ApiSdk.getPP();
     return response;
   }
 

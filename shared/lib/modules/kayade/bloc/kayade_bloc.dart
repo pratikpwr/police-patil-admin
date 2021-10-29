@@ -10,7 +10,7 @@ part 'kayade_event.dart';
 
 part 'kayade_state.dart';
 
-class   KayadeBloc extends Bloc<KayadeEvent, KayadeState> {
+class KayadeBloc extends Bloc<KayadeEvent, KayadeState> {
   KayadeBloc() : super(KayadeInitial());
   final _kayadeRepository = KayadeRepository();
 
@@ -35,7 +35,7 @@ class   KayadeBloc extends Bloc<KayadeEvent, KayadeState> {
     if (event is AddKayade) {
       try {
         Response _response =
-            await _kayadeRepository.addKayadeData(kayadeData: event.kayadeData);
+            await _kayadeRepository.addKayadeData(body: event.kayadeData);
 
         if (_response.data["message"] != null) {
           yield KayadeDataSent(_response.data["message"]);

@@ -19,28 +19,8 @@ class HomeScreen extends StatelessWidget {
           controller: _scrollController,
           child: SingleChildScrollView(
             controller: _scrollController,
-            child: Responsive(
-              desktop: Column(
-                children: [
-                  Row(
-                    children: const [CrimesGraph(), MovementGraph()],
-                  ),
-                  Row(
-                    children: const [DeathsGraph(), MissingGraph()],
-                  ),
-                  Row(
-                    children: [IllegalLocMap()],
-                  ),
-                ],
-              ),
-              mobile: Column(
-                children: const [
-                  CrimesGraph(),
-                  MovementGraph(),
-                  DeathsGraph(),
-                  MissingGraph()
-                ],
-              ),
+            child: Column(
+
             ),
           ),
         ),
@@ -48,3 +28,27 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+//              Responsive(
+//               desktop: Column(
+//                 children: [
+//                   Row(
+//                     children: const [CrimesGraph(), MovementGraph()],
+//                   ),
+//                   Row(
+//                     children: const [DeathsGraph(), MissingGraph()],
+//                   ),
+//                   Row(
+//                     children: [IllegalLocMap()],
+//                   ),
+//                 ],
+//               ),
+//               mobile: Column(
+//                 children: const [
+//                   CrimesGraph(),
+//                   MovementGraph(),
+//                   DeathsGraph(),
+//                   MissingGraph()
+//                 ],
+//               ),
+//             )

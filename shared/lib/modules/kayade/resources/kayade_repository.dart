@@ -8,11 +8,11 @@ class KayadeRepository {
     return response;
   }
 
-  Future<dynamic> addKayadeData({required KayadeData kayadeData}) async {
-    Map<String, dynamic> _body = kayadeData.toJson();
-    _body['file'] = await MultipartFile.fromFile(_body['file']);
-    FormData _formData = FormData.fromMap(_body);
-    final response = await ApiSdk.postAlerts(body: _formData);
+  Future<dynamic> addKayadeData({required Map<String, dynamic> body}) async {
+    // Map<String, dynamic> body = kayadeData.toJson();
+    body['file'] = MultipartFile.fromBytes(body['file']);
+    FormData _formData = FormData.fromMap(body);
+    final response = await ApiSdk.postRules(body: _formData);
     return response;
   }
 }

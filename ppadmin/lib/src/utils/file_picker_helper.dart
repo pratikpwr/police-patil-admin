@@ -38,37 +38,42 @@ Future<File> getImageFromGallery() async {
   return _file!;
 }
 
+List<int> getFileForWeb() {
+  List<int>? imageFileBytes;
+
+  try {
+    html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
+    uploadInput.multiple = false;
+    uploadInput.draggable = true;
+    uploadInput.accept = 'application/pdf';
+    uploadInput.click();
+    html.document.body?.append(uploadInput);
+    uploadInput.onChange.listen((e) {
+      final files = uploadInput.files;
+      final file = files![0];
+      final reader = html.FileReader();
+      reader.onLoadEnd.listen((e) {
+        var _bytesData = const Base64Decoder()
+            .convert(reader.result.toString().split(",").last);
+
+        imageFileBytes = _bytesData;
+      });
+      reader.readAsDataUrl(file);
+    });
+
+    uploadInput.remove();
+  } catch (e) {
+    print(e);
+  }
+  return imageFileBytes!;
+}
+
 Future<File> getFileFromGallery() async {
   File? _file;
-  List<int> imageFileBytes;
   FilePickerResult? result = await FilePicker.platform
       .pickFiles(allowedExtensions: ['jpg', 'pdf', 'jpeg', 'png']);
   if (result != null) {
-    // _file = File(result.files.single.path!);
-    try {
-      html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-      uploadInput.multiple = false;
-      uploadInput.draggable = true;
-      uploadInput.accept = 'image/*';
-      uploadInput.click();
-      html.document.body?.append(uploadInput);
-      uploadInput.onChange.listen((e) {
-        final files = uploadInput.files;
-        final file = files![0];
-        final reader = html.FileReader();
-        reader.onLoadEnd.listen((e) {
-          var _bytesData = const Base64Decoder()
-              .convert(reader.result.toString().split(",").last);
-
-          imageFileBytes = _bytesData;
-        });
-        reader.readAsDataUrl(file);
-      });
-
-      uploadInput.remove();
-    } catch (e) {
-      print(e);
-    }
+    _file = File(result.files.single.path!);
   } else {
     debugPrint('No file selected.');
   }

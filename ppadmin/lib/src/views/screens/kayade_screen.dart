@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -96,6 +96,7 @@ class _KayadeScreenState extends State<KayadeScreen> {
   }
 
   Future<void> _addNewKayade() async {
+    List<int>? imageFileBytes;
     final _titleController = TextEditingController();
     String _fileName = "फाईल जोडा";
     File? _file;
@@ -125,16 +126,22 @@ class _KayadeScreenState extends State<KayadeScreen> {
                     AttachButton(
                         text: _fileName,
                         onTap: () async {
-                          _file = await getFileFromGallery();
-                          _fileName = getFileName(_file!.path);
+                          if (kIsWeb) {
+                            _fileName = "File Added";
+                            imageFileBytes = getFileForWeb();
+                          } else {
+                            _file = await getFileFromGallery();
+                            _fileName = getFileName(_file!.path);
+                          }
                         }),
                     spacer(),
                     CustomButton(
                         text: "कायदा जोडा",
                         onTap: () {
-                          final _kayadeData = KayadeData(
-                              title: _titleController.text, file: _file?.path);
-
+                          Map<String, dynamic> _kayadeData = {
+                            "title": _titleController.text,
+                            "file": kIsWeb ? imageFileBytes! : _file?.path
+                          };
                           BlocProvider.of<KayadeBloc>(context)
                               .add(AddKayade(_kayadeData));
                         })
