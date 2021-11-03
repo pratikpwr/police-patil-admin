@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:shared/modules/authentication/auth.dart';
 import 'package:shared/modules/police_station/police_station.dart';
 import 'package:dio/dio.dart';
+import 'package:shared/modules/users/models/user_model.dart';
 
 part 'police_station_event.dart';
 
@@ -32,7 +34,7 @@ class PoliceStationBloc extends Bloc<PoliceStationEvent, PoliceStationState> {
     try {
       Response _response = await _psRepository.getPoliceStations();
       if (_response.data["message"] != null) {
-        final _psResponse = PoliceStationResponse.fromJson(_response.data);
+        final _psResponse = UsersResponse.fromJson(_response.data);
         yield PoliceStationDataLoaded(_psResponse);
       } else {
         yield PoliceStationLoadError(_response.data["error"]);

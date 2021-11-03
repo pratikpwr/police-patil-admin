@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ppadmin/src/config/constants.dart';
 
@@ -94,6 +95,37 @@ Widget spacer({double? height, double? width}) {
     height: height ?? 16,
     width: width ?? 0,
   );
+}
+
+String showDate(DateTime? date) {
+  if (date == null) {
+    return "-";
+  } else {
+    return date.toIso8601String().substring(0, 10);
+  }
+}
+
+int? parseInt(String? string) {
+  int? parsedInt;
+  try {
+    parsedInt = int.parse(string!);
+    return parsedInt;
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+  return null;
+}
+
+DateTime? parseDate(String? date, {String? form}) {
+  DateTime? formattedDate;
+  DateFormat format = DateFormat(form ?? "yyyy-MM-dd");
+  try {
+    formattedDate = format.parse(date!);
+    return formattedDate;
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+  return null;
 }
 
 // Future<Position> determinePosition() async {

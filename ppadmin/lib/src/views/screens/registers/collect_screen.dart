@@ -113,9 +113,6 @@ class CollectDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
                 DataColumn(
-                    label:
-                        Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
-                DataColumn(
                     label: Text(DATE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("PPID", style: Styles.tableTitleTextStyle())),
@@ -124,6 +121,9 @@ class CollectDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(REGISTER_DATE,
                         style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label:
+                        Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
               ],
               rows: List<DataRow>.generate(collectList.length, (index) {
                 final collectData = collectList[index];
@@ -133,7 +133,7 @@ class CollectDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    collectData.address!,
+                    collectData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(ViewLocWidget(
@@ -143,16 +143,8 @@ class CollectDataTableWidget extends StatelessWidget {
                   collectData.photo != null
                       ? DataCell(ViewFileWidget(url: collectData.photo!))
                       : noDataInCell(),
-                  DataCell(SizedBox(
-                    width: 400,
-                    child: Text(
-                      collectData.description!,
-                      maxLines: 3,
-                      style: Styles.tableValuesTextStyle(),
-                    ),
-                  )),
                   DataCell(Text(
-                    collectData.date!.toIso8601String().substring(0, 10),
+                    showDate(collectData.date),
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -164,8 +156,16 @@ class CollectDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    collectData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(collectData.createdAt),
                     style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(SizedBox(
+                    width: 400,
+                    child: Text(
+                      collectData.description ?? "-",
+                      maxLines: 3,
+                      style: Styles.tableValuesTextStyle(),
+                    ),
                   )),
                 ]);
               }))),

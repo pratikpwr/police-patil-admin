@@ -21,27 +21,32 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (event is GetHomeData) {
       yield HomeLoading();
       try {
-        HomeData? homeData;
-
         Response watchRes = await _homeRepository.getLatestWatch();
         Response moveRes = await _homeRepository.getLatestMovement();
         Response illRes = await _homeRepository.getLatestIllegal();
         Response ppRes = await _homeRepository.getTopPP();
-
+        var topPP;
+        var latestIllegal;
+        var latestWatch;
+        var latestMovement;
         if (ppRes.data["message"] != null) {
-          homeData?.topPP = UsersResponse.fromJson(ppRes.data).data;
+          topPP = UsersResponse.fromJson(ppRes.data).data;
         }
         if (illRes.data["message"] != null) {
-          homeData?.latestIllegal = IllegalResponse.fromJson(ppRes.data).data;
+          latestIllegal = IllegalResponse.fromJson(illRes.data).data;
         }
         if (moveRes.data["message"] != null) {
-          homeData?.latestMovement =
-              MovementResponse.fromJson(ppRes.data).movementData;
+          latestMovement = MovementResponse.fromJson(moveRes.data).movementData;
         }
         if (watchRes.data["message"] != null) {
-          homeData?.latestWatch = WatchResponse.fromJson(ppRes.data).data;
+          latestWatch = WatchResponse.fromJson(watchRes.data).data;
         }
-        yield HomeSuccess(homeData!);
+        HomeData homeData = HomeData(
+            topPP: topPP,
+            latestIllegal: latestIllegal,
+            latestMovement: latestMovement,
+            latestWatch: latestWatch);
+        yield HomeSuccess(homeData);
       } catch (err) {
         yield HomeError(err.toString());
       }

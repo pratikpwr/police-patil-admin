@@ -116,15 +116,15 @@ class WatchDataTableWidget extends StatelessWidget {
                 DataColumn(
                     label: Text(GPS, style: Styles.tableTitleTextStyle())),
                 DataColumn(
-                    label:
-                        Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
-                DataColumn(
                     label: Text("PPID", style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text("PSID", style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(REGISTER_DATE,
                         style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label:
+                        Text(OTHER_INFO, style: Styles.tableTitleTextStyle())),
               ],
               rows: List<DataRow>.generate(watchList.length, (index) {
                 final watchData = watchList[index];
@@ -134,11 +134,11 @@ class WatchDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    watchData.name!,
+                    watchData.name ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    watchData.mobile!.toString(),
+                    "${watchData.mobile ?? "-"}",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   watchData.photo != null
@@ -148,21 +148,13 @@ class WatchDataTableWidget extends StatelessWidget {
                       ? DataCell(ViewFileWidget(url: watchData.aadhar!))
                       : noDataInCell(),
                   DataCell(Text(
-                    watchData.address!,
+                    watchData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(ViewLocWidget(
                       id: "watch${watchData.id!}",
                       lat: watchData.latitude!,
                       long: watchData.longitude!)),
-                  DataCell(SizedBox(
-                    width: 400,
-                    child: Text(
-                      watchData.description!,
-                      maxLines: 3,
-                      style: Styles.tableValuesTextStyle(),
-                    ),
-                  )),
                   DataCell(Text(
                     "${watchData.ppid!}",
                     style: Styles.tableValuesTextStyle(),
@@ -172,8 +164,16 @@ class WatchDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    watchData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(watchData.createdAt),
                     style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(SizedBox(
+                    width: 400,
+                    child: Text(
+                      watchData.description ?? "-",
+                      maxLines: 3,
+                      style: Styles.tableValuesTextStyle(),
+                    ),
                   )),
                 ]);
               }))),

@@ -102,7 +102,7 @@ class FireDataTableWidget extends StatelessWidget {
                 final fireData = fireList[index];
                 return DataRow(cells: <DataCell>[
                   DataCell(Text(
-                    fireData.address!,
+                    fireData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(ViewLocWidget(
@@ -113,19 +113,19 @@ class FireDataTableWidget extends StatelessWidget {
                       ? DataCell(ViewFileWidget(url: fireData.photo!))
                       : noDataInCell(),
                   DataCell(Text(
-                    fireData.reason!,
+                    fireData.reason ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    fireData.loss!,
+                    fireData.loss ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    fireData.date!.toIso8601String(),
+                    showDate(fireData.date),
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    fireData.time!,
+                    fireData.time ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -137,7 +137,7 @@ class FireDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    fireData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(fireData.createdAt),
                     style: Styles.tableValuesTextStyle(),
                   )),
                 ]);

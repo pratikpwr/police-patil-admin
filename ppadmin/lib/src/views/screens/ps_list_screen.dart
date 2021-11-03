@@ -42,13 +42,7 @@ class _PoliceStationScreenState extends State<PoliceStationScreen> {
                     child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   physics: const BouncingScrollPhysics(),
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: state.psResponse.data!.length,
-                      itemBuilder: (context, index) {
-                        return PoliceStationDetailsWidget(
-                            ps: state.psResponse.data![index]);
-                      }),
+                  child: PoliceStationDetailsWidget(ps: state.psResponse.data!),
                 ));
               }
             } else if (state is PoliceStationLoadError) {
@@ -125,43 +119,39 @@ class _PoliceStationScreenState extends State<PoliceStationScreen> {
 }
 
 class PoliceStationDetailsWidget extends StatelessWidget {
-  const PoliceStationDetailsWidget({Key? key, required this.ps})
-      : super(key: key);
-  final PoliceStationData ps;
+  PoliceStationDetailsWidget({Key? key, required this.ps}) : super(key: key);
+  final List<UserClass> ps;
+  final _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 500,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: GREY_BACKGROUND_COLOR),
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                "Police Station Name: ${ps.psname!}",
-                style: GoogleFonts.poppins(
-                    fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                "Email: ${ps.email!}",
-                style: GoogleFonts.poppins(
-                    fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              Text(
-                "Address: ${ps.address!}",
-                style: GoogleFonts.poppins(
-                    fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-            ],
-          ),
-        ],
+    return Scrollbar(
+      controller: _scrollController,
+      isAlwaysShown: true,
+      scrollbarOrientation: ScrollbarOrientation.bottom,
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          columns: [
+            DataColumn(label: Text("ID", style: Styles.tableTitleTextStyle())),
+            DataColumn(label: Text(NAME, style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("Email", style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("Role", style: Styles.tableTitleTextStyle())),
+          ],
+          rows: List<DataRow>.generate(ps.length, (index) {
+            final user = ps[index];
+            return DataRow(cells: <DataCell>[
+              customTextDataCell("${user.id ?? 0}"),
+              customTextDataCell(user.name ?? "-"),
+              customTextDataCell(user.email ?? "-"),
+              customTextDataCell(user.role ?? "-"),
+            ]);
+          }),
+        ),
       ),
     );
   }

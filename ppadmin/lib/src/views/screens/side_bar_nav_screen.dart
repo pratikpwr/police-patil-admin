@@ -3,7 +3,7 @@ import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/views/screens/alert_screen.dart';
 import 'package:ppadmin/src/views/screens/kayade_screen.dart';
 import 'package:ppadmin/src/views/screens/news_screen.dart';
-import 'package:ppadmin/src/views/screens/police_station_screen.dart';
+import 'package:ppadmin/src/views/screens/ps_list_screen.dart';
 import 'package:ppadmin/src/views/side_navigation/side_nav_bar.dart';
 import 'package:ppadmin/src/views/side_navigation/side_nav_bar_item.dart';
 

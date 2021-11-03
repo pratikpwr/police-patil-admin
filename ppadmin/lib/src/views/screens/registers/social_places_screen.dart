@@ -140,7 +140,7 @@ class PlaceDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    placeData.address!,
+                    placeData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(ViewLocWidget(
@@ -179,7 +179,7 @@ class PlaceDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    placeData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(placeData.createdAt),
                     style: Styles.tableValuesTextStyle(),
                   )),
                 ]);

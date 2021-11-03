@@ -12,7 +12,7 @@ class PoliceStationInitial extends PoliceStationState {}
 class PoliceStationDataLoading extends PoliceStationState {}
 
 class PoliceStationDataLoaded extends PoliceStationState {
-  final PoliceStationResponse psResponse;
+  final UsersResponse psResponse;
 
   const PoliceStationDataLoaded(this.psResponse);
 

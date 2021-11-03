@@ -60,8 +60,7 @@ class IllegalRegisterBloc
     yield IllegalDataLoading();
     try {
       int? userId = sharedPrefs.getInt('userId');
-      Response _response =
-          await _illegalRepository.getIllegalRegisterByPP(userId: userId!);
+      Response _response = await _illegalRepository.getIllegalRegister();
       if (_response.statusCode! < 400) {
         final _illegalResponse = IllegalResponse.fromJson(_response.data);
         yield IllegalDataLoaded(_illegalResponse);

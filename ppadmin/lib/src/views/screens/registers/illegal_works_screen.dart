@@ -127,11 +127,11 @@ class IllegalDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    illegalData.name!,
+                    illegalData.name ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    illegalData.address!,
+                    illegalData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(ViewLocWidget(
@@ -150,7 +150,7 @@ class IllegalDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    illegalData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(illegalData.createdAt),
                     style: Styles.tableValuesTextStyle(),
                   )),
                 ]);

@@ -22,8 +22,10 @@ class _ArmsScreenState extends State<ArmsScreen> {
   Widget build(BuildContext context) {
     BlocProvider.of<ArmsRegisterBloc>(context).add(GetArmsData());
     return Scaffold(
-      appBar: AppBar(title: const Text(ARMS_COLLECTIONS),
-        automaticallyImplyLeading: false,),
+      appBar: AppBar(
+        title: const Text(ARMS_COLLECTIONS),
+        automaticallyImplyLeading: false,
+      ),
       body: BlocListener<ArmsRegisterBloc, ArmsRegisterState>(
         listener: (context, state) {
           if (state is ArmsLoadError) {
@@ -137,27 +139,52 @@ class ArmsDataTableWidget extends StatelessWidget {
               rows: List<DataRow>.generate(armsList.length, (index) {
                 final armsData = armsList[index];
                 return DataRow(cells: <DataCell>[
-                  customTextDataCell(armsData.type),
-                  customTextDataCell(armsData.name),
+                  DataCell(Text(
+                    armsData.type ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    armsData.name ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
                   armsData.aadhar != null
                       ? DataCell(ViewFileWidget(url: armsData.aadhar!))
                       : noDataInCell(),
-                  customTextDataCell(armsData.mobile),
-                  customTextDataCell(armsData.address),
+                  DataCell(Text(
+                    "${armsData.mobile ?? "-"}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    armsData.address ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
                   DataCell(ViewLocWidget(
                       id: "arms${armsData.id!}",
                       lat: armsData.latitude!,
                       long: armsData.longitude!)),
-                  customTextDataCell(armsData.licenceNumber),
-                  customTextDataCell(
-                      armsData.validity!.toIso8601String().substring(0, 10)),
+                  DataCell(Text(
+                    armsData.licenceNumber ?? "-",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    showDate(armsData.validity),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
                   armsData.licencephoto != null
                       ? DataCell(ViewFileWidget(url: armsData.licencephoto!))
                       : noDataInCell(),
-                  customTextDataCell(armsData.ppid),
-                  customTextDataCell(armsData.psid),
-                  customTextDataCell(
-                      armsData.createdAt!.toIso8601String().substring(0, 10)),
+                  DataCell(Text(
+                    "${armsData.psid ?? "-"}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    "${armsData.psid ?? "-"}",
+                    style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(Text(
+                    showDate(armsData.createdAt),
+                    style: Styles.tableValuesTextStyle(),
+                  )),
                 ]);
               }))),
     );

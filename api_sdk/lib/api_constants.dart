@@ -10,7 +10,8 @@ class ApiConstants {
   static const String GET_USER_DATA = BASE_URL + '/api/user/';
   static const String UPDATE_USER_DATA = BASE_URL + '/api/user/';
 
-  static const String GET_PP = BASE_URL + '/api/user';
+  static const String GET_PP = BASE_URL + '/api/pp';
+  static const String GET_USERS = BASE_URL + '/api/user';
   static const String GET_ADMINS_PS = BASE_URL + '/api/ps';
   static const String ADD_USER = BASE_URL + '/api/adduser';
 

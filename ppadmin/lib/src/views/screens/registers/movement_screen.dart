@@ -117,9 +117,6 @@ class MovementDataTableWidget extends StatelessWidget {
                     label:
                         Text(ATTENDANCE, style: Styles.tableTitleTextStyle())),
                 DataColumn(
-                    label: Text(MOVEMENT_DESCRIPTION,
-                        style: Styles.tableTitleTextStyle())),
-                DataColumn(
                     label: Text("हालचालीचा फोटो",
                         style: Styles.tableTitleTextStyle())),
                 DataColumn(
@@ -128,6 +125,9 @@ class MovementDataTableWidget extends StatelessWidget {
                     label: Text("PSID", style: Styles.tableTitleTextStyle())),
                 DataColumn(
                     label: Text(REGISTER_DATE,
+                        style: Styles.tableTitleTextStyle())),
+                DataColumn(
+                    label: Text(MOVEMENT_DESCRIPTION,
                         style: Styles.tableTitleTextStyle())),
               ],
               rows: List<DataRow>.generate(movementList.length, (index) {
@@ -142,7 +142,7 @@ class MovementDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    movementData.address!,
+                    movementData.address ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(ViewLocWidget(
@@ -150,7 +150,7 @@ class MovementDataTableWidget extends StatelessWidget {
                       lat: movementData.latitude!,
                       long: movementData.longitude!)),
                   DataCell(Text(
-                    movementData.datetime!.toIso8601String(),
+                    showDate(movementData.datetime),
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -158,16 +158,8 @@ class MovementDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    movementData.attendance!.toString(),
+                    "${movementData.attendance ?? "-"}",
                     style: Styles.tableValuesTextStyle(),
-                  )),
-                  DataCell(SizedBox(
-                    width: 350,
-                    child: Text(
-                      movementData.description!,
-                      maxLines: 3,
-                      style: Styles.tableValuesTextStyle(),
-                    ),
                   )),
                   movementData.photo != null
                       ? DataCell(ViewFileWidget(url: movementData.photo!))
@@ -181,8 +173,16 @@ class MovementDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    movementData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(movementData.createdAt),
                     style: Styles.tableValuesTextStyle(),
+                  )),
+                  DataCell(SizedBox(
+                    width: 350,
+                    child: Text(
+                      movementData.description ?? "-",
+                      maxLines: 3,
+                      style: Styles.tableValuesTextStyle(),
+                    ),
                   )),
                 ]);
               }))),

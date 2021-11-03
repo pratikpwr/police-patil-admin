@@ -125,7 +125,7 @@ class DeathDataTableWidget extends StatelessWidget {
                       ? DataCell(ViewFileWidget(url: deathData.photo!))
                       : noDataInCell(),
                   DataCell(Text(
-                    deathData.gender!,
+                    deathData.gender ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -133,11 +133,11 @@ class DeathDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    deathData.foundAddress!,
+                    deathData.foundAddress ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    deathData.causeOfDeath!,
+                    deathData.causeOfDeath ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   // TODO : date od death
@@ -150,7 +150,7 @@ class DeathDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    deathData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(deathData.createdAt),
                     style: Styles.tableValuesTextStyle(),
                   )),
                 ]);

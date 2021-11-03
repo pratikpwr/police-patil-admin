@@ -129,7 +129,7 @@ class MissingDataTableWidget extends StatelessWidget {
                       ? DataCell(ViewFileWidget(url: missingData.aadhar!))
                       : noDataInCell(),
                   DataCell(Text(
-                    missingData.gender!,
+                    missingData.gender ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -137,7 +137,7 @@ class MissingDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    missingData.missingDate!.toIso8601String().substring(0, 10),
+                    showDate(missingData.missingDate),
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -149,7 +149,7 @@ class MissingDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    missingData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(missingData.createdAt),
                     style: Styles.tableValuesTextStyle(),
                   )),
                 ]);

@@ -126,11 +126,11 @@ class CrimeDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    crimeData.registerNumber!,
+                    crimeData.registerNumber ?? "-",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    crimeData.date!.toIso8601String(),
+                    showDate(crimeData.date),
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -142,7 +142,7 @@ class CrimeDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    crimeData.createdAt!.toIso8601String().substring(0, 10),
+                    showDate(crimeData.createdAt),
                     style: Styles.tableValuesTextStyle(),
                   )),
                 ]);

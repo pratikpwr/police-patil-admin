@@ -2,7 +2,7 @@ export 'package:ppadmin/src/views/screens/splash_screen.dart';
 export 'package:ppadmin/src/views/screens/sign_in_screen.dart';
 export 'package:ppadmin/src/views/screens/side_bar_nav_screen.dart';
 export 'package:ppadmin/src/views/screens/home_screen.dart';
-export 'package:ppadmin/src/views/screens/users_screen.dart';
+export 'package:ppadmin/src/views/screens/pp_list_screen.dart';
 
 // export 'package:ppadmin/src/views/';
 // export 'package:ppadmin/src/views/';

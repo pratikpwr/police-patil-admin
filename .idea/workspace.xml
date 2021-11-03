@@ -19,26 +19,32 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="ui updates sign in improved">
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/home/home.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/home/models/home_mode.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/home/resources/home_repository.dart" afterDir="false" />
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="police patil view updated, home logic added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/utils/file_picker_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/utils/file_picker_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/utils/custom_methods.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/utils/custom_methods.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/kayade_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/kayade_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/users_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/users_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/kayade/resources/kayade_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/resources/kayade_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/users/resources/user_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/users/resources/user_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/shared.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/police_station_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/ps_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/side_bar_nav_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/side_bar_nav_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/users_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/pp_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/custom_data_cells.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/custom_data_cells.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/death_register/bloc/death_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/death_register/bloc/death_register_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/illegal_register/bloc/illegal_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/illegal_register/bloc/illegal_register_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/police_station/bloc/police_station_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/police_station/bloc/police_station_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/police_station/bloc/police_station_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/police_station/bloc/police_station_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/police_station/resources/ps_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/police_station/resources/ps_repository.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +71,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../policepatil" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
@@ -208,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635413976362</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="police patil view updated, home logic added">
+      <created>1635518587979</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1635518587979</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -251,7 +264,9 @@
     <MESSAGE value="multiple locations on map + illegal crimes on map done" />
     <MESSAGE value="add and show police station and users done" />
     <MESSAGE value="ui updates sign in improved" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui updates sign in improved" />
+    <MESSAGE value="police patil view updated" />
+    <MESSAGE value="police patil view updated, home logic added" />
+    <option name="LAST_COMMIT_MESSAGE" value="police patil view updated, home logic added" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -275,40 +290,48 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="510" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.816@0.0.1536.816" timestamp="1635497210667" />
-    <state x="549" y="177" key="FileChooserDialogImpl" timestamp="1635508443989">
+    <state width="613" height="635" key="DebuggerActiveHint" timestamp="1635596196294">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1635508443989" />
+    <state width="613" height="635" key="DebuggerActiveHint/0.0.1536.816@0.0.1536.816" timestamp="1635596196294" />
+    <state x="549" y="177" key="FileChooserDialogImpl" timestamp="1635825406898">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1635825406898" />
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1634045204326" />
-    <state width="1491" height="176" key="GridCell.Tab.0.bottom" timestamp="1635517239924">
+    <state width="1491" height="201" key="GridCell.Tab.0.bottom" timestamp="1635683080356">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1635517239924" />
+    <state width="1491" height="201" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1635683080356" />
     <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634066502953" />
-    <state width="1491" height="176" key="GridCell.Tab.0.center" timestamp="1635517239923">
+    <state width="1491" height="201" key="GridCell.Tab.0.center" timestamp="1635683080355">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1635517239923" />
+    <state width="1491" height="201" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1635683080355" />
     <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="176" key="GridCell.Tab.0.left" timestamp="1635517239923">
+    <state width="1491" height="201" key="GridCell.Tab.0.left" timestamp="1635683080355">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1635517239923" />
+    <state width="1491" height="201" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1635683080355" />
     <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="176" key="GridCell.Tab.0.right" timestamp="1635517239923">
+    <state width="1491" height="201" key="GridCell.Tab.0.right" timestamp="1635683080355">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1635517239923" />
+    <state width="1491" height="201" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1635683080355" />
     <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
     <state x="270" y="52" key="SettingsEditor" timestamp="1634023641489">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1635413981203">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1635520323495">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1635413981203" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1635520323495" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
+    <state width="775" height="415" key="XDebugger.FullValuePopup" timestamp="1635596111910">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="775" height="415" key="XDebugger.FullValuePopup/0.0.1536.816@0.0.1536.816" timestamp="1635596111910" />
     <state x="0" y="0" width="584" height="816" key="find.popup" timestamp="1634378886901">
       <screen x="0" y="0" width="1536" height="816" />
     </state>

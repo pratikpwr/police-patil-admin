@@ -4,7 +4,7 @@ import 'package:ppadmin/src/utils/utils.dart';
 DataCell customTextDataCell(var data) {
   if (data != null) {
     return DataCell(Text(
-      "$data",
+      "${data ?? "-"}",
       style: Styles.tableValuesTextStyle(),
     ));
   } else {
