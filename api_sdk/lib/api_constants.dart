@@ -22,6 +22,7 @@ class ApiConstants {
   static const String LATEST_MOVEMENT = BASE_URL + '/api/latestmovement';
 
   static const String POLICE_STATION = BASE_URL + '/api/policestation';
+  static const String VILLAGE_LIST = BASE_URL + "/api/village";
 
   static const String ARMS = BASE_URL + '/api/arms';
 

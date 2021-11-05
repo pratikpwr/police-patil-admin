@@ -57,7 +57,7 @@ class CollectRegisterBloc
     yield CollectionDataLoading();
     try {
       Response _response = await _collectionRepository.getCollectionsRegister();
-      if (_response.statusCode! < 400) {
+      if (_response.data["message"] != null) {
         final _collectionResponse = CollectionResponse.fromJson(_response.data);
         yield CollectionDataLoaded(_collectionResponse);
       } else {

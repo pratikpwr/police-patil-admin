@@ -7,7 +7,12 @@ abstract class ArmsRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetArmsData extends ArmsRegisterEvent {}
+class GetArmsData extends ArmsRegisterEvent {
+  String? type;
+  String? psId;
+
+  GetArmsData({this.type, this.psId});
+}
 
 class AddArmsData extends ArmsRegisterEvent {
   final ArmsData armsData;

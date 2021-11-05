@@ -4,7 +4,7 @@ import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/utils/styles.dart';
 import 'package:shared/shared.dart';
-
+import 'package:dropdown_plus/dropdown_plus.dart';
 import '../../views.dart';
 
 class ArmsScreen extends StatefulWidget {
@@ -16,15 +16,32 @@ class ArmsScreen extends StatefulWidget {
 
 class _ArmsScreenState extends State<ArmsScreen> {
   final _scrollController = ScrollController();
-  final _bloc = ArmsRegisterBloc();
+
+  // final _bloc = ArmsRegisterBloc();
+
+  @override
+  void initState() {
+    BlocProvider.of<ArmsRegisterBloc>(context).add(GetArmsData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<ArmsRegisterBloc>(context).add(GetArmsData());
     return Scaffold(
       appBar: AppBar(
         title: const Text(ARMS_COLLECTIONS),
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const ArmsFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
       ),
       body: BlocListener<ArmsRegisterBloc, ArmsRegisterState>(
         listener: (context, state) {
@@ -38,7 +55,7 @@ class _ArmsScreenState extends State<ArmsScreen> {
             if (state is ArmsDataLoading) {
               return const Loading();
             } else if (state is ArmsDataLoaded) {
-              if (state.armsResponse.data.isEmpty) {
+              if (state.armsResponse.data!.isEmpty) {
                 return NoRecordFound();
               } else {
                 return SafeArea(
@@ -49,29 +66,10 @@ class _ArmsScreenState extends State<ArmsScreen> {
                       controller: _scrollController,
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          spacer(),
-                          buildDropButton(
-                              value: _bloc.value,
-                              items: _bloc.types,
-                              hint: CHOSE_TYPE,
-                              onChanged: (String? value) {
-                                setState(() {
-                                  _bloc.value = value;
-                                });
-                              }),
-                          spacer(),
-                          const Divider(
-                            height: 1,
-                          ),
-                          ArmsDataTableWidget(
-                            armsList:
-                                _bloc.typeWiseData(state.armsResponse.data),
-                          ),
-                        ],
-                      ),
+                      child:
+                          ArmsDataTableWidget(armsList: state.armsResponse.data!
+                              // _bloc.typeWiseData(state.armsResponse.data!),
+                              ),
                     ),
                   ),
                 );
@@ -187,6 +185,63 @@ class ArmsDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class ArmsFilterDataWidget extends StatefulWidget {
+  const ArmsFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _ArmsFilterDataWidgetState createState() => _ArmsFilterDataWidgetState();
+}
+
+class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
+  final _bloc = ArmsRegisterBloc();
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.35,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: Column(
+          children: [
+            spacer(),
+            buildDropButton(
+                value: _bloc.chosenType,
+                items: _bloc.types,
+                hint: CHOSE_TYPE,
+                onChanged: (String? value) {
+                  setState(() {
+                    _bloc.chosenType = value;
+                  });
+                }),
+            spacer(),
+            TextDropdownFormField(
+              options: ["Pune", "Aundh", "baner"],
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  suffixIcon: Icon(Icons.arrow_drop_down),
+                  labelText: "Village"),
+              dropdownHeight: 120,
+              onChanged: (value) {
+                _bloc.village = value;
+              },
+            ),
+            spacer(),
+            CustomButton(
+                text: "Apply Filter",
+                onTap: () {
+                  Navigator.pop(context);
+
+                  BlocProvider.of<ArmsRegisterBloc>(context)
+                      .add(GetArmsData(type: _bloc.chosenType));
+                })
+          ],
+        ),
+      ),
     );
   }
 }

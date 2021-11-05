@@ -25,7 +25,8 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     }
   }
 
-  String? value;
+  String? village;
+  String? chosenType;
   final List<String> types = <String>[
     "सर्व",
     "शस्त्र परवानाधारक",
@@ -34,14 +35,15 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     "स्फोटक उडविणारे"
   ];
 
+
   List<ArmsData> typeWiseData(List<ArmsData> data) {
     List<ArmsData> newData = [];
 
     for (int i = 0; i < types.length; i++) {
-      if (value == types[0]) {
+      if (chosenType == types[0]) {
         return data;
       }
-      if (value == types[i]) {
+      if (chosenType == types[i]) {
         newData.addAll(data.where((element) => element.type == types[i]));
         return newData;
       }
@@ -52,9 +54,13 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
   Stream<ArmsRegisterState> _mapGetArmsDataState(GetArmsData event) async* {
     yield ArmsDataLoading();
     try {
-      Response _response = await _armsRepository.getArmsRegister();
-
-      if (_response.statusCode! < 400) {
+      if (event.type == "सर्व") {
+        event.type = "";
+      }
+      String? params = "?type=${event.type ?? ""}&psid=${event.psId ?? ""}";
+      Response _response =
+          await _armsRepository.getArmsRegister(params: params);
+      if (_response.data["message"] != null) {
         final _armsResponse = ArmsResponse.fromJson(_response.data);
         yield ArmsDataLoaded(_armsResponse);
       } else {

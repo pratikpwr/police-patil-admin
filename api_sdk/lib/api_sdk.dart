@@ -59,6 +59,13 @@ class ApiSdk {
     return response;
   }
 
+  static Future<Response> getVillages() async {
+    String path = ApiConstants.VILLAGE_LIST;
+
+    Response response = await RestApiHandlerData.getData(path);
+    return response;
+  }
+
   static Future<Response> addPoliceStation(
       {required Map<String, dynamic> body}) async {
     String path = ApiConstants.POLICE_STATION;
@@ -96,8 +103,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getArms() async {
-    String path = ApiConstants.ARMS;
+  static Future<Response> getArms({String? params}) async {
+    String path = "${ApiConstants.ARMS}${params ?? ""}";
     Response response = await RestApiHandlerData.getData(path);
     return response;
   }

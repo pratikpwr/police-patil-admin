@@ -1,22 +1,17 @@
 class ArmsResponse {
   ArmsResponse({
-    required this.message,
-    required this.data,
+    this.message,
+    this.data,
   });
 
-  String message;
-  List<ArmsData> data;
+  String? message;
+  List<ArmsData>? data;
 
   factory ArmsResponse.fromJson(Map<String, dynamic> json) => ArmsResponse(
         message: json["message"],
         data:
             List<ArmsData>.from(json["data"].map((x) => ArmsData.fromJson(x))),
       );
-
-  Map<String, dynamic> toJson() => {
-        "message": message,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-      };
 }
 
 class ArmsData {
@@ -29,9 +24,11 @@ class ArmsData {
     this.address,
     this.latitude,
     this.longitude,
+    this.licenceNumber,
+    this.uid,
+    this.weaponCondition,
     this.validity,
     this.licencephoto,
-    this.licenceNumber,
     this.ppid,
     this.psid,
     this.createdAt,
@@ -47,6 +44,8 @@ class ArmsData {
   double? latitude;
   double? longitude;
   String? licenceNumber;
+  String? uid;
+  String? weaponCondition;
   DateTime? validity;
   String? licencephoto;
   int? ppid;
@@ -64,18 +63,19 @@ class ArmsData {
         latitude: json["latitude"].toDouble(),
         longitude: json["longitude"].toDouble(),
         licenceNumber: json["licencenumber"],
-        validity: DateTime.parse(json["validity"]),
+        uid: json["uid"],
+        weaponCondition: json["weapon_condition"],
+        validity:
+            json["validity"] == null ? null : DateTime.parse(json["validity"]),
         licencephoto: json["licencephoto"],
         ppid: json["ppid"],
         psid: json["psid"],
         createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null
-            ? null
-            : DateTime.parse(json["updated_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
-  Map<String, dynamic> toJson() =>
-      {
+  Map<String, dynamic> toJson() => {
+        "id": id,
         "type": type,
         "name": name,
         "mobile": mobile,
@@ -84,10 +84,13 @@ class ArmsData {
         "latitude": latitude,
         "longitude": longitude,
         "licencenumber": licenceNumber,
-        "validity":
-            "${validity!.year.toString().padLeft(4, '0')}-${validity!.month.toString().padLeft(2, '0')}-${validity!.day.toString().padLeft(2, '0')}",
+        "uid": uid,
+        "weapon_condition": weaponCondition,
+        "validity": validity!.toIso8601String(),
         "licencephoto": licencephoto,
         "ppid": ppid,
-        "psid": psid
+        "psid": psid,
+        "created_at": createdAt!.toIso8601String(),
+        "updated_at": updatedAt!.toIso8601String(),
       };
 }
