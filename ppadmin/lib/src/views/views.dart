@@ -47,7 +47,8 @@ export 'package:ppadmin/src/views/widgets/view_loc_widget.dart';
 export 'package:ppadmin/src/views/widgets/custom_dropdown.dart';
 export 'package:ppadmin/src/views/widgets/multi_map_widget.dart';
 
-// export 'package:ppadmin/src/views/widgets/';
+export 'package:ppadmin/src/views/widgets/village_select_dropdown.dart';
+
 // export 'package:ppadmin/src/views/widgets/';
 // export 'package:ppadmin/src/views/widgets/';
 // export 'package:ppadmin/src/views/widgets/';

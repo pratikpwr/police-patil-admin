@@ -25,6 +25,7 @@ dependencies:
   flutter_bloc: ^7.3.0
   youtube_player_iframe: ^2.2.2
   dropdown_plus: ^0.0.9
+  dropdown_search: ^2.0.0
 
   # Network
   dio: ^4.0.0

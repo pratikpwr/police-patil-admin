@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/utils.dart';
-import 'package:ppadmin/src/utils/styles.dart';
 import 'package:shared/shared.dart';
-import 'package:dropdown_plus/dropdown_plus.dart';
 import '../../views.dart';
 
 class ArmsScreen extends StatefulWidget {
@@ -172,7 +170,7 @@ class ArmsDataTableWidget extends StatelessWidget {
                       ? DataCell(ViewFileWidget(url: armsData.licencephoto!))
                       : noDataInCell(),
                   DataCell(Text(
-                    "${armsData.psid ?? "-"}",
+                    "${armsData.ppid ?? "-"}",
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -200,46 +198,82 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
   final _bloc = ArmsRegisterBloc();
 
   @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(32),
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width * 0.4,
-        child: Column(
-          children: [
-            spacer(),
-            buildDropButton(
-                value: _bloc.chosenType,
-                items: _bloc.types,
-                hint: CHOSE_TYPE,
-                onChanged: (String? value) {
-                  setState(() {
-                    _bloc.chosenType = value;
-                  });
-                }),
-            spacer(),
-            TextDropdownFormField(
-              options: ["Pune", "Aundh", "baner"],
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.arrow_drop_down),
-                  labelText: "Village"),
-              dropdownHeight: 120,
-              onChanged: (value) {
-                _bloc.village = value;
-              },
-            ),
-            spacer(),
-            CustomButton(
-                text: "Apply Filter",
-                onTap: () {
-                  Navigator.pop(context);
-
-                  BlocProvider.of<ArmsRegisterBloc>(context)
-                      .add(GetArmsData(type: _bloc.chosenType));
-                })
-          ],
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return Column(
+                children: [
+                  spacer(),
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.types,
+                      hint: CHOSE_TYPE,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  /*TextDropdownFormField(
+                  //   controller: _dropController,
+                  //   options: getVillageListInString(state.villages),
+                  //   decoration: const InputDecoration(
+                  //       border: OutlineInputBorder(),
+                  //       suffixIcon: Icon(
+                  //         Icons.arrow_drop_down,
+                  //         color: PRIMARY_COLOR,
+                  //       ),
+                  //       labelText: 'Village'),
+                  //   dropdownHeight: 200,
+                  //   onChanged: (value) {
+                  //     _bloc.ppId = getPpIDFromVillage(
+                  //         state.villages, _dropController.toString());
+                  //     print(_dropController.toString());
+                  //   },
+                  // ), */
+                  spacer(),
+                  CustomButton(
+                      text: "Apply Filter",
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<ArmsRegisterBloc>(context).add(
+                            GetArmsData(
+                                type: _bloc.chosenType,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _bloc.fromDate,
+                                toDate: _bloc.toDate));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
         ),
       ),
     );

@@ -19,20 +19,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="home view and null support to fields">
-      <change afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/resources/village_ps_repository.dart" afterDir="false" />
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="trying out new filtering">
+      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/village_select_dropdown.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/bloc/village_pslist_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/bloc/village_pslist_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/bloc/village_pslist_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/models/ps_list_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/models/villages_list_model.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/village_ps_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/utils/custom_methods.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/utils/custom_methods.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_bloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/bloc/arms_register_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/arms_register/models/arms_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/models/arms_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/arms_register/resources/arms_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/arms_register/resources/arms_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/collection_register/bloc/collect_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/collection_register/bloc/collect_register_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/movement_register/models/movement_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/models/movement_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/resources/village_ps_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/village_ps_list/resources/village_ps_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/shared.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,15 +72,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\assets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\police_station" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\widgets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\utils" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\screens" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
     </key>
   </component>
   <component name="RunManager">
@@ -219,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635916132321</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="trying out new filtering">
+      <created>1636132757033</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1636132757033</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -265,7 +279,8 @@
     <MESSAGE value="police patil view updated" />
     <MESSAGE value="police patil view updated, home logic added" />
     <MESSAGE value="home view and null support to fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="home view and null support to fields" />
+    <MESSAGE value="trying out new filtering" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying out new filtering" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -298,34 +313,34 @@
     </state>
     <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1635825406898" />
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1634045204326" />
-    <state width="1491" height="176" key="GridCell.Tab.0.bottom" timestamp="1636049242433">
+    <state width="1491" height="274" key="GridCell.Tab.0.bottom" timestamp="1636384842687">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1636049242433" />
+    <state width="1491" height="274" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1636384842687" />
     <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634066502953" />
-    <state width="1491" height="176" key="GridCell.Tab.0.center" timestamp="1636049242433">
+    <state width="1491" height="274" key="GridCell.Tab.0.center" timestamp="1636384842687">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1636049242433" />
+    <state width="1491" height="274" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1636384842687" />
     <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="176" key="GridCell.Tab.0.left" timestamp="1636049242433">
+    <state width="1491" height="274" key="GridCell.Tab.0.left" timestamp="1636384842687">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1636049242433" />
+    <state width="1491" height="274" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1636384842687" />
     <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="176" key="GridCell.Tab.0.right" timestamp="1636049242433">
+    <state width="1491" height="274" key="GridCell.Tab.0.right" timestamp="1636384842687">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="176" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1636049242433" />
+    <state width="1491" height="274" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1636384842687" />
     <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
     <state x="270" y="52" key="SettingsEditor" timestamp="1634023641489">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1635916136162">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1636132765113">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1635916136162" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1636132765113" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
     <state width="775" height="415" key="XDebugger.FullValuePopup" timestamp="1635596111910">
       <screen x="0" y="0" width="1536" height="816" />

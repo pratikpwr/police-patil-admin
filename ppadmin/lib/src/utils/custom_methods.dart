@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:shared/modules/village_ps_list/models/villages_list_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ppadmin/src/config/constants.dart';
 
@@ -126,6 +127,20 @@ DateTime? parseDate(String? date, {String? form}) {
     debugPrint(e.toString());
   }
   return null;
+}
+
+List<String> getVillageListInString(List<Village> list) {
+  List<String> villageList = [];
+  for (var vil in list) {
+    villageList.add(vil.village!);
+  }
+  return villageList;
+}
+
+String getPpIDFromVillage(List<Village> vilList, String village) {
+  var curVil = vilList.firstWhere((element) => element.village == village);
+
+  return curVil.ppid!.toString();
 }
 
 // Future<Position> determinePosition() async {

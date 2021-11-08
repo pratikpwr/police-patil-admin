@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => UsersBloc()),
         BlocProvider(create: (ctx) => PoliceStationBloc()),
         BlocProvider(create: (ctx) => KayadeBloc()),
+        BlocProvider(create: (ctx) => VillagePSListBloc()),
       ],
       child: MaterialApp(
           title: STR_APP_NAME,

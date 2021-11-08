@@ -8,10 +8,9 @@ abstract class ArmsRegisterEvent extends Equatable {
 }
 
 class GetArmsData extends ArmsRegisterEvent {
-  String? type;
-  String? psId;
+  String? type, psId, ppId, fromDate, toDate;
 
-  GetArmsData({this.type, this.psId});
+  GetArmsData({this.type, this.psId, this.ppId, this.fromDate, this.toDate});
 }
 
 class AddArmsData extends ArmsRegisterEvent {

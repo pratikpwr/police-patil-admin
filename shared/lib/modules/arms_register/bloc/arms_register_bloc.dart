@@ -25,8 +25,7 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     }
   }
 
-  String? village;
-  String? chosenType;
+  String? chosenType, psId, ppId, fromDate, toDate;
   final List<String> types = <String>[
     "सर्व",
     "शस्त्र परवानाधारक",
@@ -34,7 +33,6 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     "स्फोटक जवळ बाळगणारे",
     "स्फोटक उडविणारे"
   ];
-
 
   List<ArmsData> typeWiseData(List<ArmsData> data) {
     List<ArmsData> newData = [];
@@ -54,10 +52,7 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
   Stream<ArmsRegisterState> _mapGetArmsDataState(GetArmsData event) async* {
     yield ArmsDataLoading();
     try {
-      if (event.type == "सर्व") {
-        event.type = "";
-      }
-      String? params = "?type=${event.type ?? ""}&psid=${event.psId ?? ""}";
+      String? params = getParams(event);
       Response _response =
           await _armsRepository.getArmsRegister(params: params);
       if (_response.data["message"] != null) {
@@ -69,5 +64,30 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     } catch (err) {
       yield ArmsLoadError(err.toString());
     }
+  }
+
+  String getParams(GetArmsData event) {
+    String _params = "?";
+
+    if (event.type != null) {
+      if (event.type == "सर्व") {
+        _params += "";
+      } else {
+        _params += "type=${event.type}&";
+      }
+    }
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null) {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null) {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

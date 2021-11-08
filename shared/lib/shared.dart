@@ -17,6 +17,7 @@ export 'package:shared/modules/disaster_tools/disaster_tools.dart';
 export 'package:shared/modules/disaster_register/disaster_register.dart';
 export 'package:shared/modules/kayade/kayade.dart';
 export 'package:shared/modules/users/users.dart';
+export 'package:shared/modules/village_ps_list/village_ps_list.dart';
 export 'package:shared/modules/police_station/police_station.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
