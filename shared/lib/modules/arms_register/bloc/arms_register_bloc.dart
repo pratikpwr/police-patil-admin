@@ -82,10 +82,10 @@ class ArmsRegisterBloc extends Bloc<ArmsRegisterEvent, ArmsRegisterState> {
     if (event.ppId != null) {
       _params += "ppid=${event.ppId}&";
     }
-    if (event.fromDate != null) {
+    if (event.fromDate != null && event.fromDate != "") {
       _params += "fromdate=${event.fromDate}&";
     }
-    if (event.toDate != null) {
+    if (event.toDate != null && event.toDate != "") {
       _params += "todate=${event.toDate}&";
     }
     return _params;

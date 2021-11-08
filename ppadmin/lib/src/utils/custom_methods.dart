@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:shared/modules/village_ps_list/models/villages_list_model.dart';
+import 'package:shared/shared.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:ppadmin/src/config/constants.dart';
 
@@ -135,6 +135,20 @@ List<String> getVillageListInString(List<Village> list) {
     villageList.add(vil.village!);
   }
   return villageList;
+}
+
+List<String> getPSListInString(List<PoliceStation> list) {
+  List<String> villageList = [];
+  for (var vil in list) {
+    villageList.add(vil.psname!);
+  }
+  return villageList;
+}
+
+String getPsIDFromPSName(List<PoliceStation> psList, String psname) {
+  var curVil = psList.firstWhere((element) => element.psname == psname);
+
+  return curVil.id!.toString();
 }
 
 String getPpIDFromVillage(List<Village> vilList, String village) {

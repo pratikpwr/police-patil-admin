@@ -196,6 +196,8 @@ class ArmsFilterDataWidget extends StatefulWidget {
 
 class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
   final _bloc = ArmsRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
 
   @override
   void initState() {
@@ -253,6 +255,19 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
                   //   },
                   // ), */
                   spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, "fromDate"),
+                  spacer(),
+                  buildDateTextField(context, _toController, "toDate"),
+                  spacer(),
                   CustomButton(
                       text: "Apply Filter",
                       onTap: () {
@@ -262,8 +277,8 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
                                 type: _bloc.chosenType,
                                 ppId: _bloc.ppId,
                                 psId: _bloc.psId,
-                                fromDate: _bloc.fromDate,
-                                toDate: _bloc.toDate));
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
                       })
                 ],
               );
