@@ -7,7 +7,12 @@ abstract class MovementRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetMovementData extends MovementRegisterEvent {}
+class GetMovementData extends MovementRegisterEvent {
+  String? type, psId, ppId, fromDate, toDate;
+
+  GetMovementData(
+      {this.type, this.psId, this.ppId, this.fromDate, this.toDate});
+}
 
 class AddMovementData extends MovementRegisterEvent {
   final MovementData movementData;

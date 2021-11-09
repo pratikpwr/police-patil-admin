@@ -16,14 +16,31 @@ class IllegalScreen extends StatefulWidget {
 
 class _IllegalScreenState extends State<IllegalScreen> {
   final _scrollController = ScrollController();
-  final _bloc = IllegalRegisterBloc();
+
+  @override
+  void initState() {
+    BlocProvider.of<IllegalRegisterBloc>(context).add(GetIllegalData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<IllegalRegisterBloc>(context).add(GetIllegalData());
     return Scaffold(
       appBar: AppBar(
-          title: const Text(ILLEGAL_WORKS), automaticallyImplyLeading: false),
+        title: const Text(ILLEGAL_WORKS),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const IllegalFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<IllegalRegisterBloc, IllegalRegisterState>(
         listener: (context, state) {
           if (state is IllegalLoadError) {
@@ -45,28 +62,8 @@ class _IllegalScreenState extends State<IllegalScreen> {
                         controller: _scrollController,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         physics: const BouncingScrollPhysics(),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            spacer(),
-                            buildDropButton(
-                                value: _bloc.value,
-                                items: _bloc.types,
-                                hint: CHOSE_TYPE,
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _bloc.value = value;
-                                  });
-                                }),
-                            spacer(),
-                            const Divider(
-                              height: 1,
-                            ),
-                            IllegalDataTableWidget(
-                                illegalList: _bloc
-                                    .typeWiseData(state.illegalResponse.data!)),
-                          ],
-                        )),
+                        child: IllegalDataTableWidget(
+                            illegalList: state.illegalResponse.data!)),
                   ),
                 );
               }
@@ -155,6 +152,100 @@ class IllegalDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class IllegalFilterDataWidget extends StatefulWidget {
+  const IllegalFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _IllegalFilterDataWidgetState createState() =>
+      _IllegalFilterDataWidgetState();
+}
+
+class _IllegalFilterDataWidgetState extends State<IllegalFilterDataWidget> {
+  final _bloc = IllegalRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  spacer(),
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.types,
+                      hint: CHOSE_TYPE,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<IllegalRegisterBloc>(context).add(
+                            GetIllegalData(
+                                type: _bloc.chosenType,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

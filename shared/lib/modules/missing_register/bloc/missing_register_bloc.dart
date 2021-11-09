@@ -30,10 +30,11 @@ class MissingRegisterBloc
 
   Stream<MissingRegisterState> _mapGetMissingDataState(
       GetMissingData event) async* {
-    final sharedPrefs = await prefs;
     yield MissingDataLoading();
     try {
-      Response _response = await _missingRepository.getMissingRegister();
+      String? params = getParams(event);
+      Response _response =
+          await _missingRepository.getMissingRegister(params: params);
       if (_response.statusCode! < 400) {
         final _missingResponse = MissingResponse.fromJson(_response.data);
         yield MissingDataLoaded(_missingResponse);
@@ -64,5 +65,33 @@ class MissingRegisterBloc
     } catch (err) {
       yield MissingDataSendError(err.toString());
     }
+  }
+
+  String? chosenType, isKnown, psId, ppId, fromDate, toDate;
+  final List<String> types = <String>["सर्व", "पुरुष", "स्त्री"];
+
+  String getParams(GetMissingData event) {
+    String _params = "?";
+
+    if (event.type != null) {
+      if (event.type == "सर्व") {
+        _params += "";
+      } else {
+        _params += "gender=${event.type}&";
+      }
+    }
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null && event.fromDate != "") {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null && event.toDate != "") {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

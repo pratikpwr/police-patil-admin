@@ -7,8 +7,8 @@ class CrimeRepository {
     return response;
   }
 
-  Future<dynamic> getCrimeRegister() async {
-    final response = await ApiSdk.getCrime();
+  Future<dynamic> getCrimeRegister({String? params}) async {
+    final response = await ApiSdk.getCrime(params: params);
     return response;
   }
 

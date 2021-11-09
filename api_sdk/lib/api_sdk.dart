@@ -124,8 +124,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getCollect() async {
-    String path = ApiConstants.GET_COLLECT;
+  static Future<Response> getCollect({String? params}) async {
+    String path = "${ApiConstants.GET_COLLECT}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -146,8 +146,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getMovement() async {
-    String path = ApiConstants.MOVEMENT;
+  static Future<Response> getMovement({String? params}) async {
+    String path = "${ApiConstants.MOVEMENT}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -175,8 +175,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getWatch() async {
-    String path = ApiConstants.GET_WATCH;
+  static Future<Response> getWatch({String? params}) async {
+    String path = "${ApiConstants.GET_WATCH}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -204,8 +204,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getCrime() async {
-    String path = ApiConstants.GET_CRIME;
+  static Future<Response> getCrime({String? params}) async {
+    String path = "${ApiConstants.GET_CRIME}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -226,8 +226,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getFire() async {
-    String path = ApiConstants.GET_FIRE;
+  static Future<Response> getFire({String? params}) async {
+    String path = "${ApiConstants.GET_FIRE}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -248,8 +248,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getDeath() async {
-    String path = ApiConstants.GET_DEATH;
+  static Future<Response> getDeath({String? params}) async {
+    String path = "${ApiConstants.GET_DEATH}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -270,8 +270,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getMissing() async {
-    String path = ApiConstants.GET_MISSING;
+  static Future<Response> getMissing({String? params}) async {
+    String path = "${ApiConstants.GET_MISSING}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -292,8 +292,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getPlace() async {
-    String path = ApiConstants.GET_PUBLIC_PLACE;
+  static Future<Response> getPlace({String? params}) async {
+    String path = "${ApiConstants.GET_PUBLIC_PLACE}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -314,8 +314,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getIllegal() async {
-    String path = ApiConstants.GET_ILLEGAL_WORK;
+  static Future<Response> getIllegal({String? params}) async {
+    String path = "${ApiConstants.GET_ILLEGAL_WORK}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;

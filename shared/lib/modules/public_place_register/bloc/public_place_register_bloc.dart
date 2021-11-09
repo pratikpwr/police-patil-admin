@@ -15,7 +15,7 @@ class PublicPlaceRegisterBloc
     extends Bloc<PublicPlaceRegisterEvent, PublicPlaceRegisterState> {
   PublicPlaceRegisterBloc() : super(PublicPlaceRegisterInitial());
   final _placeRepository = PlaceRepository();
-  String? chosenValue;
+  String? chosenType, psId, ppId, fromDate, toDate;
   final List<String> placeTypes = <String>[
     "सर्व",
     "रस्ता",
@@ -41,7 +41,9 @@ class PublicPlaceRegisterBloc
       GetPublicPlaceData event) async* {
     yield PublicPlaceDataLoading();
     try {
-      Response _response = await _placeRepository.getPlaceRegister();
+      String? params = getParams(event);
+      Response _response =
+          await _placeRepository.getPlaceRegister(params: params);
       if (_response.statusCode! < 400) {
         final _placeResponse = PlaceResponse.fromJson(_response.data);
         yield PublicPlaceDataLoaded(_placeResponse);
@@ -74,18 +76,28 @@ class PublicPlaceRegisterBloc
     }
   }
 
-  List<PlaceData> typeWiseData(List<PlaceData> data) {
-    List<PlaceData> newData = [];
+  String getParams(GetPublicPlaceData event) {
+    String _params = "?";
 
-    for (int i = 0; i < placeTypes.length; i++) {
-      if (chosenValue == placeTypes[0]) {
-        return data;
-      }
-      if (chosenValue == placeTypes[i]) {
-        newData.addAll(data.where((element) => element.place == placeTypes[i]));
-        return newData;
+    if (event.type != null) {
+      if (event.type == "सर्व") {
+        _params += "";
+      } else {
+        _params += "place=${event.type}&";
       }
     }
-    return data;
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null && event.fromDate != "") {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null && event.toDate != "") {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

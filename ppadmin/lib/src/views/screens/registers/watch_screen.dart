@@ -16,14 +16,34 @@ class WatchScreen extends StatefulWidget {
 
 class _WatchScreenState extends State<WatchScreen> {
   final _scrollController = ScrollController();
-  final _bloc = WatchRegisterBloc();
+
+  // final _bloc = WatchRegisterBloc();
+
+  @override
+  void initState() {
+    BlocProvider.of<WatchRegisterBloc>(context).add(GetWatchData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<WatchRegisterBloc>(context).add(GetWatchData());
     return Scaffold(
       appBar: AppBar(
-          title: const Text(WATCH_REGISTER), automaticallyImplyLeading: false),
+        title: const Text(WATCH_REGISTER),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+
+                    builder: (context) {
+                      return const WatchFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<WatchRegisterBloc, WatchRegisterState>(
         listener: (context, state) {
           if (state is WatchLoadError) {
@@ -46,22 +66,8 @@ class _WatchScreenState extends State<WatchScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           spacer(),
-                          buildDropButton(
-                              value: _bloc.value,
-                              items: _bloc.types,
-                              hint: CHOSE_TYPE,
-                              onChanged: (String? value) {
-                                setState(() {
-                                  _bloc.value = value;
-                                });
-                              }),
-                          spacer(),
-                          const Divider(
-                            height: 1,
-                          ),
                           WatchDataTableWidget(
-                              watchList: _bloc
-                                  .typeWiseData(state.watchResponse.data!)),
+                              watchList: state.watchResponse.data!),
                         ],
                       )),
                 ),
@@ -177,6 +183,99 @@ class WatchDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class WatchFilterDataWidget extends StatefulWidget {
+  const WatchFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _WatchFilterDataWidgetState createState() => _WatchFilterDataWidgetState();
+}
+
+class _WatchFilterDataWidgetState extends State<WatchFilterDataWidget> {
+  final _bloc = WatchRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  spacer(),
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.types,
+                      hint: CHOSE_TYPE,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<WatchRegisterBloc>(context).add(
+                            GetWatchData(
+                                type: _bloc.chosenType,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

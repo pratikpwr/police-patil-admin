@@ -15,6 +15,8 @@ class FireRegisterBloc extends Bloc<FireRegisterEvent, FireRegisterState> {
   FireRegisterBloc() : super(FireRegisterInitial());
   final _fireRepository = FireRepository();
 
+  String? psId, ppId, fromDate, toDate;
+
   @override
   Stream<FireRegisterState> mapEventToState(
     FireRegisterEvent event,
@@ -28,11 +30,11 @@ class FireRegisterBloc extends Bloc<FireRegisterEvent, FireRegisterState> {
   }
 
   Stream<FireRegisterState> _mapGetFireDataState(GetFireData event) async* {
-    final sharedPrefs = await prefs;
     yield FireDataLoading();
     try {
-      int? userId = sharedPrefs.getInt('userId');
-      Response _response = await _fireRepository.getFireRegister();
+      String? params = getParams(event);
+      Response _response =
+          await _fireRepository.getFireRegister(params: params);
       if (_response.statusCode! < 400) {
         final _fireResponse = FireResponse.fromJson(_response.data);
         yield FireDataLoaded(_fireResponse);
@@ -62,5 +64,23 @@ class FireRegisterBloc extends Bloc<FireRegisterEvent, FireRegisterState> {
     } catch (err) {
       yield FireDataSendError(err.toString());
     }
+  }
+
+  String getParams(GetFireData event) {
+    String _params = "?";
+
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null && event.fromDate != "") {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null && event.toDate != "") {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

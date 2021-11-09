@@ -8,8 +8,8 @@ class FireRepository {
     return response;
   }
 
-  Future<dynamic> getFireRegister() async {
-    final response = await ApiSdk.getFire();
+  Future<dynamic> getFireRegister({String? params}) async {
+    final response = await ApiSdk.getFire(params: params);
     return response;
   }
 

@@ -7,7 +7,11 @@ abstract class FireRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetFireData extends FireRegisterEvent {}
+class GetFireData extends FireRegisterEvent {
+  String? psId, ppId, fromDate, toDate;
+
+  GetFireData({this.psId, this.ppId, this.fromDate, this.toDate});
+}
 
 class AddFireData extends FireRegisterEvent {
   final FireData fireData;

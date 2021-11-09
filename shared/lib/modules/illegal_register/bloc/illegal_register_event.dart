@@ -7,7 +7,11 @@ abstract class IllegalRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetIllegalData extends IllegalRegisterEvent {}
+class GetIllegalData extends IllegalRegisterEvent {
+  String? type, psId, ppId, fromDate, toDate;
+
+  GetIllegalData({this.type, this.psId, this.ppId, this.fromDate, this.toDate});
+}
 
 class AddIllegalData extends IllegalRegisterEvent {
   final IllegalData illegalData;

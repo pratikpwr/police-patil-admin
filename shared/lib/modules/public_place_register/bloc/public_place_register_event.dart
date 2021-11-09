@@ -7,7 +7,12 @@ abstract class PublicPlaceRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetPublicPlaceData extends PublicPlaceRegisterEvent {}
+class GetPublicPlaceData extends PublicPlaceRegisterEvent {
+  String? type, psId, ppId, fromDate, toDate;
+
+  GetPublicPlaceData(
+      {this.type, this.psId, this.ppId, this.fromDate, this.toDate});
+}
 
 class AddPublicPlaceData extends PublicPlaceRegisterEvent {
   final PlaceData placeData;

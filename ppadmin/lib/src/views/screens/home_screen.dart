@@ -138,7 +138,7 @@ class LatestMovementWidget extends StatelessWidget {
                         style: Styles.tableValuesTextStyle(),
                       )),
                       DataCell(Text(
-                        movementData.subtype!,
+                        movementData.subtype ?? "-",
                         style: Styles.tableValuesTextStyle(),
                       )),
                       DataCell(Text(
@@ -154,7 +154,7 @@ class LatestMovementWidget extends StatelessWidget {
                         style: Styles.tableValuesTextStyle(),
                       )),
                       DataCell(Text(
-                        movementData.issue! == 1 ? YES : NO,
+                        movementData.issue == 1 ? YES : NO,
                         style: Styles.tableValuesTextStyle(),
                       )),
                       DataCell(Text(

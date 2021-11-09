@@ -7,7 +7,11 @@ abstract class CrimeRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetCrimeData extends CrimeRegisterEvent {}
+class GetCrimeData extends CrimeRegisterEvent {
+  String? type, psId, ppId, fromDate, toDate;
+
+  GetCrimeData({this.type, this.psId, this.ppId, this.fromDate, this.toDate});
+}
 
 class AddCrimeData extends CrimeRegisterEvent {
   final CrimeData crimeData;

@@ -7,16 +7,40 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class DeathScreen extends StatelessWidget {
+class DeathScreen extends StatefulWidget {
   DeathScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DeathScreen> createState() => _DeathScreenState();
+}
+
+class _DeathScreenState extends State<DeathScreen> {
   final _scrollController = ScrollController();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     BlocProvider.of<DeathRegisterBloc>(context).add(GetDeathData());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: const Text(DEATHS), automaticallyImplyLeading: false),
+      appBar: AppBar(
+        title: const Text(DEATHS),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const DeathFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<DeathRegisterBloc, DeathRegisterState>(
         listener: (context, state) {
           if (state is DeathLoadError) {
@@ -155,6 +179,101 @@ class DeathDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class DeathFilterDataWidget extends StatefulWidget {
+  const DeathFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _DeathFilterDataWidgetState createState() => _DeathFilterDataWidgetState();
+}
+
+class _DeathFilterDataWidgetState extends State<DeathFilterDataWidget> {
+  final _bloc = DeathRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  spacer(),
+                  // TODO: isKnown
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.types,
+                      hint: "लिंग निवडा",
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<DeathRegisterBloc>(context).add(
+                            GetDeathData(
+                                type: _bloc.chosenType,
+                                isKnown: _bloc.isKnown,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

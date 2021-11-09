@@ -8,8 +8,8 @@ class CollectRepository {
     return response;
   }
 
-  Future<dynamic> getCollectionsRegister() async {
-    final response = await ApiSdk.getCollect();
+  Future<dynamic> getCollectionsRegister({String? params}) async {
+    final response = await ApiSdk.getCollect(params: params);
     return response;
   }
 

@@ -16,15 +16,31 @@ class MovementScreen extends StatefulWidget {
 
 class _MovementScreenState extends State<MovementScreen> {
   final _scrollController = ScrollController();
-  final _bloc = MovementRegisterBloc();
+
+  @override
+  void initState() {
+    BlocProvider.of<MovementRegisterBloc>(context).add(GetMovementData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<MovementRegisterBloc>(context).add(GetMovementData());
     return Scaffold(
       appBar: AppBar(
-          title: const Text(MOVEMENT_REGISTER),
-          automaticallyImplyLeading: false),
+        title: const Text(MOVEMENT_REGISTER),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const MovementFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<MovementRegisterBloc, MovementRegisterState>(
         listener: (context, state) {
           if (state is MovementLoadError) {
@@ -45,28 +61,9 @@ class _MovementScreenState extends State<MovementScreen> {
                     child: SingleChildScrollView(
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         physics: const BouncingScrollPhysics(),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            spacer(),
-                            buildDropButton(
-                                value: _bloc.value,
-                                items: _bloc.types,
-                                hint: CHOSE_TYPE,
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _bloc.value = value;
-                                  });
-                                }),
-                            spacer(),
-                            const Divider(
-                              height: 1,
-                            ),
-                            MovementDataTableWidget(
-                                movementList: _bloc.typeWiseData(
-                                    state.movementResponse.movementData!)),
-                          ],
-                        )),
+                        child: MovementDataTableWidget(
+                            movementList:
+                                state.movementResponse.movementData!)),
                   ),
                 );
               }
@@ -154,7 +151,7 @@ class MovementDataTableWidget extends StatelessWidget {
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
-                    movementData.issue! == 1 ? YES : NO,
+                    movementData.issue == 1 ? YES : NO,
                     style: Styles.tableValuesTextStyle(),
                   )),
                   DataCell(Text(
@@ -186,6 +183,100 @@ class MovementDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class MovementFilterDataWidget extends StatefulWidget {
+  const MovementFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _MovementFilterDataWidgetState createState() =>
+      _MovementFilterDataWidgetState();
+}
+
+class _MovementFilterDataWidgetState extends State<MovementFilterDataWidget> {
+  final _bloc = MovementRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  spacer(),
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.types,
+                      hint: CHOSE_TYPE,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<MovementRegisterBloc>(context).add(
+                            GetMovementData(
+                                type: _bloc.chosenType,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

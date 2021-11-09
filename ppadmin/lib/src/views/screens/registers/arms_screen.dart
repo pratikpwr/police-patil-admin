@@ -218,7 +218,9 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
               return const Loading();
             }
             if (state is VillagePSListSuccess) {
-              return Column(
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
                 children: [
                   spacer(),
                   buildDropButton(
@@ -232,30 +234,6 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
                       }),
                   spacer(),
                   villageSelectDropDown(
-                      list: getVillageListInString(state.villages),
-                      selValue: _bloc.ppId,
-                      onChanged: (value) {
-                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
-                      }),
-                  /*TextDropdownFormField(
-                  //   controller: _dropController,
-                  //   options: getVillageListInString(state.villages),
-                  //   decoration: const InputDecoration(
-                  //       border: OutlineInputBorder(),
-                  //       suffixIcon: Icon(
-                  //         Icons.arrow_drop_down,
-                  //         color: PRIMARY_COLOR,
-                  //       ),
-                  //       labelText: 'Village'),
-                  //   dropdownHeight: 200,
-                  //   onChanged: (value) {
-                  //     _bloc.ppId = getPpIDFromVillage(
-                  //         state.villages, _dropController.toString());
-                  //     print(_dropController.toString());
-                  //   },
-                  // ), */
-                  spacer(),
-                  villageSelectDropDown(
                       isPs: true,
                       list: getPSListInString(state.policeStations),
                       selValue: _bloc.psId,
@@ -264,12 +242,19 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
                             getPsIDFromPSName(state.policeStations, value!);
                       }),
                   spacer(),
-                  buildDateTextField(context, _fromController, "fromDate"),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
                   spacer(),
-                  buildDateTextField(context, _toController, "toDate"),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
                   spacer(),
                   CustomButton(
-                      text: "Apply Filter",
+                      text: APPLY_FILTER,
                       onTap: () {
                         Navigator.pop(context);
                         BlocProvider.of<ArmsRegisterBloc>(context).add(
@@ -294,3 +279,21 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
     );
   }
 }
+
+/*TextDropdownFormField(
+                  //   controller: _dropController,
+                  //   options: getVillageListInString(state.villages),
+                  //   decoration: const InputDecoration(
+                  //       border: OutlineInputBorder(),
+                  //       suffixIcon: Icon(
+                  //         Icons.arrow_drop_down,
+                  //         color: PRIMARY_COLOR,
+                  //       ),
+                  //       labelText: 'Village'),
+                  //   dropdownHeight: 200,
+                  //   onChanged: (value) {
+                  //     _bloc.ppId = getPpIDFromVillage(
+                  //         state.villages, _dropController.toString());
+                  //     print(_dropController.toString());
+                  //   },
+                  // ), */

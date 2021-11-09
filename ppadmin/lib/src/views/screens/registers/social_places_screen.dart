@@ -16,14 +16,33 @@ class SocialPlaceScreen extends StatefulWidget {
 
 class _SocialPlaceScreenState extends State<SocialPlaceScreen> {
   final _scrollController = ScrollController();
-  final _bloc = PublicPlaceRegisterBloc();
+
+  // final _bloc = PublicPlaceRegisterBloc();
+
+  @override
+  void initState() {
+    BlocProvider.of<PublicPlaceRegisterBloc>(context).add(GetPublicPlaceData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<PublicPlaceRegisterBloc>(context).add(GetPublicPlaceData());
     return Scaffold(
       appBar: AppBar(
-          title: const Text(SOCIAL_PLACES), automaticallyImplyLeading: false),
+        title: const Text(SOCIAL_PLACES),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const PublicPlaceFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<PublicPlaceRegisterBloc, PublicPlaceRegisterState>(
         listener: (context, state) {
           if (state is PublicPlaceLoadError) {
@@ -49,22 +68,8 @@ class _SocialPlaceScreenState extends State<SocialPlaceScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             spacer(),
-                            buildDropButton(
-                                value: _bloc.chosenValue,
-                                items: _bloc.placeTypes,
-                                hint: CHOSE_TYPE,
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _bloc.chosenValue = value;
-                                  });
-                                }),
-                            spacer(),
-                            const Divider(
-                              height: 1,
-                            ),
                             PlaceDataTableWidget(
-                                placeList: _bloc
-                                    .typeWiseData(state.placeResponse.data!)),
+                                placeList: state.placeResponse.data!),
                           ],
                         )),
                   ),
@@ -184,6 +189,101 @@ class PlaceDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class PublicPlaceFilterDataWidget extends StatefulWidget {
+  const PublicPlaceFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _PublicPlaceFilterDataWidgetState createState() =>
+      _PublicPlaceFilterDataWidgetState();
+}
+
+class _PublicPlaceFilterDataWidgetState
+    extends State<PublicPlaceFilterDataWidget> {
+  final _bloc = PublicPlaceRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  spacer(),
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.placeTypes,
+                      hint: CHOSE_TYPE,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<PublicPlaceRegisterBloc>(context).add(
+                            GetPublicPlaceData(
+                                type: _bloc.chosenType,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

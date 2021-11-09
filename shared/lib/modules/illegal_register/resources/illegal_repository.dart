@@ -8,8 +8,8 @@ class IllegalRepository {
     return response;
   }
 
-  Future<dynamic> getIllegalRegister() async {
-    final response = await ApiSdk.getIllegal();
+  Future<dynamic> getIllegalRegister({String? params}) async {
+    final response = await ApiSdk.getIllegal(params: params);
     return response;
   }
 

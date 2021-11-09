@@ -8,8 +8,8 @@ class MissingRepository {
     return response;
   }
 
-  Future<dynamic> getMissingRegister() async {
-    final response = await ApiSdk.getMissing();
+  Future<dynamic> getMissingRegister({String? params}) async {
+    final response = await ApiSdk.getMissing(params: params);
     return response;
   }
 

@@ -8,8 +8,8 @@ class MovementRepository {
     return response;
   }
 
-  Future<dynamic> getMovementRegister() async {
-    final response = await ApiSdk.getMovement();
+  Future<dynamic> getMovementRegister({String? params}) async {
+    final response = await ApiSdk.getMovement(params: params);
     return response;
   }
 

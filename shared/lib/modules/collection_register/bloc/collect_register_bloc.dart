@@ -28,7 +28,7 @@ class CollectRegisterBloc
     }
   }
 
-  String? value;
+  String? chosenType, psId, ppId, fromDate, toDate;
   final List<String> types = <String>[
     "सर्व",
     "बेवारस वाहने",
@@ -37,26 +37,13 @@ class CollectRegisterBloc
     "इतर"
   ];
 
-  List<CollectionData> typeWiseData(List<CollectionData> data) {
-    List<CollectionData> newData = [];
-
-    for (int i = 0; i < types.length; i++) {
-      if (value == types[0]) {
-        return data;
-      }
-      if (value == types[i]) {
-        newData.addAll(data.where((element) => element.type == types[i]));
-        return newData;
-      }
-    }
-    return data;
-  }
-
   Stream<CollectRegisterState> _mapGetCollectionDataState(
       GetCollectionData event) async* {
     yield CollectionDataLoading();
     try {
-      Response _response = await _collectionRepository.getCollectionsRegister();
+      String? params = getParams(event);
+      Response _response =
+          await _collectionRepository.getCollectionsRegister(params: params);
       if (_response.data["message"] != null) {
         final _collectionResponse = CollectionResponse.fromJson(_response.data);
         yield CollectionDataLoaded(_collectionResponse);
@@ -87,5 +74,30 @@ class CollectRegisterBloc
     } catch (err) {
       yield CollectionDataSendError(err.toString());
     }
+  }
+
+  String getParams(GetCollectionData event) {
+    String _params = "?";
+
+    if (event.type != null) {
+      if (event.type == "सर्व") {
+        _params += "";
+      } else {
+        _params += "type=${event.type}&";
+      }
+    }
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null && event.fromDate != "") {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null && event.toDate != "") {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

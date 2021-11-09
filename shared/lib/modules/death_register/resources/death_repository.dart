@@ -8,8 +8,8 @@ class DeathRepository {
     return response;
   }
 
-  Future<dynamic> getDeathRegister() async {
-    final response = await ApiSdk.getDeath();
+  Future<dynamic> getDeathRegister({String? params}) async {
+    final response = await ApiSdk.getDeath(params: params);
     return response;
   }
 

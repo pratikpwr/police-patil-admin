@@ -15,6 +15,9 @@ class DeathRegisterBloc extends Bloc<DeathRegisterEvent, DeathRegisterState> {
   DeathRegisterBloc() : super(DeathRegisterInitial());
   final _deathRepository = DeathRepository();
 
+  String? chosenType, isKnown, psId, ppId, fromDate, toDate;
+  final List<String> types = <String>["सर्व", "पुरुष", "स्त्री"];
+
   @override
   Stream<DeathRegisterState> mapEventToState(
     DeathRegisterEvent event,
@@ -28,11 +31,11 @@ class DeathRegisterBloc extends Bloc<DeathRegisterEvent, DeathRegisterState> {
   }
 
   Stream<DeathRegisterState> _mapGetDeathDataState(GetDeathData event) async* {
-    final sharedPrefs = await prefs;
     yield DeathDataLoading();
     try {
-      int? userId = sharedPrefs.getInt('userId');
-      Response _response = await _deathRepository.getDeathRegister();
+      String? params = getParams(event);
+      Response _response =
+          await _deathRepository.getDeathRegister(params: params);
       if (_response.statusCode! < 400) {
         final _deathResponse = DeathResponse.fromJson(_response.data);
         yield DeathDataLoaded(_deathResponse);
@@ -62,5 +65,33 @@ class DeathRegisterBloc extends Bloc<DeathRegisterEvent, DeathRegisterState> {
     } catch (err) {
       yield DeathDataSendError(err.toString());
     }
+  }
+
+  String getParams(GetDeathData event) {
+    String _params = "?";
+
+    if (event.type != null) {
+      if (event.type == "सर्व") {
+        _params += "";
+      } else {
+        _params += "gender=${event.type}&";
+      }
+    }
+    if (event.isKnown != null) {
+      _params += "isknown=${event.isKnown}&";
+    }
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null && event.fromDate != "") {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null && event.toDate != "") {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

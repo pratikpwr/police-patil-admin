@@ -29,7 +29,7 @@ class IllegalRegisterBloc
     }
   }
 
-  String? value;
+  String? chosenType, psId, ppId, fromDate, toDate;
   final List<String> types = <String>[
     "सर्व",
     "अवैद्य दारू विक्री करणारे",
@@ -39,28 +39,13 @@ class IllegalRegisterBloc
     "अमली पदार्थ विक्री करणारे"
   ];
 
-  List<IllegalData> typeWiseData(List<IllegalData> data) {
-    List<IllegalData> newData = [];
-
-    for (int i = 0; i < types.length; i++) {
-      if (value == types[0]) {
-        return data;
-      }
-      if (value == types[i]) {
-        newData.addAll(data.where((element) => element.type == types[i]));
-        return newData;
-      }
-    }
-    return data;
-  }
-
   Stream<IllegalRegisterState> _mapGetIllegalDataState(
       GetIllegalData event) async* {
-    final sharedPrefs = await prefs;
     yield IllegalDataLoading();
     try {
-      int? userId = sharedPrefs.getInt('userId');
-      Response _response = await _illegalRepository.getIllegalRegister();
+      String? params = getParams(event);
+      Response _response =
+          await _illegalRepository.getIllegalRegister(params: params);
       if (_response.statusCode! < 400) {
         final _illegalResponse = IllegalResponse.fromJson(_response.data);
         yield IllegalDataLoaded(_illegalResponse);
@@ -91,5 +76,30 @@ class IllegalRegisterBloc
     } catch (err) {
       yield IllegalDataSendError(err.toString());
     }
+  }
+
+  String getParams(GetIllegalData event) {
+    String _params = "?";
+
+    if (event.type != null) {
+      if (event.type == "सर्व") {
+        _params += "";
+      } else {
+        _params += "type=${event.type}&";
+      }
+    }
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null && event.fromDate != "") {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null && event.toDate != "") {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

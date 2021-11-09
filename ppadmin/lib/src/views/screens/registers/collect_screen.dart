@@ -16,15 +16,33 @@ class CollectionScreen extends StatefulWidget {
 
 class _CollectionScreenState extends State<CollectionScreen> {
   final _scrollController = ScrollController();
-  final _bloc = CollectRegisterBloc();
+
+  // final _bloc = CollectRegisterBloc();
+
+  @override
+  void initState() {
+    BlocProvider.of<CollectRegisterBloc>(context).add(GetCollectionData());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<CollectRegisterBloc>(context).add(GetCollectionData());
     return Scaffold(
       appBar: AppBar(
-          title: const Text(COLLECTION_REGISTER),
-          automaticallyImplyLeading: false),
+        title: const Text(COLLECTION_REGISTER),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const CollectFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<CollectRegisterBloc, CollectRegisterState>(
         listener: (context, state) {
           if (state is CollectionLoadError) {
@@ -51,22 +69,9 @@ class _CollectionScreenState extends State<CollectionScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             spacer(),
-                            buildDropButton(
-                                value: _bloc.value,
-                                items: _bloc.types,
-                                hint: CHOSE_TYPE,
-                                onChanged: (String? value) {
-                                  setState(() {
-                                    _bloc.value = value;
-                                  });
-                                }),
-                            spacer(),
-                            const Divider(
-                              height: 1,
-                            ),
                             CollectDataTableWidget(
-                              collectList: _bloc.typeWiseData(
-                                  state.collectionResponse.collectData!),
+                              collectList:
+                                  state.collectionResponse.collectData!,
                             ),
                           ],
                         )),
@@ -169,6 +174,100 @@ class CollectDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class CollectFilterDataWidget extends StatefulWidget {
+  const CollectFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _CollectFilterDataWidgetState createState() =>
+      _CollectFilterDataWidgetState();
+}
+
+class _CollectFilterDataWidgetState extends State<CollectFilterDataWidget> {
+  final _bloc = CollectRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  spacer(),
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.types,
+                      hint: CHOSE_TYPE,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<CollectRegisterBloc>(context).add(
+                            GetCollectionData(
+                                type: _bloc.chosenType,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

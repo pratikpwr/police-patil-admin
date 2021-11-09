@@ -7,7 +7,12 @@ abstract class CollectRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetCollectionData extends CollectRegisterEvent {}
+class GetCollectionData extends CollectRegisterEvent {
+  String? type, psId, ppId, fromDate, toDate;
+
+  GetCollectionData(
+      {this.type, this.psId, this.ppId, this.fromDate, this.toDate});
+}
 
 class AddCollectionData extends CollectRegisterEvent {
   final CollectionData collectionData;

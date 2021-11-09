@@ -7,16 +7,40 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class FiresScreen extends StatelessWidget {
+class FiresScreen extends StatefulWidget {
   FiresScreen({Key? key}) : super(key: key);
+
+  @override
+  State<FiresScreen> createState() => _FiresScreenState();
+}
+
+class _FiresScreenState extends State<FiresScreen> {
   final _scrollController = ScrollController();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     BlocProvider.of<FireRegisterBloc>(context).add(GetFireData());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: const Text(BURNS), automaticallyImplyLeading: false),
+      appBar: AppBar(
+        title: const Text(BURNS),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const FireFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<FireRegisterBloc, FireRegisterState>(
         listener: (context, state) {
           if (state is FireLoadError) {
@@ -142,6 +166,87 @@ class FireDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class FireFilterDataWidget extends StatefulWidget {
+  const FireFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _FireFilterDataWidgetState createState() => _FireFilterDataWidgetState();
+}
+
+class _FireFilterDataWidgetState extends State<FireFilterDataWidget> {
+  final _bloc = FireRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<FireRegisterBloc>(context).add(
+                            GetFireData(
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

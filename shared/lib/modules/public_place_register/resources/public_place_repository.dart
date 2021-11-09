@@ -8,8 +8,8 @@ class PlaceRepository {
     return response;
   }
 
-  Future<dynamic> getPlaceRegister() async {
-    final response = await ApiSdk.getPlace();
+  Future<dynamic> getPlaceRegister({String? params}) async {
+    final response = await ApiSdk.getPlace(params: params);
     return response;
   }
 

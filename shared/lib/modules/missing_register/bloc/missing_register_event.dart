@@ -7,7 +7,11 @@ abstract class MissingRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetMissingData extends MissingRegisterEvent {}
+class GetMissingData extends MissingRegisterEvent {
+  String? type, psId, ppId, fromDate, toDate;
+
+  GetMissingData({this.type, this.psId, this.ppId, this.fromDate, this.toDate});
+}
 
 class AddMissingData extends MissingRegisterEvent {
   final MissingData missingData;

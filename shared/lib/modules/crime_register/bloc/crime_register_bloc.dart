@@ -27,7 +27,7 @@ class CrimeRegisterBloc extends Bloc<CrimeRegisterEvent, CrimeRegisterState> {
     }
   }
 
-  String? value;
+  String? chosenType, psId, ppId, fromDate, toDate;
   final List<String> types = <String>[
     "सर्व",
     "शरीरा विरुद्ध",
@@ -37,26 +37,13 @@ class CrimeRegisterBloc extends Bloc<CrimeRegisterEvent, CrimeRegisterState> {
     "इतर अपराध"
   ];
 
-  List<CrimeData> typeWiseData(List<CrimeData> data) {
-    List<CrimeData> newData = [];
-
-    for (int i = 0; i < types.length; i++) {
-      if (value == types[0]) {
-        return data;
-      }
-      if (value == types[i]) {
-        newData.addAll(data.where((element) => element.type == types[i]));
-        return newData;
-      }
-    }
-    return data;
-  }
-
   Stream<CrimeRegisterState> _mapGetCrimeDataState(GetCrimeData event) async* {
     yield CrimeDataLoading();
     try {
-      Response _response = await _crimeRepository.getCrimeRegister();
-      if (_response.statusCode! < 400) {
+      String? params = getParams(event);
+      Response _response =
+          await _crimeRepository.getCrimeRegister(params: params);
+      if (_response.data["message"] != null) {
         final _crimeResponse = CrimeResponse.fromJson(_response.data);
         yield CrimeDataLoaded(_crimeResponse);
       } else {
@@ -85,5 +72,30 @@ class CrimeRegisterBloc extends Bloc<CrimeRegisterEvent, CrimeRegisterState> {
     } catch (err) {
       yield CrimeDataSendError(err.toString());
     }
+  }
+
+  String getParams(GetCrimeData event) {
+    String _params = "?";
+
+    if (event.type != null) {
+      if (event.type == "सर्व") {
+        _params += "";
+      } else {
+        _params += "type=${event.type}&";
+      }
+    }
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+    if (event.fromDate != null && event.fromDate != "") {
+      _params += "fromdate=${event.fromDate}&";
+    }
+    if (event.toDate != null && event.toDate != "") {
+      _params += "todate=${event.toDate}&";
+    }
+    return _params;
   }
 }

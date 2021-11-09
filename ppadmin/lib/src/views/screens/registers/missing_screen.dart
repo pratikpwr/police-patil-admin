@@ -7,16 +7,40 @@ import 'package:shared/shared.dart';
 
 import '../../views.dart';
 
-class MissingScreen extends StatelessWidget {
+class MissingScreen extends StatefulWidget {
   MissingScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MissingScreen> createState() => _MissingScreenState();
+}
+
+class _MissingScreenState extends State<MissingScreen> {
   final _scrollController = ScrollController();
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     BlocProvider.of<MissingRegisterBloc>(context).add(GetMissingData());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppBar(title: const Text(MISSING), automaticallyImplyLeading: false),
+      appBar: AppBar(
+        title: const Text(MISSING),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const MissingFilterDataWidget();
+                    });
+              },
+              icon: const Icon(Icons.filter_alt_rounded))
+        ],
+      ),
       body: BlocListener<MissingRegisterBloc, MissingRegisterState>(
         listener: (context, state) {
           if (state is MissingLoadError) {
@@ -154,6 +178,100 @@ class MissingDataTableWidget extends StatelessWidget {
                   )),
                 ]);
               }))),
+    );
+  }
+}
+
+class MissingFilterDataWidget extends StatefulWidget {
+  const MissingFilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _MissingFilterDataWidgetState createState() =>
+      _MissingFilterDataWidgetState();
+}
+
+class _MissingFilterDataWidgetState extends State<MissingFilterDataWidget> {
+  final _bloc = MissingRegisterBloc();
+  final _fromController = TextEditingController();
+  final _toController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  spacer(),
+                  buildDropButton(
+                      value: _bloc.chosenType,
+                      items: _bloc.types,
+                      hint: "लिंग निवडा",
+                      onChanged: (String? value) {
+                        setState(() {
+                          _bloc.chosenType = value;
+                        });
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  buildDateTextField(context, _fromController, DATE_FROM),
+                  spacer(),
+                  buildDateTextField(context, _toController, DATE_TO),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<MissingRegisterBloc>(context).add(
+                            GetMissingData(
+                                type: _bloc.chosenType,
+                                ppId: _bloc.ppId,
+                                psId: _bloc.psId,
+                                fromDate: _fromController.text,
+                                toDate: _toController.text));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
+      ),
     );
   }
 }

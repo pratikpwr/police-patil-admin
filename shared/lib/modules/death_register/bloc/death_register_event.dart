@@ -7,7 +7,17 @@ abstract class DeathRegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetDeathData extends DeathRegisterEvent {}
+class GetDeathData extends DeathRegisterEvent {
+  String? isKnown, type, psId, ppId, fromDate, toDate;
+
+  GetDeathData(
+      {this.type,
+      this.isKnown,
+      this.psId,
+      this.ppId,
+      this.fromDate,
+      this.toDate});
+}
 
 class AddDeathData extends DeathRegisterEvent {
   final DeathData deathData;

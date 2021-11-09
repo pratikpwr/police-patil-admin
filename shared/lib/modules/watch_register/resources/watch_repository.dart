@@ -8,8 +8,8 @@ class WatchRepository {
     return response;
   }
 
-  Future<dynamic> getWatchRegister() async {
-    final response = await ApiSdk.getWatch();
+  Future<dynamic> getWatchRegister({String? params}) async {
+    final response = await ApiSdk.getWatch(params: params);
     return response;
   }
 
