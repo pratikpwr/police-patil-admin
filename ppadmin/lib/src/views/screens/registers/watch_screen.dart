@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ppadmin/src/config/constants.dart';
@@ -17,8 +18,6 @@ class WatchScreen extends StatefulWidget {
 class _WatchScreenState extends State<WatchScreen> {
   final _scrollController = ScrollController();
 
-  // final _bloc = WatchRegisterBloc();
-
   @override
   void initState() {
     BlocProvider.of<WatchRegisterBloc>(context).add(GetWatchData());
@@ -36,7 +35,6 @@ class _WatchScreenState extends State<WatchScreen> {
               onPressed: () async {
                 await showDialog(
                     context: context,
-
                     builder: (context) {
                       return const WatchFilterDataWidget();
                     });
@@ -82,6 +80,166 @@ class _WatchScreenState extends State<WatchScreen> {
               return SomethingWentWrong();
             }
           },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add, size: 24),
+        onPressed: () {
+          _addWatchData().then((_) {
+            BlocProvider.of<WatchRegisterBloc>(context).add(GetWatchData());
+          });
+        },
+      ),
+    );
+  }
+
+  Future<void> _addWatchData() async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return const AddWatchDataWidget();
+        });
+  }
+}
+
+class AddWatchDataWidget extends StatefulWidget {
+  const AddWatchDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _AddWatchDataWidgetState createState() => _AddWatchDataWidgetState();
+}
+
+class _AddWatchDataWidgetState extends State<AddWatchDataWidget> {
+  final _bloc = WatchRegisterBloc();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _otherController = TextEditingController();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocListener<WatchRegisterBloc, WatchRegisterState>(
+          listener: (context, state) {
+            if (state is WatchDataSendError) {
+              showSnackBar(context, state.error);
+            }
+            if (state is WatchDataSent) {
+              Navigator.pop(context);
+              showSnackBar(context, state.message);
+            }
+          },
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              spacer(),
+              buildDropButton(
+                  value: _bloc.chosenValue,
+                  items: _bloc.watchRegTypes,
+                  hint: "निगराणी प्रकार निवडा",
+                  onChanged: (String? value) {
+                    setState(() {
+                      _bloc.chosenValue = value;
+                    });
+                  }),
+              spacer(),
+              buildTextField(_nameController, NAME),
+              spacer(),
+              buildTextField(_phoneController, MOB_NO),
+              spacer(),
+              AttachButton(
+                text: _bloc.photoName,
+                onTap: () async {
+                  getFileFromDevice(context).then((pickedFile) {
+                    setState(() {
+                      _bloc.photo = pickedFile;
+                      _bloc.photoName = getFileName(pickedFile!.path);
+                    });
+                  });
+                },
+              ),
+              spacer(),
+              buildTextField(_addressController, ADDRESS),
+              spacer(),
+              BlocBuilder<VillagePSListBloc, VillagePSListState>(
+                builder: (context, state) {
+                  if (state is VillagePSListLoading) {
+                    return const Loading();
+                  }
+                  if (state is VillagePSListSuccess) {
+                    return Column(
+                      children: [
+                        villageSelectDropDown(
+                            isPs: true,
+                            list: getPSListInString(state.policeStations),
+                            selValue: _bloc.psId,
+                            onChanged: (value) {
+                              _bloc.psId = getPsIDFromPSName(
+                                  state.policeStations, value!);
+                            }),
+                        spacer(),
+                        villageSelectDropDown(
+                            list: getVillageListInString(state.villages),
+                            selValue: _bloc.ppId,
+                            onChanged: (value) {
+                              _bloc.ppId =
+                                  getPpIDFromVillage(state.villages, value!);
+                            }),
+                      ],
+                    );
+                  }
+                  if (state is VillagePSListFailed) {
+                    return SomethingWentWrong();
+                  } else {
+                    return SomethingWentWrong();
+                  }
+                },
+              ),
+              spacer(),
+              TextField(
+                controller: _otherController,
+                style: Styles.inputFieldTextStyle(),
+                maxLines: 5,
+                decoration: InputDecoration(
+                    hintText: OTHER_INFO,
+                    hintStyle: Styles.inputFieldTextStyle(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10))),
+              ),
+              spacer(),
+              CustomButton(
+                  text: DO_REGISTER,
+                  onTap: () async {
+                    WatchData _watchData = WatchData(
+                        type: _bloc.chosenValue,
+                        name: _nameController.text,
+                        mobile: parseInt(_phoneController.text),
+                        photo: _bloc.photo?.path != null
+                            ? await MultipartFile.fromFile(_bloc.photo!.path)
+                            : " ",
+                        address: _addressController.text,
+                        latitude: 0.00,
+                        longitude: 0.00,
+                        ppid: int.parse(_bloc.ppId!),
+                        psid: int.parse(_bloc.psId!),
+                        description: _otherController.text);
+
+                    BlocProvider.of<WatchRegisterBloc>(context)
+                        .add(AddWatchData(_watchData));
+                  }),
+              spacer()
+            ],
+          ),
         ),
       ),
     );

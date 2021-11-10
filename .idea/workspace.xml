@@ -19,21 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="filtering applied to all">
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="improved add ps/pp, admins can change pp password">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/pp_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/pp_list_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/ps_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/ps_list_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/side_bar_nav_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/side_bar_nav_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/movement_register/models/movement_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/movement_register/models/movement_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/police_station/bloc/police_station_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/police_station/bloc/police_station_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/police_station/resources/ps_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/police_station/resources/ps_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/users/bloc/users_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/users/bloc/users_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/users/bloc/users_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/users/bloc/users_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/users/bloc/users_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/users/bloc/users_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/users/resources/user_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/users/resources/user_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/watch_register/models/watch_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/models/watch_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/watch_register/resources/watch_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/resources/watch_repository.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636456888751</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="improved add ps/pp, admins can change pp password">
+      <created>1636530743263</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1636530743263</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -298,7 +296,8 @@
     <MESSAGE value="by ppid filtering done" />
     <MESSAGE value="arms filtering implemented" />
     <MESSAGE value="filtering applied to all" />
-    <option name="LAST_COMMIT_MESSAGE" value="filtering applied to all" />
+    <MESSAGE value="improved add ps/pp, admins can change pp password" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved add ps/pp, admins can change pp password" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -359,10 +358,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1636456894744">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1636530749129">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1636456894744" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1636530749129" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
     <state width="775" height="415" key="XDebugger.FullValuePopup" timestamp="1635596111910">
       <screen x="0" y="0" width="1536" height="816" />

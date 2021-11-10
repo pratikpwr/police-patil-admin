@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -26,6 +27,18 @@ class WatchRegisterBloc extends Bloc<WatchRegisterEvent, WatchRegisterState> {
       yield* _mapAddWatchDataState(event);
     }
   }
+
+  String? chosenValue;
+  final List<String> watchRegTypes = <String>[
+    "भटक्या टोळी",
+    "सराईत गुन्हेगार",
+    "फरार आरोपी",
+    "तडीपार आरोपी",
+    "स्टॅंडिंग वॉरंट"
+  ];
+
+  String photoName = "फोटो जोडा";
+  File? photo;
 
   String? chosenType, psId, ppId, fromDate, toDate;
   final List<String> types = <String>[
@@ -57,10 +70,6 @@ class WatchRegisterBloc extends Bloc<WatchRegisterEvent, WatchRegisterState> {
   Stream<WatchRegisterState> _mapAddWatchDataState(AddWatchData event) async* {
     yield WatchDataSending();
     try {
-      final sharedPrefs = await prefs;
-      event.watchData.ppid = sharedPrefs.getInt('userId')!;
-      event.watchData.psid = sharedPrefs.getInt('policeStationId')!;
-
       Response _response =
           await _watchRepository.addWatchData(watchData: event.watchData);
 

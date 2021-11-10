@@ -53,7 +53,7 @@ class WatchData {
   String? type;
   String? name;
   int? mobile;
-  String? photo;
+  dynamic photo;
   String? aadhar;
   String? address;
   double? latitude;
