@@ -38,8 +38,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getAdminPS() async {
-    String path = ApiConstants.GET_ADMINS_PS;
+  static Future<Response> getPSUsers() async {
+    String path = ApiConstants.GET_PS_USERS;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -53,7 +53,7 @@ class ApiSdk {
   }
 
   static Future<Response> getPoliceStation() async {
-    String path = ApiConstants.POLICE_STATION;
+    String path = ApiConstants.POLICE_STATION_NAME;
 
     Response response = await RestApiHandlerData.getData(path);
     return response;
@@ -66,19 +66,19 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> addPoliceStation(
+  static Future<Response> addPoliceStationName(
       {required Map<String, dynamic> body}) async {
-    String path = ApiConstants.POLICE_STATION;
+    String path = ApiConstants.POLICE_STATION_NAME;
 
     Response response = await RestApiHandlerData.postData(path, body);
     return response;
   }
 
   static Future<Response> updateUserData(
-      {required int userId, required Map<String, dynamic> body}) async {
+      {required int userId, required dynamic body}) async {
     String path = ApiConstants.UPDATE_USER_DATA + "$userId";
 
-    Response response = await RestApiHandlerData.putData(path, body);
+    Response response = await RestApiHandlerData.postData(path, body);
     return response;
   }
 

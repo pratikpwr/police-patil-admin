@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
 import 'package:ppadmin/src/utils/utils.dart';
@@ -15,34 +14,32 @@ class PoliceStationScreen extends StatefulWidget {
 }
 
 class _PoliceStationScreenState extends State<PoliceStationScreen> {
-  final _scrollController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<PoliceStationBloc>(context).add(GetPoliceStation());
+    BlocProvider.of<UsersBloc>(context).add(GetPSUsers());
     return Scaffold(
       appBar: AppBar(
-          title: const Text("POLICE STATIONS"),
-          automaticallyImplyLeading: false),
-      body: BlocListener<PoliceStationBloc, PoliceStationState>(
+          title: const Text(POLICE_STATION), automaticallyImplyLeading: false),
+      body: BlocListener<UsersBloc, UsersState>(
         listener: (context, state) {
-          if (state is PoliceStationLoadError) {
-            showSnackBar(context, state.message);
+          if (state is UsersDataSendError) {
+            showSnackBar(context, state.error);
           }
         },
-        child: BlocBuilder<PoliceStationBloc, PoliceStationState>(
+        child: BlocBuilder<UsersBloc, UsersState>(
           builder: (context, state) {
-            if (state is PoliceStationDataLoading) {
+            if (state is UsersDataLoading) {
               return const Loading();
-            } else if (state is PoliceStationDataLoaded) {
-              if (state.psResponse.data!.isEmpty) {
+            } else if (state is UsersDataLoaded) {
+              if (state.userResponse.data!.isEmpty) {
                 return NoRecordFound();
               } else {
                 return SafeArea(
                     child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   physics: const BouncingScrollPhysics(),
-                  child: PoliceStationDetailsWidget(ps: state.psResponse.data!),
+                  child:
+                      PoliceStationDetailsWidget(ps: state.userResponse.data!),
                 ));
               }
             } else if (state is PoliceStationLoadError) {
@@ -68,46 +65,73 @@ class _PoliceStationScreenState extends State<PoliceStationScreen> {
     final _nameController = TextEditingController();
     final _passwordController = TextEditingController();
     final _emailController = TextEditingController();
-
+    String? psId;
     return await showDialog(
         context: context,
         builder: (context) {
+          BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
           return Dialog(
-            child: BlocListener<PoliceStationBloc, PoliceStationState>(
+            child: BlocListener<UsersBloc, UsersState>(
               listener: (context, state) {
-                if (state is PoliceStationDataSendError) {
+                if (state is UsersDataSendError) {
                   showSnackBar(context, state.error);
                   Navigator.pop(context);
                 }
-                if (state is PoliceStationDataSent) {
+                if (state is UsersDataSent) {
                   showSnackBar(context, state.message);
                   Navigator.pop(context);
                 }
               },
               child: Container(
                 padding: const EdgeInsets.all(32),
-                height: MediaQuery.of(context).size.height * 0.5,
+                height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width * 0.4,
-                child: Column(
+                child: ListView(
+                  shrinkWrap: true,
                   children: [
+                    Center(
+                        child: Text("पोलीस ठाणे जोडा",
+                            style: Styles.primaryTextStyle())),
+                    spacer(),
                     spacer(),
                     buildTextField(_nameController, NAME),
                     spacer(),
-                    buildTextField(_emailController, "Email"),
+                    buildTextField(_emailController, USER_ID),
                     spacer(),
-                    buildTextField(_passwordController, ADDRESS),
+                    buildTextField(_passwordController, PASSWORD),
+                    spacer(),
+                    BlocBuilder<VillagePSListBloc, VillagePSListState>(
+                      builder: (context, state) {
+                        if (state is VillagePSListLoading) {
+                          return const Loading();
+                        }
+                        if (state is VillagePSListSuccess) {
+                          return villageSelectDropDown(
+                              isPs: true,
+                              list: getPSListInString(state.policeStations),
+                              selValue: psId,
+                              onChanged: (value) {
+                                psId = getPsIDFromPSName(
+                                    state.policeStations, value!);
+                              });
+                        }
+                        if (state is VillagePSListFailed) {
+                          return SomethingWentWrong();
+                        } else {
+                          return SomethingWentWrong();
+                        }
+                      },
+                    ),
                     spacer(),
                     CustomButton(
                         text: REGISTER,
                         onTap: () {
-                          final psData = PoliceStationData(
-                              psname: _nameController.text,
-                              address: _passwordController.text,
+                          BlocProvider.of<UsersBloc>(context).add(AddPSUser(
+                              role: "ps",
+                              psId: psId!,
+                              name: _nameController.text,
                               email: _emailController.text,
-                              latitude: 0.00,
-                              longitude: 0.00);
-                          BlocProvider.of<PoliceStationBloc>(context)
-                              .add(AddPoliceStation(psData: psData));
+                              password: _passwordController.text));
                         })
                   ],
                 ),
@@ -140,6 +164,8 @@ class PoliceStationDetailsWidget extends StatelessWidget {
             DataColumn(
                 label: Text("Email", style: Styles.tableTitleTextStyle())),
             DataColumn(
+                label: Text("PSID", style: Styles.tableTitleTextStyle())),
+            DataColumn(
                 label: Text("Role", style: Styles.tableTitleTextStyle())),
           ],
           rows: List<DataRow>.generate(ps.length, (index) {
@@ -148,6 +174,7 @@ class PoliceStationDetailsWidget extends StatelessWidget {
               customTextDataCell("${user.id ?? 0}"),
               customTextDataCell(user.name ?? "-"),
               customTextDataCell(user.email ?? "-"),
+              customTextDataCell(user.psid ?? "-"),
               customTextDataCell(user.role ?? "-"),
             ]);
           }),

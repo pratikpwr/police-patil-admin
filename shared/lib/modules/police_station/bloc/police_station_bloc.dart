@@ -32,7 +32,7 @@ class PoliceStationBloc extends Bloc<PoliceStationEvent, PoliceStationState> {
       GetPoliceStation event) async* {
     yield PoliceStationDataLoading();
     try {
-      Response _response = await _psRepository.getPoliceStations();
+      Response _response = await _psRepository.getPoliceStationsName();
       if (_response.data["message"] != null) {
         final _psResponse = UsersResponse.fromJson(_response.data);
         yield PoliceStationDataLoaded(_psResponse);
@@ -48,7 +48,7 @@ class PoliceStationBloc extends Bloc<PoliceStationEvent, PoliceStationState> {
       AddPoliceStation event) async* {
     yield PoliceStationDataSending();
     try {
-      Response _response = await _psRepository.addPoliceStation(event.psData);
+      Response _response = await _psRepository.addPoliceStationName(event.psData);
 
       if (_response.data["message"] != null) {
         yield PoliceStationDataSent(_response.data["message"]);

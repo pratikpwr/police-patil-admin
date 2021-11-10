@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
 import 'package:ppadmin/src/utils/utils.dart';
@@ -15,14 +14,26 @@ class UsersScreen extends StatefulWidget {
 }
 
 class _UsersScreenState extends State<UsersScreen> {
-  final _scrollController = ScrollController();
+  @override
+  void initState() {
+    BlocProvider.of<UsersBloc>(context).add(GetPPUsers());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<UsersBloc>(context).add(GetUsers());
     return Scaffold(
       appBar: AppBar(
-          title: const Text("POLICE PATILS"), automaticallyImplyLeading: false),
+        title: const Text(POLICE_PATIL_APP),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                BlocProvider.of<UsersBloc>(context).add(GetPPUsers());
+              },
+              icon: const Icon(Icons.refresh_rounded))
+        ],
+      ),
       body: BlocListener<UsersBloc, UsersState>(
         listener: (context, state) {
           if (state is UsersLoadError) {
@@ -55,7 +66,7 @@ class _UsersScreenState extends State<UsersScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addNewUsers().then((_) {
-            BlocProvider.of<UsersBloc>(context).add(GetUsers());
+            BlocProvider.of<UsersBloc>(context).add(GetPPUsers());
           });
         },
         child: const Icon(Icons.add, size: 24),
@@ -67,10 +78,13 @@ class _UsersScreenState extends State<UsersScreen> {
     final _nameController = TextEditingController();
     final _passwordController = TextEditingController();
     final _emailController = TextEditingController();
+    final _villageController = TextEditingController();
+    String? psId;
 
     return await showDialog(
         context: context,
         builder: (context) {
+          BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
           return Dialog(
             child: BlocListener<UsersBloc, UsersState>(
               listener: (context, state) {
@@ -85,24 +99,57 @@ class _UsersScreenState extends State<UsersScreen> {
               },
               child: Container(
                 padding: const EdgeInsets.all(32),
-                height: MediaQuery.of(context).size.height * 0.5,
+                height: MediaQuery.of(context).size.height * 0.8,
                 width: MediaQuery.of(context).size.width * 0.4,
-                child: Column(
+                child: ListView(
+                  shrinkWrap: true,
                   children: [
+                    Center(
+                        child: Text("पोलीस पाटील जोडा",
+                            style: Styles.primaryTextStyle())),
                     spacer(),
                     buildTextField(_nameController, NAME),
                     spacer(),
-                    buildTextField(_emailController, "Email"),
+                    buildTextField(_emailController, USER_ID),
                     spacer(),
                     buildTextField(_passwordController, PASSWORD),
+                    spacer(),
+                    buildTextField(_villageController, VILLAGE),
+                    spacer(),
+                    BlocBuilder<VillagePSListBloc, VillagePSListState>(
+                      builder: (context, state) {
+                        if (state is VillagePSListLoading) {
+                          return const Loading();
+                        }
+                        if (state is VillagePSListSuccess) {
+                          return villageSelectDropDown(
+                              isPs: true,
+                              list: getPSListInString(state.policeStations),
+                              selValue: psId,
+                              onChanged: (value) {
+                                psId = getPsIDFromPSName(
+                                    state.policeStations, value!);
+                              });
+                        }
+                        if (state is VillagePSListFailed) {
+                          return SomethingWentWrong();
+                        } else {
+                          return SomethingWentWrong();
+                        }
+                      },
+                    ),
                     spacer(),
                     CustomButton(
                         text: REGISTER,
                         onTap: () {
-                          BlocProvider.of<UsersBloc>(context).add(AddUser(
-                              name: _nameController.text,
-                              email: _emailController.text,
-                              password: _passwordController.text));
+                          BlocProvider.of<UsersBloc>(context).add(
+                              AddPolicePatil(
+                                  name: _nameController.text,
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                  psId: psId!,
+                                  village: _villageController.text,
+                                  role: "pp"));
                         })
                   ],
                 ),
@@ -131,8 +178,11 @@ class UsersDetailsWidget extends StatelessWidget {
         child: DataTable(
           columns: [
             DataColumn(label: Text("ID", style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text("Edit", style: Styles.tableTitleTextStyle())),
             DataColumn(label: Text(NAME, style: Styles.tableTitleTextStyle())),
-            DataColumn(label: Text("गाव", style: Styles.tableTitleTextStyle())),
+            DataColumn(
+                label: Text(VILLAGE, style: Styles.tableTitleTextStyle())),
             DataColumn(
                 label: Text("Email", style: Styles.tableTitleTextStyle())),
             DataColumn(label: Text(PHOTO, style: Styles.tableTitleTextStyle())),
@@ -156,6 +206,22 @@ class UsersDetailsWidget extends StatelessWidget {
             final user = users[index];
             return DataRow(cells: <DataCell>[
               customTextDataCell("${user.id ?? 0}"),
+              DataCell(IconButton(
+                icon: const Icon(
+                  Icons.edit,
+                  color: Colors.blue,
+                ),
+                onPressed: () {
+                  editPP(
+                          context: context,
+                          id: user.id!,
+                          name: user.name!,
+                          village: user.village!)
+                      .then((_) {
+                    BlocProvider.of<UsersBloc>(context).add(GetPPUsers());
+                  });
+                },
+              )),
               customTextDataCell(user.name ?? "-"),
               customTextDataCell(user.village ?? "-"),
               customTextDataCell(user.email ?? "-"),
@@ -179,5 +245,65 @@ class UsersDetailsWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> editPP(
+      {required BuildContext context,
+      required int id,
+      required String name,
+      required String village}) async {
+    final _nameController = TextEditingController(text: name);
+    final _villageController = TextEditingController(text: village);
+    final _passwordController = TextEditingController();
+
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+          return Dialog(
+            child: BlocListener<UsersBloc, UsersState>(
+              listener: (context, state) {
+                if (state is UsersDataSendError) {
+                  showSnackBar(context, state.error);
+                  Navigator.pop(context);
+                }
+                if (state is UserDataUpdated) {
+                  showSnackBar(context, state.message);
+                  Navigator.pop(context);
+                }
+              },
+              child: Container(
+                padding: const EdgeInsets.all(32),
+                height: MediaQuery.of(context).size.height * 0.6,
+                width: MediaQuery.of(context).size.width * 0.4,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    Center(
+                        child: Text("पोलीस पाटील अपडेट",
+                            style: Styles.primaryTextStyle())),
+                    spacer(),
+                    buildTextField(_nameController, NAME),
+                    spacer(),
+                    buildTextField(_villageController, VILLAGE),
+                    spacer(),
+                    buildTextField(_passwordController, PASSWORD),
+                    spacer(),
+                    CustomButton(
+                        text: REGISTER,
+                        onTap: () {
+                          BlocProvider.of<UsersBloc>(context).add(EditPPUser(
+                            id: id,
+                            village: _villageController.text,
+                            name: _nameController.text,
+                            password: _passwordController.text,
+                          ));
+                        })
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

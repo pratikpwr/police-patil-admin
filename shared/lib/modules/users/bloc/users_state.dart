@@ -11,6 +11,12 @@ class UsersInitial extends UsersState {}
 
 class UsersDataLoading extends UsersState {}
 
+class UserDataUpdated extends UsersState {
+  final String message;
+
+  const UserDataUpdated(this.message);
+}
+
 class UsersDataLoaded extends UsersState {
   final UsersResponse userResponse;
 

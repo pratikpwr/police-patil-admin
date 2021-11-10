@@ -10,19 +10,19 @@ class ApiConstants {
   static const String GET_USER_DATA = BASE_URL + '/api/user/';
   static const String UPDATE_USER_DATA = BASE_URL + '/api/user/';
 
-  static const String GET_PP = BASE_URL + '/api/pp';
   static const String GET_USERS = BASE_URL + '/api/user';
-  static const String GET_ADMINS_PS = BASE_URL + '/api/ps';
+  static const String GET_PP = BASE_URL + '/api/pp';
+  static const String GET_PS_USERS = BASE_URL + '/api/ps';
   static const String ADD_USER = BASE_URL + '/api/adduser';
+
+  static const String POLICE_STATION_NAME = BASE_URL + '/api/policestation';
+  static const String VILLAGE_LIST = BASE_URL + "/api/village";
 
   //
   static const String TOP_PP = BASE_URL + '/api/top-pp';
   static const String LATEST_ILLEGAL = BASE_URL + '/api/latestillegalwork';
   static const String LATEST_WATCH = BASE_URL + '/api/latestwatch';
   static const String LATEST_MOVEMENT = BASE_URL + '/api/latestmovement';
-
-  static const String POLICE_STATION = BASE_URL + '/api/policestation';
-  static const String VILLAGE_LIST = BASE_URL + "/api/village";
 
   static const String ARMS = BASE_URL + '/api/arms';
 

@@ -14,6 +14,7 @@ const String SIGN_IN = "लॉग इन करा";
 const String PROFILE = "प्रोफाइल";
 const String NOTICE = "सूचना";
 const String HOME = "मुखपृष्ठ";
+const String VILLAGE = "गाव";
 
 // Register Categories
 const String REGISTER = "रजिस्टर";

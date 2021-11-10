@@ -91,7 +91,7 @@ class MovementData {
         "address": address,
         "latitude": latitude,
         "longitude": longitude,
-        "datetime": datetime!.toIso8601String(),
+        "datetime": datetime == null ? null : datetime!.toIso8601String(),
         "issue": issue,
         "attendance": attendance,
         "description": description,
