@@ -4,6 +4,7 @@ import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
 import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/views.dart';
+import 'package:ppadmin/src/views/widgets/refresh_button.dart';
 import 'package:shared/shared.dart';
 
 class UsersScreen extends StatefulWidget {
@@ -27,11 +28,9 @@ class _UsersScreenState extends State<UsersScreen> {
         title: const Text(POLICE_PATIL_APP),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () async {
-                BlocProvider.of<UsersBloc>(context).add(GetPPUsers());
-              },
-              icon: const Icon(Icons.refresh_rounded))
+          RefreshButton(onTap: () async {
+            BlocProvider.of<UsersBloc>(context).add(GetPPUsers());
+          })
         ],
       ),
       body: BlocListener<UsersBloc, UsersState>(

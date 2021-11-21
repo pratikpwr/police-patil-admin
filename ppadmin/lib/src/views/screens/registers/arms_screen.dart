@@ -30,15 +30,13 @@ class _ArmsScreenState extends State<ArmsScreen> {
         title: const Text(ARMS_COLLECTIONS),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () async {
-                await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const ArmsFilterDataWidget();
-                    });
-              },
-              icon: const Icon(Icons.filter_alt_rounded))
+          FilterButton(onTap: () async {
+            await showDialog(
+                context: context,
+                builder: (context) {
+                  return const ArmsFilterDataWidget();
+                });
+          })
         ],
       ),
       body: BlocListener<ArmsRegisterBloc, ArmsRegisterState>(
@@ -210,7 +208,7 @@ class _ArmsFilterDataWidgetState extends State<ArmsFilterDataWidget> {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(32),
-        height: MediaQuery.of(context).size.height * 0.8,
+        // height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width * 0.4,
         child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
           builder: (context, state) {

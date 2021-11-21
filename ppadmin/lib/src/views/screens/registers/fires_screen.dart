@@ -30,15 +30,13 @@ class _FiresScreenState extends State<FiresScreen> {
         title: const Text(BURNS),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () async {
-                await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const FireFilterDataWidget();
-                    });
-              },
-              icon: const Icon(Icons.filter_alt_rounded))
+          FilterButton(onTap: () async {
+            await showDialog(
+                context: context,
+                builder: (context) {
+                  return const FireFilterDataWidget();
+                });
+          })
         ],
       ),
       body: BlocListener<FireRegisterBloc, FireRegisterState>(
@@ -193,7 +191,7 @@ class _FireFilterDataWidgetState extends State<FireFilterDataWidget> {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(32),
-        height: MediaQuery.of(context).size.height * 0.8,
+        // height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width * 0.4,
         child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
           builder: (context, state) {

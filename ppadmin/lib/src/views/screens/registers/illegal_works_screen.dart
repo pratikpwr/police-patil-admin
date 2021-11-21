@@ -30,15 +30,13 @@ class _IllegalScreenState extends State<IllegalScreen> {
         title: const Text(ILLEGAL_WORKS),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () async {
-                await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const IllegalFilterDataWidget();
-                    });
-              },
-              icon: const Icon(Icons.filter_alt_rounded))
+          FilterButton(onTap: () async {
+            await showDialog(
+                context: context,
+                builder: (context) {
+                  return const IllegalFilterDataWidget();
+                });
+          })
         ],
       ),
       body: BlocListener<IllegalRegisterBloc, IllegalRegisterState>(
@@ -180,7 +178,7 @@ class _IllegalFilterDataWidgetState extends State<IllegalFilterDataWidget> {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(32),
-        height: MediaQuery.of(context).size.height * 0.8,
+        // height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width * 0.4,
         child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
           builder: (context, state) {

@@ -19,12 +19,26 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="improved add ps/pp, admins can change pp password">
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="add watch data">
+      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/filter_button.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/refresh_button.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/string_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/pp_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/pp_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/ps_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/ps_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/arms_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/collect_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/crimes_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/death_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/fires_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/illegal_works_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/missing_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/movement_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/social_places_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/registers/watch_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/bloc/watch_register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/watch_register/models/watch_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/models/watch_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/watch_register/resources/watch_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/watch_register/resources/watch_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/views.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,21 +65,21 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../policepatil" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\assets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\police_station" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\widgets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\utils" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\screens" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
     </key>
   </component>
   <component name="RunManager">
@@ -246,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636530743263</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="add watch data">
+      <created>1636534831869</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1636534831869</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -297,7 +318,8 @@
     <MESSAGE value="arms filtering implemented" />
     <MESSAGE value="filtering applied to all" />
     <MESSAGE value="improved add ps/pp, admins can change pp password" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved add ps/pp, admins can change pp password" />
+    <MESSAGE value="add watch data" />
+    <option name="LAST_COMMIT_MESSAGE" value="add watch data" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
@@ -325,30 +347,30 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state width="613" height="635" key="DebuggerActiveHint/0.0.1536.816@0.0.1536.816" timestamp="1636456520851" />
-    <state x="549" y="177" key="FileChooserDialogImpl" timestamp="1636512514344">
+    <state x="549" y="177" key="FileChooserDialogImpl" timestamp="1637067279614">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1636512514344" />
+    <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1637067279614" />
     <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1634045204326" />
-    <state width="1491" height="240" key="GridCell.Tab.0.bottom" timestamp="1636528722938">
+    <state width="1491" height="148" key="GridCell.Tab.0.bottom" timestamp="1637474689174">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="240" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1636528722938" />
+    <state width="1491" height="148" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1637474689174" />
     <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634066502953" />
-    <state width="1491" height="240" key="GridCell.Tab.0.center" timestamp="1636528722938">
+    <state width="1491" height="148" key="GridCell.Tab.0.center" timestamp="1637474689173">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="240" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1636528722938" />
+    <state width="1491" height="148" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1637474689173" />
     <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="240" key="GridCell.Tab.0.left" timestamp="1636528722938">
+    <state width="1491" height="148" key="GridCell.Tab.0.left" timestamp="1637474689171">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="240" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1636528722938" />
+    <state width="1491" height="148" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1637474689171" />
     <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="240" key="GridCell.Tab.0.right" timestamp="1636528722938">
+    <state width="1491" height="148" key="GridCell.Tab.0.right" timestamp="1637474689173">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1491" height="240" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1636528722938" />
+    <state width="1491" height="148" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1637474689173" />
     <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
     <state x="490" y="26" key="RollbackChangesDialog" timestamp="1636515752052">
       <screen x="0" y="0" width="1536" height="816" />
@@ -358,10 +380,10 @@
       <screen x="0" y="0" width="1536" height="816" />
     </state>
     <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1636530749129">
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1636534839762">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1636530749129" />
+    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1636534839762" />
     <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
     <state width="775" height="415" key="XDebugger.FullValuePopup" timestamp="1635596111910">
       <screen x="0" y="0" width="1536" height="816" />

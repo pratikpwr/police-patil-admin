@@ -4,6 +4,7 @@ import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/custom_methods.dart';
 import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/views.dart';
+import 'package:ppadmin/src/views/widgets/refresh_button.dart';
 import 'package:shared/shared.dart';
 
 class PoliceStationScreen extends StatefulWidget {
@@ -15,11 +16,23 @@ class PoliceStationScreen extends StatefulWidget {
 
 class _PoliceStationScreenState extends State<PoliceStationScreen> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     BlocProvider.of<UsersBloc>(context).add(GetPSUsers());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(POLICE_STATION), automaticallyImplyLeading: false),
+        title: const Text(POLICE_STATION),
+        automaticallyImplyLeading: false,
+        actions: [
+          RefreshButton(onTap: () async {
+            BlocProvider.of<UsersBloc>(context).add(GetPSUsers());
+          })
+        ],
+      ),
       body: BlocListener<UsersBloc, UsersState>(
         listener: (context, state) {
           if (state is UsersDataSendError) {
@@ -53,7 +66,7 @@ class _PoliceStationScreenState extends State<PoliceStationScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _addNewPoliceStation().then((_) {
-            BlocProvider.of<PoliceStationBloc>(context).add(GetPoliceStation());
+            BlocProvider.of<UsersBloc>(context).add(GetPSUsers());
           });
         },
         child: const Icon(Icons.add, size: 24),

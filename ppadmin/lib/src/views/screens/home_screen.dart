@@ -81,7 +81,7 @@ class LatestMovementWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Latest Halchali",
+            "नवीन हालचाली",
             style: Styles.titleTextStyle(fontSize: 22),
           ),
           spacer(height: 8),
@@ -212,7 +212,7 @@ class Top10PPWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Top 10 Active Police Patil",
+            "टॉप १० पोलीस पाटील",
             style: Styles.titleTextStyle(fontSize: 22),
           ),
           spacer(height: 8),
@@ -281,7 +281,7 @@ class LatestWatchWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Latest Nigrani Data",
+            "नवीन निगराणी",
             style: Styles.titleTextStyle(fontSize: 22),
           ),
           spacer(height: 8),
@@ -401,7 +401,7 @@ class LatestIllegalWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Latest Illegal Works",
+            "नवीन अवैद्य धंदे",
             style: Styles.titleTextStyle(fontSize: 22),
           ),
           spacer(height: 8),

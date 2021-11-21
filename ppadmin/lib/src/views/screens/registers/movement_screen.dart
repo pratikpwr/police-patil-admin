@@ -30,15 +30,13 @@ class _MovementScreenState extends State<MovementScreen> {
         title: const Text(MOVEMENT_REGISTER),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () async {
-                await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const MovementFilterDataWidget();
-                    });
-              },
-              icon: const Icon(Icons.filter_alt_rounded))
+          FilterButton(onTap: () async {
+            await showDialog(
+                context: context,
+                builder: (context) {
+                  return const MovementFilterDataWidget();
+                });
+          })
         ],
       ),
       body: BlocListener<MovementRegisterBloc, MovementRegisterState>(
@@ -211,7 +209,7 @@ class _MovementFilterDataWidgetState extends State<MovementFilterDataWidget> {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(32),
-        height: MediaQuery.of(context).size.height * 0.8,
+        // height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width * 0.4,
         child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
           builder: (context, state) {

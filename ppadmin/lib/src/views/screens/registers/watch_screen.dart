@@ -31,15 +31,13 @@ class _WatchScreenState extends State<WatchScreen> {
         title: const Text(WATCH_REGISTER),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () async {
-                await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const WatchFilterDataWidget();
-                    });
-              },
-              icon: const Icon(Icons.filter_alt_rounded))
+          FilterButton(onTap: () async {
+            await showDialog(
+                context: context,
+                builder: (context) {
+                  return const WatchFilterDataWidget();
+                });
+          })
         ],
       ),
       body: BlocListener<WatchRegisterBloc, WatchRegisterState>(
@@ -127,7 +125,7 @@ class _AddWatchDataWidgetState extends State<AddWatchDataWidget> {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(16),
-        height: MediaQuery.of(context).size.height * 0.8,
+        // height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width * 0.4,
         child: BlocListener<WatchRegisterBloc, WatchRegisterState>(
           listener: (context, state) {

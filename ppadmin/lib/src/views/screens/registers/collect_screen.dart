@@ -32,15 +32,13 @@ class _CollectionScreenState extends State<CollectionScreen> {
         title: const Text(COLLECTION_REGISTER),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-              onPressed: () async {
-                await showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const CollectFilterDataWidget();
-                    });
-              },
-              icon: const Icon(Icons.filter_alt_rounded))
+          FilterButton(onTap: () async {
+            await showDialog(
+                context: context,
+                builder: (context) {
+                  return const CollectFilterDataWidget();
+                });
+          })
         ],
       ),
       body: BlocListener<CollectRegisterBloc, CollectRegisterState>(
@@ -202,7 +200,7 @@ class _CollectFilterDataWidgetState extends State<CollectFilterDataWidget> {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(32),
-        height: MediaQuery.of(context).size.height * 0.8,
+        // height: MediaQuery.of(context).size.height * 0.8,
         width: MediaQuery.of(context).size.width * 0.4,
         child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
           builder: (context, state) {
