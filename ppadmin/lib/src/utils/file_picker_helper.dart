@@ -1,7 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:html' as html;
 
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+import 'dart:typed_data';
+import 'dart:async';
+import 'package:dio/dio.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,20 +45,23 @@ Future<File> getImageFromGallery() async {
 
 List<int> getFileForWeb() {
   List<int>? imageFileBytes;
+  Uint8List _bytesData;
 
   try {
     html.FileUploadInputElement uploadInput = html.FileUploadInputElement();
-    uploadInput.multiple = false;
+    uploadInput.multiple = true;
     uploadInput.draggable = true;
-    uploadInput.accept = 'application/pdf';
+    // uploadInput.accept = 'application/pdf';
     uploadInput.click();
+
     html.document.body?.append(uploadInput);
+
     uploadInput.onChange.listen((e) {
       final files = uploadInput.files;
       final file = files![0];
       final reader = html.FileReader();
       reader.onLoadEnd.listen((e) {
-        var _bytesData = const Base64Decoder()
+        _bytesData = const Base64Decoder()
             .convert(reader.result.toString().split(",").last);
 
         imageFileBytes = _bytesData;
@@ -114,3 +122,7 @@ Future<File?> getFileFromDevice(BuildContext context) async {
       });
   return _file;
 }
+
+
+
+// FormData getFormData(){}

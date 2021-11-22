@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +8,6 @@ import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/utils.dart';
 import 'package:ppadmin/src/views/views.dart';
 import 'package:shared/shared.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class KayadeScreen extends StatefulWidget {
   const KayadeScreen({Key? key}) : super(key: key);
@@ -64,11 +64,7 @@ class _KayadeScreenState extends State<KayadeScreen> {
                                         fontWeight: FontWeight.w500),
                                   ),
                                   onPressed: () async {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (_) {
-                                      return PDFViewScreen(
-                                          kayadeData: kayadeData);
-                                    }));
+                                    launchUrl("https://${kayadeData.file!}");
                                   }),
                             );
                           })),
@@ -126,24 +122,37 @@ class _KayadeScreenState extends State<KayadeScreen> {
                     AttachButton(
                         text: _fileName,
                         onTap: () async {
-                          if (kIsWeb) {
-                            _fileName = "File Added";
-                            imageFileBytes = getFileForWeb();
-                          } else {
-                            _file = await getFileFromGallery();
+                          // if (kIsWeb) {
+                          // setState(() {
+                          //   _fileName = "File Added";
+                          //   imageFileBytes = getFileForWeb();
+                          // });
+                          // } else {'
+                          _file = await getImageFromGallery();
+                          setState(() {
                             _fileName = getFileName(_file!.path);
-                          }
+                          });
+                          // }
                         }),
                     spacer(),
                     CustomButton(
                         text: "कायदा जोडा",
-                        onTap: () {
+                        onTap: () async {
                           Map<String, dynamic> _kayadeData = {
                             "title": _titleController.text,
-                            "file": kIsWeb ? imageFileBytes! : _file?.path
                           };
+
+                          FormData body = FormData.fromMap(_kayadeData);
+                          final bytes = await _file!.readAsBytes();
+                          final MultipartFile file = MultipartFile.fromBytes(
+                              bytes,
+                              filename: _fileName);
+                          MapEntry<String, MultipartFile> imageEntry =
+                              MapEntry("image", file);
+                          body.files.add(imageEntry);
+
                           BlocProvider.of<KayadeBloc>(context)
-                              .add(AddKayade(_kayadeData));
+                              .add(AddKayade(body));
                         })
                   ],
                 ),
@@ -154,27 +163,27 @@ class _KayadeScreenState extends State<KayadeScreen> {
   }
 }
 
-class PDFViewScreen extends StatelessWidget {
-  const PDFViewScreen({Key? key, required this.kayadeData}) : super(key: key);
-  final KayadeData kayadeData;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-        height: MediaQuery.of(context).size.height * 0.85,
-        width: MediaQuery.of(context).size.width * 0.40,
-        child: Column(
-          children: [
-            Text(
-              kayadeData.title!,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600),
-            ),
-            SfPdfViewer.network("http://${kayadeData.file!}"),
-          ],
-        ));
-  }
-}
+// class PDFViewScreen extends StatelessWidget {
+//   const PDFViewScreen({Key? key, required this.kayadeData}) : super(key: key);
+//   final KayadeData kayadeData;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//         height: MediaQuery.of(context).size.height * 0.85,
+//         width: MediaQuery.of(context).size.width * 0.40,
+//         child: Column(
+//           children: [
+//             Text(
+//               kayadeData.title!,
+//               overflow: TextOverflow.ellipsis,
+//               style: GoogleFonts.poppins(
+//                   color: Colors.white,
+//                   fontSize: 18,
+//                   fontWeight: FontWeight.w600),
+//             ),
+//             SfPdfViewer.network("http://${kayadeData.file!}"),
+//           ],
+//         ));
+//   }
+// }

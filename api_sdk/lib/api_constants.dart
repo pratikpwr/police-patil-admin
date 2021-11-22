@@ -85,6 +85,7 @@ class ApiConstants {
   static const String GET_DISASTER = BASE_URL + "/api/disaster";
 
   static const String KAYADE = BASE_URL + "/api/kayade";
+  static const String HOME_DATA = BASE_URL + "/api/home";
 
   static const String POST_APP_VERSION = BASE_URL + "/api";
 }

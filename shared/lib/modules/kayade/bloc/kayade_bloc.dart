@@ -33,7 +33,11 @@ class KayadeBloc extends Bloc<KayadeEvent, KayadeState> {
       }
     }
     if (event is AddKayade) {
+      yield KayadeDataSending();
       try {
+
+
+
         Response _response =
             await _kayadeRepository.addKayadeData(body: event.kayadeData);
 

@@ -10,7 +10,7 @@ abstract class KayadeEvent extends Equatable {
 class GetKayade extends KayadeEvent {}
 
 class AddKayade extends KayadeEvent {
-  final Map<String, dynamic> kayadeData;
+  final dynamic kayadeData;
 
   const AddKayade(this.kayadeData);
 

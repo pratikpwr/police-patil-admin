@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ppadmin/src/config/constants.dart';
 import 'package:ppadmin/src/utils/utils.dart';
+import 'package:ppadmin/src/views/graphs/graphs.dart';
 import 'package:ppadmin/src/views/views.dart';
 import 'package:shared/shared.dart';
 
@@ -40,13 +41,17 @@ class HomeScreen extends StatelessWidget {
                           pp: state.data.topPP!,
                         ),
                         spacer(height: 24),
-                        LatestIllegalWidget(
-                            illegalList: state.data.latestIllegal!),
-                        spacer(height: 24),
-                        LatestWatchWidget(watchList: state.data.latestWatch!),
+                        MovementGraph(),
                         spacer(height: 24),
                         LatestMovementWidget(
                             moveData: state.data.latestMovement!),
+                        spacer(height: 24),
+                        LatestWatchWidget(watchList: state.data.latestWatch!),
+                        spacer(height: 24),
+                        LatestIllegalWidget(
+                            illegalList: state.data.latestIllegal!),
+                        spacer(height: 24),
+                        IllegalLocMap(),
                         spacer(height: 24),
                       ],
                     ),
@@ -205,6 +210,8 @@ class Top10PPWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
+      width: double.infinity,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: CONTAINER_BACKGROUND_COLOR,
         borderRadius: BorderRadius.circular(15),
@@ -394,6 +401,8 @@ class LatestIllegalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
+      width: double.infinity,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: CONTAINER_BACKGROUND_COLOR,
         borderRadius: BorderRadius.circular(15),

@@ -1,6 +1,11 @@
 import 'package:api_sdk/api_sdk.dart';
 
 class HomeRepository {
+  Future<dynamic> getHomeData() async {
+    final response = await ApiSdk.getHomeData();
+    return response;
+  }
+
   Future<dynamic> getLatestIllegal() async {
     final response = await ApiSdk.getLatestIllegal();
     return response;

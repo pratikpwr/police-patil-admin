@@ -3,7 +3,7 @@ import 'package:ppadmin/src/config/constants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MovementGraph extends StatefulWidget {
-  const MovementGraph({Key? key}) : super(key: key);
+  MovementGraph({Key? key}) : super(key: key);
 
   @override
   State<MovementGraph> createState() => _MovementGraphState();
@@ -21,12 +21,11 @@ class _MovementGraphState extends State<MovementGraph> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(16),
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             color: Colors.grey[200], borderRadius: BorderRadius.circular(15)),
-        height: 400,
-        width: 600,
+        height: MediaQuery.of(context).size.height * 0.7,
+        width: double.infinity,
         child: SfCartesianChart(
             primaryXAxis: CategoryAxis(),
             // Chart title

@@ -1,6 +1,6 @@
+import 'package:http/http.dart' as http;
 import 'package:api_sdk/api_sdk.dart';
 import 'package:dio/dio.dart';
-import '../../../shared.dart';
 
 class KayadeRepository {
   Future<dynamic> getKayade() async {
@@ -8,11 +8,13 @@ class KayadeRepository {
     return response;
   }
 
-  Future<dynamic> addKayadeData({required Map<String, dynamic> body}) async {
+  Future<dynamic> addKayadeData({required dynamic body}) async {
     // Map<String, dynamic> body = kayadeData.toJson();
-    body['file'] = MultipartFile.fromBytes(body['file']);
-    FormData _formData = FormData.fromMap(body);
-    final response = await ApiSdk.postRules(body: _formData);
+    // body['file'] = http.MultipartFile.fromBytes('file', body['file'],
+    //     filename: "file_up");
+    // MultipartFile.fromBytes('file',body['file']);
+    // FormData _formData = FormData.fromMap(body);
+    final response = await ApiSdk.postRules(body: body);
     return response;
   }
 }

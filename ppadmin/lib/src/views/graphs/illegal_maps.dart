@@ -20,8 +20,7 @@ class IllegalLocMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.all(16),
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             color: Colors.grey[200], borderRadius: BorderRadius.circular(15)),
         child: Column(

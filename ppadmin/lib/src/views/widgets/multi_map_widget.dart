@@ -53,8 +53,8 @@ class _MultiMapsWidgetState extends State<MultiMapsWidget> {
 
     return Container(
         padding: const EdgeInsets.all(8),
-        height: 400,
-        width: 600,
+        height: MediaQuery.of(context).size.height * 0.8,
+        width: double.infinity,
         child: HtmlElementView(viewType: htmlId));
   }
 }
