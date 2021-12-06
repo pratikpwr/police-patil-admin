@@ -22,27 +22,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="home screen refined">
-      <change afterPath="$PROJECT_DIR$/ppadmin/assets/police patil.png" afterDir="false" />
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="add watch data">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/assets/police_patil_no_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/assets/police_patil_no_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/image_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/image_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_sdk/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/assets/police patil.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/web/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/web/favicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/resources/home_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/resources/home_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/shared/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\prati\.android\avd\Pixel_5_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/pratik/.android/avd/Pixel_4a_API_30.avd]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -63,21 +59,21 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ppadmin/web" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\web" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\assets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\police_station" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\widgets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\utils" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
+      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\screens" />
     </key>
   </component>
   <component name="RunManager">
@@ -266,21 +262,7 @@
       <option name="project" value="LOCAL" />
       <updated>1636534831869</updated>
     </task>
-    <task id="LOCAL-00025" summary="filter icon heading added">
-      <created>1637486393008</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1637486393008</updated>
-    </task>
-    <task id="LOCAL-00026" summary="home screen refined">
-      <created>1637609546430</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1637609546430</updated>
-    </task>
-    <option name="localTasksCounter" value="27" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -307,6 +289,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="initial setup" />
+    <MESSAGE value="web added" />
     <MESSAGE value="basic dashboard implemented" />
     <MESSAGE value="arms table view done" />
     <MESSAGE value="collect and movement register done" />
@@ -330,8 +314,6 @@
     <MESSAGE value="filtering applied to all" />
     <MESSAGE value="improved add ps/pp, admins can change pp password" />
     <MESSAGE value="add watch data" />
-    <MESSAGE value="filter icon heading added" />
-    <MESSAGE value="home screen refined" />
-    <option name="LAST_COMMIT_MESSAGE" value="home screen refined" />
+    <option name="LAST_COMMIT_MESSAGE" value="add watch data" />
   </component>
 </project>
