@@ -8,5 +8,7 @@ abstract class HomeEvent extends Equatable {
 }
 
 class GetHomeData extends HomeEvent {
+  String? psId, ppId;
 
+  GetHomeData({this.psId, this.ppId});
 }

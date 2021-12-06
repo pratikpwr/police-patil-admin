@@ -13,6 +13,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial());
   final _homeRepository = HomeRepository();
+  String? psId, ppId;
 
   @override
   Stream<HomeState> mapEventToState(
@@ -21,7 +22,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (event is GetHomeData) {
       yield HomeLoading();
       try {
-        Response _res = await _homeRepository.getHomeData();
+        String params = getParams(event);
+        Response _res = await _homeRepository.getHomeData(params: params);
 
         if (_res.data["message"] != null) {
           final homeData = HomeResponse.fromJson(_res.data).data;
@@ -31,5 +33,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         yield HomeError(err.toString());
       }
     }
+  }
+
+  String getParams(GetHomeData event) {
+    String _params = "?";
+
+    if (event.psId != null) {
+      _params += "psid=${event.psId}&";
+    }
+    if (event.ppId != null) {
+      _params += "ppid=${event.ppId}&";
+    }
+
+    return _params;
   }
 }

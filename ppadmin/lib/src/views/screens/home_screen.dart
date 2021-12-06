@@ -14,56 +14,73 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<HomeBloc>(context).add(GetHomeData());
     return Scaffold(
-      appBar: AppBar(
-          title: const Text("पोलीस पाटील ॲप"),
-          automaticallyImplyLeading: false),
+      // appBar: AppBar(
+      //     title: const Text("पोलीस पाटील ॲप"),
+      //     automaticallyImplyLeading: false),
       body: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state is HomeError) {
             showSnackBar(context, state.error);
           }
         },
-        child: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            if (state is HomeLoading) {
-              return const Loading();
-            } else if (state is HomeSuccess) {
-              return SafeArea(
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Top10PPWidget(
-                          pp: state.data.topPP!,
-                        ),
-                        spacer(height: 24),
-                        MovementGraph(),
-                        spacer(height: 24),
-                        LatestMovementWidget(
-                            moveData: state.data.latestMovement!),
-                        spacer(height: 24),
-                        LatestWatchWidget(watchList: state.data.latestWatch!),
-                        spacer(height: 24),
-                        LatestIllegalWidget(
-                            illegalList: state.data.latestIllegal!),
-                        spacer(height: 24),
-                        IllegalLocMap(),
-                        spacer(height: 24),
-                      ],
-                    ),
-                  ),
+        child: Scrollbar(
+          controller: _scrollController,
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              children: [
+                Container(
+                  height: 65,
+                  color: Colors.white,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: Center(
+                      child: Text(
+                    "पोलीस पाटील ॲप",
+                    style: Styles.appBarTextStyle(),
+                  )),
                 ),
-              );
-            } else if (state is UsersLoadError) {
-              return SomethingWentWrong();
-            } else {
-              return SomethingWentWrong();
-            }
-          },
+                BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    if (state is HomeLoading) {
+                      return const Loading();
+                    } else if (state is HomeSuccess) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Top10PPWidget(
+                              pp: state.data.topPP!,
+                            ),
+                            spacer(height: 24),
+                            MovementGraph(),
+                            spacer(height: 24),
+                            LatestMovementWidget(
+                                moveData: state.data.latestMovement!),
+                            spacer(height: 24),
+                            LatestWatchWidget(
+                                watchList: state.data.latestWatch!),
+                            spacer(height: 24),
+                            LatestIllegalWidget(
+                                illegalList: state.data.latestIllegal!),
+                            spacer(height: 24),
+                            IllegalLocMap(),
+                            spacer(height: 24),
+                            DeathsGraph(),
+                          ],
+                        ),
+                      );
+                    } else if (state is UsersLoadError) {
+                      return SomethingWentWrong();
+                    } else {
+                      return SomethingWentWrong();
+                    }
+                  },
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -487,6 +504,79 @@ class LatestIllegalWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class FilterDataWidget extends StatefulWidget {
+  const FilterDataWidget({Key? key}) : super(key: key);
+
+  @override
+  _FilterDataWidgetState createState() => _FilterDataWidgetState();
+}
+
+class _FilterDataWidgetState extends State<FilterDataWidget> {
+  final _bloc = HomeBloc();
+
+  @override
+  void initState() {
+    BlocProvider.of<VillagePSListBloc>(context).add(GetVillagePSList());
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(32),
+        // height: MediaQuery.of(context).size.height * 0.8,
+        width: MediaQuery.of(context).size.width * 0.4,
+        child: BlocBuilder<VillagePSListBloc, VillagePSListState>(
+          builder: (context, state) {
+            if (state is VillagePSListLoading) {
+              return const Loading();
+            }
+            if (state is VillagePSListSuccess) {
+              return ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  villageSelectDropDown(
+                      isPs: true,
+                      list: getPSListInString(state.policeStations),
+                      selValue: _bloc.psId,
+                      onChanged: (value) {
+                        _bloc.psId =
+                            getPsIDFromPSName(state.policeStations, value!);
+                      }),
+                  spacer(),
+                  villageSelectDropDown(
+                      list: getVillageListInString(state.villages),
+                      selValue: _bloc.ppId,
+                      onChanged: (value) {
+                        _bloc.ppId = getPpIDFromVillage(state.villages, value!);
+                      }),
+                  spacer(),
+                  CustomButton(
+                      text: APPLY_FILTER,
+                      onTap: () {
+                        Navigator.pop(context);
+                        BlocProvider.of<HomeBloc>(context).add(GetHomeData(
+                          ppId: _bloc.ppId,
+                          psId: _bloc.psId,
+                        ));
+                      })
+                ],
+              );
+            }
+            if (state is VillagePSListFailed) {
+              return SomethingWentWrong();
+            } else {
+              return SomethingWentWrong();
+            }
+          },
+        ),
       ),
     );
   }

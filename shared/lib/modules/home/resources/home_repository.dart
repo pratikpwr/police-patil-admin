@@ -1,8 +1,8 @@
 import 'package:api_sdk/api_sdk.dart';
 
 class HomeRepository {
-  Future<dynamic> getHomeData() async {
-    final response = await ApiSdk.getHomeData();
+  Future<dynamic> getHomeData({String? params}) async {
+    final response = await ApiSdk.getHomeData(params: params);
     return response;
   }
 

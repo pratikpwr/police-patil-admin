@@ -405,8 +405,8 @@ class ApiSdk {
     return response;
   }
 
-  static Future<Response> getHomeData() async {
-    String path = ApiConstants.HOME_DATA;
+  static Future<Response> getHomeData({String? params}) async {
+    String path = "${ApiConstants.HOME_DATA}${params ?? ""}";
 
     Response response = await RestApiHandlerData.getData(path);
     return response;

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -19,31 +22,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="filter icon heading added">
+    <list default="true" id="6f3367bb-7056-4fb0-9813-205a4ddee6f3" name="Default Changelist" comment="home screen refined">
+      <change afterPath="$PROJECT_DIR$/ppadmin/assets/police patil.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_constants.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/api_sdk/lib/api_sdk.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/utils/file_picker_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/utils/file_picker_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/illegal_maps.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/illegal_maps.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/movements_graph.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/assets/police_patil_no_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/assets/police_patil_no_bg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/config/image_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/config/image_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/graphs/deaths_graph.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/kayade_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/screens/kayade_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/multi_map_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/lib/src/views/widgets/multi_map_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppadmin/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppadmin/web/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/ppadmin/web/favicon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/models/home_mode.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/models/home_mode.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/bloc/home_event.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/lib/modules/home/resources/home_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/home/resources/home_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/bloc/kayade_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/lib/modules/kayade/resources/kayade_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/shared/lib/modules/kayade/resources/kayade_repository.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\prati\.android\avd\Pixel_5_API_30.avd]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -64,21 +63,21 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../policepatil" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ppadmin/web" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\web" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\assets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\police_station" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\widgets" />
       <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\utils" />
-      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\ppadmin\lib\src\views\screens" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MyProjects\DreamCareDevs\police-patil-admin\shared\lib\modules\village_ps_list\resources" />
     </key>
   </component>
   <component name="RunManager">
@@ -87,6 +86,7 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -273,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637486393008</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="home screen refined">
+      <created>1637609546430</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1637609546430</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -300,7 +307,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="web added" />
     <MESSAGE value="basic dashboard implemented" />
     <MESSAGE value="arms table view done" />
     <MESSAGE value="collect and movement register done" />
@@ -325,87 +331,7 @@
     <MESSAGE value="improved add ps/pp, admins can change pp password" />
     <MESSAGE value="add watch data" />
     <MESSAGE value="filter icon heading added" />
-    <option name="LAST_COMMIT_MESSAGE" value="filter icon heading added" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634032136493">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="223" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1634032136493" />
-    <state x="510" y="209" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1634549202481">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="510" y="209" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.816@0.0.1536.816" timestamp="1634549202481" />
-    <state x="510" y="221" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864@0.0.1536.864" timestamp="1634032823603" />
-    <state x="574" y="124" key="#com.intellij.ide.util.MemberChooser" timestamp="1635497388414">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="574" y="124" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1635497388414" />
-    <state x="498" y="221" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1634032116935">
-      <screen x="0" y="0" width="1536" height="864" />
-    </state>
-    <state x="498" y="221" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1536.864@0.0.1536.864" timestamp="1634032116935" />
-    <state x="510" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1635497210667">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="510" y="241" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.816@0.0.1536.816" timestamp="1635497210667" />
-    <state width="613" height="635" key="DebuggerActiveHint" timestamp="1637516600587">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="613" height="635" key="DebuggerActiveHint/0.0.1536.816@0.0.1536.816" timestamp="1637516600587" />
-    <state x="549" y="177" key="FileChooserDialogImpl" timestamp="1637557941441">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="549" y="177" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1637557941441" />
-    <state x="549" y="187" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1634045204326" />
-    <state width="1491" height="155" key="GridCell.Tab.0.bottom" timestamp="1637607339580">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1491" height="155" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1637607339580" />
-    <state width="1491" height="159" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1634066502953" />
-    <state width="1491" height="155" key="GridCell.Tab.0.center" timestamp="1637607339580">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1491" height="155" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1637607339580" />
-    <state width="1491" height="159" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="155" key="GridCell.Tab.0.left" timestamp="1637607339580">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1491" height="155" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1637607339580" />
-    <state width="1491" height="159" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state width="1491" height="155" key="GridCell.Tab.0.right" timestamp="1637607339580">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="1491" height="155" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1637607339580" />
-    <state width="1491" height="159" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1634066502952" />
-    <state x="490" y="26" key="RollbackChangesDialog" timestamp="1636515752052">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="490" y="26" key="RollbackChangesDialog/0.0.1536.816@0.0.1536.816" timestamp="1636515752052" />
-    <state x="270" y="52" key="SettingsEditor" timestamp="1634023641489">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="270" y="52" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1634023641489" />
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2" timestamp="1637486401251">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="361" y="152" key="Vcs.Push.Dialog.v2/0.0.1536.816@0.0.1536.816" timestamp="1637486401251" />
-    <state x="361" y="161" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1634066429113" />
-    <state width="775" height="415" key="XDebugger.FullValuePopup" timestamp="1635596111910">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state width="775" height="415" key="XDebugger.FullValuePopup/0.0.1536.816@0.0.1536.816" timestamp="1635596111910" />
-    <state x="0" y="0" width="584" height="816" key="find.popup" timestamp="1634378886901">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="0" y="0" width="584" height="816" key="find.popup/0.0.1536.816@0.0.1536.816" timestamp="1634378886901" />
-    <state x="425" y="185" key="run.anything.popup" timestamp="1634551331404">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="425" y="185" key="run.anything.popup/0.0.1536.816@0.0.1536.816" timestamp="1634551331404" />
-    <state x="431" y="137" key="search.everywhere.popup" timestamp="1636440587768">
-      <screen x="0" y="0" width="1536" height="816" />
-    </state>
-    <state x="431" y="137" key="search.everywhere.popup/0.0.1536.816@0.0.1536.816" timestamp="1636440587768" />
+    <MESSAGE value="home screen refined" />
+    <option name="LAST_COMMIT_MESSAGE" value="home screen refined" />
   </component>
 </project>
